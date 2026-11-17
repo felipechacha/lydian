@@ -1,0 +1,100 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.musics-hero-custom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.musics-eyebrow-custom {
+  margin: 0 0 1.2rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+.musics-title-row-custom {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+
+  h1 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(4rem, 5.2vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.24rem;
+    line-height: 1;
+  }
+
+  span {
+    color: $sonic-secondary;
+    font-family: $sonic-font-heading;
+    font-size: 2.1rem;
+    font-weight: 800;
+  }
+}
+
+.musics-add-custom {
+  display: inline-flex;
+  min-height: 5.8rem;
+  padding: 1.4rem 2.8rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 1.4rem;
+  background: linear-gradient(45deg, $sonic-primary, $sonic-primary-dim);
+  box-shadow: 0 1.2rem 3rem rgba(149, 71, 247, 0.22);
+  color: #100d14;
+  font-family: $sonic-font-heading;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+
+  &:hover {
+    filter: brightness(1.08);
+    transform: translateY(-0.2rem);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .musics-hero-custom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .musics-title-row-custom {
+    gap: 1rem;
+
+    h1 {
+      font-size: clamp(3.4rem, 12vw, 4.8rem);
+      letter-spacing: -0.15rem;
+    }
+
+    span {
+      width: 100%;
+      font-size: 1.7rem;
+    }
+  }
+
+  .musics-add-custom {
+    width: 100%;
+  }
+}

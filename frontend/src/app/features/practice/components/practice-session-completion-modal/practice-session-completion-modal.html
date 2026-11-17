@@ -1,0 +1,136 @@
+<div class="practice-completion-backdrop-custom" aria-hidden="true"></div>
+
+<section
+  class="practice-completion-panel-custom"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="practice-completion-title"
+>
+  <header class="practice-completion-header-custom">
+    <div>
+      <span>Fechar o ciclo</span>
+      <h2 id="practice-completion-title">Como foi a prática?</h2>
+      <p>{{ musicTitle() }}</p>
+    </div>
+    <button
+      type="button"
+      class="practice-completion-close-custom"
+      [disabled]="isSubmitting()"
+      aria-label="Voltar para a sessão"
+      (click)="cancel()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <div class="practice-time-summary-custom">
+    <span class="material-symbols-outlined" aria-hidden="true">timer</span>
+    <div>
+      <small>Tempo estudado</small>
+      <strong>{{ elapsedTime() }}</strong>
+      <p>O tempo ativo e as pausas serão registrados com precisão em segundos.</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset class="practice-rating-custom">
+      <legend>Evolução percebida</legend>
+      <p>De 1 a 5, quanto você avançou nesta música?</p>
+      <div role="group" aria-label="Avaliação de progresso">
+        @for (rating of ratingOptions; track rating) {
+          <button
+            type="button"
+            [class.is-active]="form.controls.progressRating.value === rating"
+            [attr.aria-pressed]="form.controls.progressRating.value === rating"
+            [attr.aria-label]="rating + ' de 5'"
+            (click)="selectRating(rating)"
+          >
+            {{ rating }}
+          </button>
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="practice-rating-custom practice-rating-custom--quality">
+      <legend>Qualidade da execução</legend>
+      <p>Como você avalia a consistência do que tocou?</p>
+      <div role="group" aria-label="Avaliação da qualidade">
+        @for (rating of ratingOptions; track rating) {
+          <button
+            type="button"
+            [class.is-active]="form.controls.qualityRating.value === rating"
+            [attr.aria-pressed]="form.controls.qualityRating.value === rating"
+            [attr.aria-label]="rating + ' de 5'"
+            (click)="selectQualityRating(rating)"
+          >
+            {{ rating }}
+          </button>
+        }
+      </div>
+    </fieldset>
+
+    <div class="practice-completion-grid-custom">
+      <div class="practice-completion-field-custom">
+        <label for="completion-mood">Como você terminou?</label>
+        <select id="completion-mood" formControlName="mood">
+          @for (mood of moodOptions; track mood.value) {
+            <option [value]="mood.value">{{ mood.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="practice-completion-field-custom">
+        <label for="completion-repetitions">Repetições concluídas</label>
+        <input id="completion-repetitions" type="number" min="0" formControlName="repetitions" />
+      </div>
+
+      <div class="practice-completion-field-custom practice-completion-field-custom--wide">
+        <label for="song-notes">Anotações sobre a música</label>
+        <textarea
+          id="song-notes"
+          rows="4"
+          maxlength="2000"
+          formControlName="songNotes"
+          placeholder="Riffs, trechos e dificuldades específicas."
+        ></textarea>
+        <small>{{ form.controls.songNotes.value.length }}/2000</small>
+      </div>
+    </div>
+
+    <div class="practice-completion-field-custom practice-completion-field-custom--full">
+      <label for="session-notes">Resumo da sessão</label>
+      <textarea
+        id="session-notes"
+        rows="4"
+        maxlength="5000"
+        formControlName="sessionNotes"
+        placeholder="O que funcionou e o que merece atenção na próxima prática?"
+      ></textarea>
+      <small>{{ form.controls.sessionNotes.value.length }}/5000</small>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="practice-completion-error-custom" role="alert">{{ errorMessage() }}</p>
+    }
+
+    <footer class="practice-completion-actions-custom">
+      <app-button
+        type="button"
+        variant="ghost"
+        [disabled]="isSubmitting()"
+        (buttonClicked)="cancel()"
+      >
+        Continuar praticando
+      </app-button>
+      <app-button
+        type="submit"
+        variant="secondary"
+        [loading]="isSubmitting()"
+        loadingLabel="Salvando prática"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">save</span>
+        Salvar e encerrar
+      </app-button>
+    </footer>
+  </form>
+</section>

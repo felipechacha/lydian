@@ -1,0 +1,82 @@
+<app-dashboard-shell pageTitle="Biblioteca">
+  <div id="musics-page">
+    @if (isLoading) {
+      <section id="musics-loading-section" aria-label="Carregando biblioteca musical">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando sua biblioteca musical" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else {
+      <section id="musics-hero-section" aria-labelledby="musics-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-musics-hero [musicCount]="musicCount"></app-musics-hero>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="musics-toolbar-section" aria-label="Filtros e visualização do repertório">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-musics-toolbar
+                [activeFilter]="activeFilter"
+                [viewMode]="viewMode"
+                (filterSelected)="selectFilter($event)"
+                (viewModeSelected)="selectViewMode($event)"
+              ></app-musics-toolbar>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="musics-library-section" aria-label="Músicas da biblioteca">
+        <div class="container">
+          @if (visibleMusics.length > 0) {
+            <div class="row g-4">
+              @for (music of visibleMusics; track music.id) {
+                <div [class]="applyMusicColumnClass()">
+                  <app-music-library-card
+                    class="w-100"
+                    [music]="music"
+                    [viewMode]="viewMode"
+                  ></app-music-library-card>
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <div class="musics-empty-custom" role="status">
+                  <span class="material-symbols-outlined" aria-hidden="true">queue_music</span>
+                  <h2>Nenhuma música neste estágio</h2>
+                  <p>Escolha outro filtro ou adicione uma nova música ao repertório.</p>
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (totalItems > pageSize) {
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <app-pagination
+                  ariaLabel="Paginação da biblioteca musical"
+                  [currentPage]="currentPage"
+                  [pageSize]="pageSize"
+                  [totalItems]="totalItems"
+                  (pageSelected)="selectPage($event)"
+                ></app-pagination>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>

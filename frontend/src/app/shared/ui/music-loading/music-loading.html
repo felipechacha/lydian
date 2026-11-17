@@ -1,0 +1,53 @@
+<!--
+  V1 — console de estúdio preservado para comparação futura.
+
+<div
+  class="music-loading-custom"
+  role="status"
+  aria-live="polite"
+  aria-busy="true"
+  [attr.aria-label]="message() + '. ' + detail()"
+>
+  <div class="music-loading-console-custom" aria-hidden="true">
+    <div class="music-loading-console-header-custom">
+      <span><i></i> Input ativo</span>
+      <small>CH 01 · SYNC</small>
+    </div>
+
+    <div class="music-loading-wave-custom">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <i class="music-loading-playhead-custom"></i>
+    </div>
+
+    <div class="music-loading-console-footer-custom">
+      <span>44.1 kHz</span>
+      <div><i></i><i></i><i></i><i></i></div>
+      <span>-06 dB</span>
+    </div>
+  </div>
+
+  <div class="music-loading-copy-custom">
+    <strong>{{ message() }}</strong>
+    <span>{{ detail() }}</span>
+  </div>
+</div>
+-->
+
+<div
+  class="music-loading-minimal-custom"
+  role="status"
+  aria-live="polite"
+  aria-busy="true"
+  [attr.aria-label]="message() + '. ' + detail()"
+>
+  <div [class]="applyWaveClass()" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="music-loading-minimal-copy-custom">
+    <strong>{{ message() }}</strong>
+    <span>{{ detail() }}</span>
+  </div>
+</div>

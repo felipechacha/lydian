@@ -1,0 +1,89 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+.history-filters-custom {
+  @include sonic-card(2rem);
+  display: grid;
+  grid-template-columns: minmax(20rem, 1.5fr) repeat(3, minmax(14rem, 0.7fr));
+  gap: 1.4rem;
+}
+label {
+  display: grid;
+  min-width: 0;
+  gap: 0.7rem;
+  color: $sonic-on-surface-variant;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  min-height: 4.6rem;
+  padding: 0 1.2rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 0.9rem;
+  background: $sonic-surface-lowest;
+  color: $sonic-on-surface;
+  font: inherit;
+}
+input:focus,
+select:focus,
+button:focus-visible {
+  @include sonic-focus-ring;
+  border-color: $sonic-primary;
+}
+.history-input-shell-custom {
+  position: relative;
+  display: block;
+}
+.history-input-shell-custom input {
+  padding-left: 4rem;
+}
+.history-input-shell-custom .material-symbols-outlined {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  color: $sonic-primary;
+  transform: translateY(-50%);
+}
+.history-filter-actions-custom {
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+button {
+  min-height: 4.6rem;
+  padding: 0 1.4rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: $sonic-on-surface;
+  font-weight: 900;
+}
+button[type='submit'] {
+  border-color: $sonic-primary;
+  background: $sonic-primary;
+  color: $sonic-surface-lowest;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+@media (max-width: 1199.98px) {
+  .history-filters-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 575.98px) {
+  .history-filters-custom {
+    grid-template-columns: 1fr;
+  }
+  .history-filter-actions-custom {
+    display: grid;
+  }
+}

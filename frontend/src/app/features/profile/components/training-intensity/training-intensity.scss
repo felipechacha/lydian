@@ -1,0 +1,94 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.training-intensity-custom {
+  @include sonic-card(clamp(2.4rem, 4vw, 3.4rem));
+  background: $sonic-surface-low;
+
+  h2 {
+    margin: 0;
+    color: $sonic-on-surface-variant;
+    font-family: $sonic-font-heading;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.17rem;
+    text-transform: uppercase;
+  }
+}
+
+.training-list-custom {
+  display: flex;
+  margin-top: 3.2rem;
+  flex-direction: column;
+  gap: 2.8rem;
+}
+
+.training-metric-header-custom {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+
+  span {
+    color: $sonic-on-surface;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+}
+
+.training-track-custom {
+  height: 0.8rem;
+  overflow: hidden;
+  border-radius: 999rem;
+  background: $sonic-surface-highest;
+
+  span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+  }
+}
+
+.training-metric-custom--secondary {
+  strong {
+    color: $sonic-secondary;
+  }
+
+  .training-track-custom span {
+    background: $sonic-secondary;
+    box-shadow: 0 0 1rem rgba(29, 251, 165, 0.5);
+  }
+}
+
+.training-metric-custom--primary {
+  strong {
+    color: $sonic-primary;
+  }
+
+  .training-track-custom span {
+    background: linear-gradient(90deg, $sonic-primary, $sonic-primary-dim);
+    box-shadow: 0 0 1rem rgba(149, 71, 247, 0.45);
+  }
+}
+
+.training-metric-custom--tertiary {
+  strong {
+    color: $sonic-tertiary;
+  }
+
+  .training-track-custom span {
+    background: $sonic-tertiary;
+    box-shadow: 0 0 1rem rgba(255, 139, 160, 0.4);
+  }
+}

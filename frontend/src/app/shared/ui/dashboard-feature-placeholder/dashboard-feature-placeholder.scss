@@ -1,0 +1,187 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.feature-placeholder-custom {
+  @include sonic-card(clamp(2.8rem, 5vw, 5.6rem));
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 3rem;
+
+  &::after {
+    position: absolute;
+    right: -14rem;
+    bottom: -16rem;
+    width: 38rem;
+    height: 38rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(149, 71, 247, 0.15), transparent 68%);
+    content: '';
+    pointer-events: none;
+  }
+}
+
+.feature-icon-custom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 7.2rem;
+  height: 7.2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.8rem;
+  background: linear-gradient(145deg, rgba(197, 154, 255, 0.18), rgba(149, 71, 247, 0.08));
+  color: $sonic-primary;
+
+  .material-symbols-outlined {
+    font-size: 3.4rem;
+  }
+}
+
+.feature-copy-custom {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+
+  h1 {
+    max-width: 70rem;
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(3.2rem, 5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.16rem;
+    line-height: 1.08;
+  }
+}
+
+.feature-eyebrow-custom {
+  margin: 0 0 1.4rem;
+  color: $sonic-secondary;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+.feature-description-custom {
+  max-width: 68rem;
+  margin: 2rem 0 0;
+  color: $sonic-on-surface-variant;
+  font-size: 1.55rem;
+  line-height: 1.75;
+}
+
+.feature-highlights-custom {
+  display: grid;
+  padding: 0;
+  margin: 3rem 0 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  list-style: none;
+
+  li {
+    display: flex;
+    min-width: 0;
+    padding: 1.4rem;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 1.2rem;
+    background: $sonic-surface-high;
+    color: $sonic-on-surface;
+    font-size: 1.2rem;
+    line-height: 1.45;
+  }
+
+  .material-symbols-outlined {
+    flex: 0 0 auto;
+    color: $sonic-secondary;
+    font-size: 1.8rem;
+  }
+}
+
+.feature-footer-custom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.feature-status-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1.15rem;
+  font-weight: 700;
+
+  > span {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: $sonic-secondary;
+    box-shadow: 0 0 1rem rgba(29, 251, 165, 0.45);
+  }
+}
+
+.feature-action-custom {
+  display: inline-flex;
+  min-height: 4.8rem;
+  padding: 1.2rem 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  border-radius: 1.4rem;
+  background: $sonic-surface-highest;
+  color: $sonic-on-surface;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+
+  &:hover {
+    background: $sonic-primary-dim;
+    color: #100d14;
+    transform: translateY(-0.2rem);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.8rem;
+  }
+}
+
+@container (max-width: 64rem) {
+  .feature-placeholder-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-highlights-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-footer-custom {
+    grid-column: auto;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@container (max-width: 36rem) {
+  .feature-action-custom {
+    width: 100%;
+  }
+}

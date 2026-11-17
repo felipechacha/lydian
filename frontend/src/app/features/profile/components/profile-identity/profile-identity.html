@@ -1,0 +1,44 @@
+<article class="profile-identity-custom">
+  <div class="profile-avatar-wrapper-custom">
+    <div class="profile-avatar-custom">
+      <img
+        [src]="profile.avatarUrl"
+        width="192"
+        height="192"
+        alt="Retrato de {{ profile.name }}"
+      />
+    </div>
+    <span class="profile-level-custom">Nível {{ profile.level }}</span>
+  </div>
+
+  <div class="profile-copy-custom">
+    <div class="profile-title-row-custom">
+      <h1>{{ profile.name }}</h1>
+      <div class="profile-badges-custom" role="list" aria-label="Selos do perfil">
+        @for (badge of profile.badges; track badge; let index = $index) {
+          <span role="listitem" [class]="applyBadgeStyle(index)">{{ badge }}</span>
+        }
+      </div>
+    </div>
+
+    <p class="profile-role-custom">
+      {{ profile.role }} <span aria-hidden="true">•</span> Membro há {{ profile.membershipDays }} dias
+    </p>
+
+    @if (profile.isVerified) {
+      <p class="profile-verification-custom">
+        <span class="material-symbols-outlined is-filled" aria-hidden="true">verified</span>
+        Identidade musical verificada
+      </p>
+    }
+  </div>
+
+  <div class="profile-actions-custom">
+    <button type="button" class="profile-action-custom profile-action-custom--ghost">
+      Editar Perfil
+    </button>
+    <button type="button" class="profile-action-custom profile-action-custom--primary">
+      Compartilhar
+    </button>
+  </div>
+</article>

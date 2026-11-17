@@ -1,0 +1,61 @@
+<article [class]="applyCardClass()">
+  @if (plan().isRecommended) {
+    <span class="recommended-badge-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
+      Mais escolhido
+    </span>
+  }
+
+  <header class="plan-card-header-custom">
+    <span class="plan-icon-custom material-symbols-outlined" aria-hidden="true">
+      {{ plan().icon }}
+    </span>
+
+    <div>
+      <p class="plan-eyebrow-custom">{{ plan().eyebrow }}</p>
+      <h2>{{ plan().name }}</h2>
+    </div>
+  </header>
+
+  <p class="plan-description-custom">{{ plan().description }}</p>
+
+  <div class="plan-pricing-custom" aria-label="Valores do plano">
+    <div class="monthly-price-custom">
+      <span>Mensal</span>
+      <strong>{{ plan().monthlyPrice }}</strong>
+      <small>por mês</small>
+    </div>
+
+    <div class="annual-price-custom">
+      <div>
+        <span>Anual</span>
+        <strong>{{ plan().annualPrice }}</strong>
+      </div>
+      <small>{{ plan().annualEquivalent }}</small>
+      <em>{{ plan().annualBenefit }}</em>
+    </div>
+  </div>
+
+  <div class="plan-features-custom">
+    <p>O que está incluso</p>
+    <ul>
+      @for (feature of plan().features; track feature) {
+        <li>
+          <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+          <span>{{ feature }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <app-button
+    [variant]="applyButtonVariant()"
+    size="large"
+    [fullWidth]="true"
+    [ariaLabel]="plan().ctaLabel + ', plano ' + plan().name"
+    (buttonClicked)="selectPlan()"
+  >
+    <span>{{ plan().ctaLabel }}</span>
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+  </app-button>
+</article>

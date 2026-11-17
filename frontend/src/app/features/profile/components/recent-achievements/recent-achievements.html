@@ -1,0 +1,22 @@
+<article class="recent-achievements-custom">
+  <header>
+    <h2>Conquistas Recentes</h2>
+    <button type="button">Ver todas</button>
+  </header>
+
+  <div class="recent-achievement-list-custom">
+    @for (achievement of achievements; track achievement.label) {
+      <button
+        type="button"
+        [class]="applyAchievementStyle(achievement)"
+        [disabled]="achievement.isLocked"
+        [attr.aria-label]="achievement.label"
+        [title]="achievement.label"
+      >
+        <span class="material-symbols-outlined is-filled" aria-hidden="true">
+          {{ achievement.icon }}
+        </span>
+      </button>
+    }
+  </div>
+</article>

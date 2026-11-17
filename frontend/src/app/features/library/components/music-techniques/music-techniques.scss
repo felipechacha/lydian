@@ -1,0 +1,78 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.music-techniques-custom {
+  @include sonic-card(clamp(2.4rem, 4vw, 4rem));
+  display: flex;
+  height: 100%;
+  min-height: 42rem;
+  flex-direction: column;
+}
+
+.techniques-icon-custom {
+  @include flex-center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1.4rem;
+  background: rgba(197, 154, 255, 0.1);
+  color: $sonic-primary;
+}
+
+.techniques-eyebrow-custom {
+  margin: 2.8rem 0 0;
+  color: $sonic-primary;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0.8rem 0 0;
+  font-family: $sonic-font-heading;
+  font-size: 2.8rem;
+  letter-spacing: -0.05em;
+}
+
+.technique-tags-custom {
+  display: flex;
+  margin-top: 2.8rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  span {
+    padding: 0.8rem 1.1rem;
+    border: 1px solid rgba(72, 72, 71, 0.52);
+    border-radius: 999px;
+    background: $sonic-surface-high;
+    color: $sonic-on-surface-variant;
+    font-size: 0.95rem;
+  }
+}
+
+.technique-note-custom {
+  display: flex;
+  margin-top: auto;
+  padding-top: 3rem;
+  align-items: flex-start;
+  gap: 1rem;
+  color: $sonic-on-surface-variant;
+
+  .material-symbols-outlined {
+    color: $sonic-secondary;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  strong {
+    color: $sonic-on-surface;
+  }
+}

@@ -1,0 +1,28 @@
+<article class="music-rating-custom">
+  <p>Autoavaliação</p>
+  <h2>Como foi a última sessão?</h2>
+
+  <div class="rating-stars-custom" role="group" aria-label="Avaliação de um a cinco">
+    @for (star of stars; track star) {
+      <button
+        type="button"
+        [class.is-active]="star <= rating"
+        [attr.aria-label]="star + (star === 1 ? ' estrela' : ' estrelas')"
+        (click)="ratingChanged.emit(star)"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">star</span>
+      </button>
+    }
+  </div>
+
+  <label for="practice-notes">Notas de prática</label>
+  <textarea
+    id="practice-notes"
+    rows="6"
+    maxlength="500"
+    placeholder="Registre ajustes, sensações e pontos para a próxima sessão..."
+    [value]="notes"
+    (input)="updateNotes($event)"
+  ></textarea>
+  <small>{{ notes.length }}/500</small>
+</article>

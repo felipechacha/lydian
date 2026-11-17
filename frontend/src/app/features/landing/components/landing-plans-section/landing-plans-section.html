@@ -1,0 +1,83 @@
+  <section id="plans-section" aria-labelledby="plans-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="plans-heading gsap-reveal">
+            <div>
+              <span class="section-kicker">Planos Lydian</span>
+              <h2 id="plans-title" class="section-heading">
+                Um plano para cada<br /><em>momento da sua música.</em>
+              </h2>
+            </div>
+            <p class="section-copy">
+              Comece gratuitamente e evolua quando sua biblioteca, sua rotina e seus palcos
+              pedirem mais espaço.
+            </p>
+          </div>
+
+          <div class="landing-plans gsap-stagger">
+            @for (plan of plans; track plan.id) {
+              <article
+                class="landing-plan-card"
+                [class.landing-plan-card--recommended]="plan.isRecommended"
+              >
+                @if (plan.isRecommended) {
+                  <span class="landing-plan-card__badge">Mais escolhido</span>
+                }
+
+                <header class="landing-plan-card__header">
+                  <span class="landing-plan-card__index" aria-hidden="true">
+                    0{{ $index + 1 }}
+                  </span>
+                  <div>
+                    <span>{{ plan.eyebrow }}</span>
+                    <h3>{{ plan.name }}</h3>
+                  </div>
+                </header>
+
+                <p class="landing-plan-card__description">{{ plan.description }}</p>
+
+                <div class="landing-plan-card__pricing">
+                  <div class="landing-plan-card__monthly">
+                    <span>Mensal</span>
+                    <strong>{{ plan.monthlyPrice }}</strong>
+                    <small>/mês</small>
+                  </div>
+                  <div class="landing-plan-card__annual">
+                    <span>Anual</span>
+                    <strong>{{ plan.annualPrice }}</strong>
+                    <small>{{ plan.annualEquivalent }}</small>
+                  </div>
+                </div>
+
+                <span class="landing-plan-card__features-label">
+                  {{ plan.id === 'free' ? 'Incluído agora' : 'Previsto no acesso antecipado' }}
+                </span>
+                <ul class="landing-plan-card__features">
+                  @for (feature of plan.features; track feature) {
+                    <li><span aria-hidden="true">✓</span>{{ feature }}</li>
+                  }
+                </ul>
+
+                @if (plan.id === 'free') {
+                  <a class="landing-plan-card__cta" routerLink="/register">Começar grátis</a>
+                } @else {
+                  <a
+                    class="landing-plan-card__cta"
+                    href="#waitlist-section"
+                    (click)="navigateToSection($event, 'waitlist-section')"
+                    >Quero testar este plano</a
+                  >
+                }
+              </article>
+            }
+          </div>
+
+          <p class="plans-footnote gsap-reveal">
+            O Free já permite começar. Starter e Full entram em acesso antecipado pela lista de
+            testes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>

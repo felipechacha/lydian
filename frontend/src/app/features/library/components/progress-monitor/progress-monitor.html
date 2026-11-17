@@ -1,0 +1,30 @@
+<article class="progress-monitor-custom">
+  <div class="progress-heading-custom">
+    <div>
+      <p>Monitor de progresso</p>
+      <h2>Domínio da música</h2>
+      <span>Ritmo, precisão e consistência ao longo das sessões.</span>
+    </div>
+    <strong><span>+</span>14% <small>dominado</small></strong>
+  </div>
+
+  <div
+    class="progress-chart-custom"
+    role="img"
+    aria-label="Gráfico de domínio crescente de 28% para 92%"
+  >
+    @for (bar of bars; track $index) {
+      <span
+        [class.is-current]="bar.isCurrent"
+        [style.height.%]="bar.value"
+        aria-hidden="true"
+      ></span>
+    }
+  </div>
+
+  <div class="progress-axis-custom" aria-hidden="true">
+    <span>01 out</span>
+    <span>15 out</span>
+    <span>Hoje</span>
+  </div>
+</article>

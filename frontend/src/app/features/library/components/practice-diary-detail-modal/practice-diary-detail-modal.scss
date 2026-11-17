@@ -1,0 +1,197 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  display: grid;
+  padding: 2rem;
+  place-items: center;
+  overflow-y: auto;
+}
+
+.practice-detail-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1.2rem);
+}
+
+.practice-detail-panel-custom {
+  position: relative;
+  width: min(100%, 76rem);
+  padding: clamp(2.4rem, 5vw, 4rem);
+  border: 1px solid rgba(197, 154, 255, 0.28);
+  border-radius: 2.4rem;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(197, 154, 255, 0.14), transparent 26rem),
+    $sonic-surface-low;
+  box-shadow: 0 3rem 10rem rgba(0, 0, 0, 0.58);
+  color: $sonic-on-surface;
+}
+
+.practice-detail-header-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+
+  > div > span {
+    color: $sonic-secondary;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 0.8rem;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.8rem, 5vw, 4.6rem);
+    letter-spacing: -0.055em;
+  }
+
+  p {
+    margin-top: 0.8rem;
+    color: $sonic-primary;
+  }
+
+  button {
+    @include flex-center;
+    width: 4.2rem;
+    height: 4.2rem;
+    flex: 0 0 auto;
+    border: 1px solid $sonic-outline-variant;
+    border-radius: 50%;
+    background: transparent;
+    color: $sonic-on-surface-variant;
+
+    &:hover {
+      border-color: $sonic-primary;
+      color: $sonic-primary;
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.practice-detail-metrics-custom {
+  display: grid;
+  margin-top: 3rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+
+  > div {
+    padding: 1.6rem;
+    border: 1px solid $sonic-outline-variant;
+    border-radius: 1.2rem;
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  small,
+  strong {
+    display: block;
+  }
+
+  small {
+    color: $sonic-on-surface-variant;
+  }
+
+  strong {
+    margin-top: 0.6rem;
+    font-family: $sonic-font-heading;
+    font-size: 1.5rem;
+  }
+}
+
+.practice-detail-focus-custom {
+  display: flex;
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+  align-items: center;
+  gap: 1.2rem;
+  border: 1px solid rgba(29, 251, 165, 0.18);
+  border-radius: 1.2rem;
+  background: rgba(29, 251, 165, 0.05);
+
+  > .material-symbols-outlined {
+    color: $sonic-secondary;
+    font-size: 2.8rem;
+  }
+
+  small,
+  strong {
+    display: block;
+  }
+
+  small {
+    color: $sonic-on-surface-variant;
+  }
+
+  strong {
+    margin-top: 0.35rem;
+  }
+}
+
+.practice-detail-notes-custom {
+  display: grid;
+  margin-top: 1.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+
+  article {
+    min-height: 13rem;
+    padding: 2rem;
+    border-radius: 1.4rem;
+    background: $sonic-surface-high;
+  }
+
+  span {
+    color: $sonic-primary;
+    font-size: 0.95rem;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 1.2rem 0 0;
+    color: $sonic-on-surface-variant;
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .practice-detail-metrics-custom,
+  .practice-detail-notes-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  :host {
+    padding: 1rem;
+    align-items: end;
+  }
+
+  .practice-detail-panel-custom {
+    max-height: calc(100vh - 2rem);
+    padding: 2.4rem 1.8rem;
+    overflow-y: auto;
+    border-radius: 2rem 2rem 0 0;
+  }
+
+  .practice-detail-metrics-custom,
+  .practice-detail-notes-custom {
+    grid-template-columns: 1fr;
+  }
+}

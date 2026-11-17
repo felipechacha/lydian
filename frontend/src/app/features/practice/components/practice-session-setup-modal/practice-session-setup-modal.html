@@ -1,0 +1,112 @@
+<div class="practice-modal-backdrop-custom" aria-hidden="true"></div>
+
+<section
+  class="practice-modal-panel-custom"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="practice-setup-title"
+>
+  <header class="practice-modal-header-custom">
+    <div>
+      <span>Nova sessão</span>
+      <h2 id="practice-setup-title">Prepare sua prática</h2>
+      <p>{{ musicArtist() }} — {{ musicTitle() }}</p>
+    </div>
+    <button
+      type="button"
+      class="practice-modal-close-custom"
+      [disabled]="isSubmitting()"
+      aria-label="Fechar configuração da sessão"
+      (click)="cancel()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="practice-form-field-custom practice-form-field-custom--full">
+      <label for="practice-title">Título da sessão</label>
+      <input
+        id="practice-title"
+        type="text"
+        formControlName="title"
+        maxlength="200"
+        [class.is-invalid]="form.controls.title.touched && form.controls.title.invalid"
+      />
+      <div class="practice-field-meta-custom">
+        @if (form.controls.title.touched && form.controls.title.hasError('required')) {
+          <small class="practice-field-error-custom">Informe um título para continuar.</small>
+        } @else {
+          <small>Identifique este estudo no seu histórico.</small>
+        }
+        <small>{{ form.controls.title.value.length }}/200</small>
+      </div>
+    </div>
+
+    <div class="practice-form-grid-custom">
+      <div class="practice-form-field-custom">
+        <label for="practice-focus">Foco principal</label>
+        <input
+          id="practice-focus"
+          type="text"
+          formControlName="focusArea"
+          maxlength="200"
+          placeholder="Ex.: Palm mute e precisão"
+        />
+        <div class="practice-field-meta-custom">
+          <small>Objetivo técnico da sessão.</small>
+          <small>{{ form.controls.focusArea.value.length }}/200</small>
+        </div>
+      </div>
+
+      <div class="practice-form-field-custom">
+        <label for="practice-mood">Como você está chegando?</label>
+        <select id="practice-mood" formControlName="mood">
+          @for (mood of moodOptions; track mood.value) {
+            <option [value]="mood.value">{{ mood.label }}</option>
+          }
+        </select>
+        <small>Ajuda a contextualizar sua evolução.</small>
+      </div>
+    </div>
+
+    <div class="practice-form-field-custom practice-form-field-custom--full">
+      <label for="practice-notes">Intenção da prática</label>
+      <textarea
+        id="practice-notes"
+        rows="4"
+        formControlName="notes"
+        maxlength="5000"
+        placeholder="O que você quer conquistar nesta sessão?"
+      ></textarea>
+      <div class="practice-field-meta-custom">
+        <small>Você poderá complementar as anotações ao encerrar.</small>
+        <small>{{ form.controls.notes.value.length }}/5000</small>
+      </div>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="practice-modal-error-custom" role="alert">{{ errorMessage() }}</p>
+    }
+
+    <footer class="practice-modal-actions-custom">
+      <app-button
+        type="button"
+        variant="ghost"
+        [disabled]="isSubmitting()"
+        (buttonClicked)="cancel()"
+      >
+        Cancelar
+      </app-button>
+      <app-button
+        type="submit"
+        variant="secondary"
+        [loading]="isSubmitting()"
+        loadingLabel="Criando sessão"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+        Criar e abrir sessão
+      </app-button>
+    </footer>
+  </form>
+</section>

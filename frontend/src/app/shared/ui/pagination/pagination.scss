@@ -1,0 +1,100 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.pagination-custom {
+  display: flex;
+  padding-top: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid rgba(72, 72, 71, 0.5);
+}
+
+.pagination-summary-custom {
+  margin: 0;
+  color: $sonic-on-surface-variant;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.pagination-controls-custom,
+.pagination-pages-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.pagination-controls-custom button {
+  display: inline-flex;
+  min-width: 4rem;
+  min-height: 4rem;
+  padding: 0 1.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 1rem;
+  background: $sonic-surface-low;
+  color: $sonic-on-surface-variant;
+  font-size: 1.05rem;
+  font-weight: 800;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  &:hover:not(:disabled),
+  &.is-active {
+    border-color: $sonic-primary;
+    color: $sonic-primary;
+    transform: translateY(-0.1rem);
+  }
+
+  &.is-active {
+    background: rgba(197, 154, 255, 0.12);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.38;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .pagination-custom {
+    padding-top: 3.2rem;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pagination-controls-custom {
+    justify-content: space-between;
+  }
+
+  .pagination-direction-custom span:not(.material-symbols-outlined) {
+    display: none;
+  }
+
+  .pagination-pages-custom {
+    gap: 0.4rem;
+  }
+
+  .pagination-controls-custom button {
+    min-width: 3.8rem;
+    min-height: 3.8rem;
+    padding: 0 0.9rem;
+  }
+}

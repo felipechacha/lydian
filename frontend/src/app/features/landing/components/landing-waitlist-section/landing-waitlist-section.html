@@ -1,0 +1,78 @@
+  <section id="waitlist-section" aria-labelledby="waitlist-title">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="waitlist-card gsap-reveal">
+            <div class="waitlist-card__signal" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span
+              ><span></span><span></span><span></span>
+            </div>
+
+            <div class="waitlist-card__copy">
+              <span class="section-kicker">Acesso antecipado</span>
+              <h2 id="waitlist-title">Entre na lista para testar o Lydian.</h2>
+              <p>
+                Seja uma das primeiras pessoas a experimentar o web app e ajude a definir os
+                próximos compassos do produto.
+              </p>
+            </div>
+
+            @if (!waitlistSubmissionPrepared) {
+              <form
+                class="waitlist-form"
+                [formGroup]="waitlistForm"
+                (ngSubmit)="submitWaitlist()"
+                novalidate
+              >
+                <div class="waitlist-form__field">
+                  <label for="waitlist-email">Seu melhor e-mail</label>
+                  <div
+                    class="waitlist-form__control"
+                    [class.waitlist-form__control--invalid]="
+                      waitlistForm.controls.email.touched && waitlistForm.controls.email.invalid
+                    "
+                  >
+                    <input
+                      id="waitlist-email"
+                      type="email"
+                      formControlName="email"
+                      autocomplete="email"
+                      placeholder="voce@email.com"
+                      aria-describedby="waitlist-email-feedback waitlist-privacy"
+                    />
+                    <button type="submit">
+                      <span>Quero testar</span><span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                  <div id="waitlist-email-feedback" class="waitlist-form__feedback">
+                    @if (
+                      waitlistForm.controls.email.touched &&
+                      waitlistForm.controls.email.hasError('required')
+                    ) {
+                      <span>Informe seu e-mail para entrar na lista.</span>
+                    } @else if (
+                      waitlistForm.controls.email.touched &&
+                      waitlistForm.controls.email.hasError('email')
+                    ) {
+                      <span>Digite um endereço de e-mail válido.</span>
+                    }
+                  </div>
+                  <small id="waitlist-privacy">
+                    Sem spam. Apenas convites de teste e novidades importantes do Lydian.
+                  </small>
+                </div>
+              </form>
+            } @else {
+              <div class="waitlist-success" role="status">
+                <span aria-hidden="true">✓</span>
+                <div>
+                  <strong>E-mail validado.</strong>
+                  <p>{{ waitlistEmail }} está pronto para entrar na lista de testes.</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

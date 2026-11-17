@@ -1,0 +1,110 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.recent-achievements-custom {
+  @include sonic-card(clamp(2.4rem, 4vw, 3.4rem));
+  background: $sonic-surface-low;
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  h2 {
+    margin: 0;
+    color: $sonic-on-surface-variant;
+    font-family: $sonic-font-heading;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.17rem;
+    text-transform: uppercase;
+  }
+
+  header > button {
+    border: 0;
+    background: transparent;
+    color: $sonic-primary;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.11rem;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $sonic-on-surface;
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.recent-achievement-list-custom {
+  display: grid;
+  margin-top: 2.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.recent-achievement-custom {
+  display: flex;
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(72, 72, 71, 0.25);
+  border-radius: 1.3rem;
+  background: $sonic-surface-high;
+  transition: background-color 180ms ease, transform 180ms ease;
+
+  &:not(:disabled):hover {
+    background: $sonic-surface-highest;
+    transform: translateY(-0.3rem);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  .material-symbols-outlined {
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+  }
+
+  .is-filled {
+    font-variation-settings: 'FILL' 1;
+  }
+
+  &--secondary {
+    color: $sonic-secondary;
+  }
+
+  &--primary {
+    color: $sonic-primary-dim;
+  }
+
+  &--tertiary {
+    color: $sonic-tertiary;
+  }
+
+  &--neutral {
+    color: $sonic-on-surface-variant;
+  }
+
+  &--locked {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+}
+
+@container (max-width: 30rem) {
+  .recent-achievement-list-custom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

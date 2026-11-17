@@ -1,0 +1,35 @@
+<article class="overview-card-custom recent-sessions-card-custom">
+  <header class="overview-card-header-custom">
+    <h2>Sessões Recentes</h2>
+    <span class="material-symbols-outlined" aria-hidden="true">history</span>
+  </header>
+
+  <div class="recent-session-list-custom">
+    @for (session of sessions; track session.sessionId) {
+      <button
+        type="button"
+        class="recent-session-item-custom"
+        [attr.aria-label]="'Abrir detalhes de ' + session.title"
+        (click)="musicSelected.emit(session.songId)"
+      >
+        <span class="session-icon-custom material-symbols-outlined is-filled" aria-hidden="true">
+          music_note
+        </span>
+        <span class="session-copy-custom">
+          <strong>{{ session.title }}</strong>
+          <small>{{ session.description }}</small>
+        </span>
+        <span [class]="applyGradeStyle(session.gradeTone)">
+          {{ session.grade }}
+        </span>
+      </button>
+    } @empty {
+      <p class="empty-sessions-custom">Nenhuma sessão registrada ainda.</p>
+    }
+  </div>
+
+  <button type="button" class="history-link-custom" (click)="historyRequested.emit()">
+    Ver Histórico Completo
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+  </button>
+</article>

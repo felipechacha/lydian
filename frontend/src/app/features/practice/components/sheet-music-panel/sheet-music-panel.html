@@ -1,0 +1,33 @@
+<div class="sheet-column-custom">
+  <article class="sheet-card-custom">
+    <div class="sheet-preview-custom">
+      <img
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6W69j9_zd_-3u9eGTx9wwCRKrXOWjWHGq8oqAaiJ1SB1dnGfXNfY8rkcse9d_doKL1A6_rN6QoCbpDTKxMH-pYhiRMBrf2Pe4goRhzBFVZZLLzttCnRSCRjVvvamGTsA_3PaFBpyvvzg5pRzfhePgynRuRRBTjdEQ_KNcUPcKNfSN2XSIGMacOsMGX1I30Q8TXPN3MSc9OZ2y2HTrTM-7dgmYSLGAim78K88rTmo7yCOWwgsj3o5IzAejEzYpn-CnAWLNxCfa8O84"
+        alt="Trecho de partitura usado na prática de Enter Sandman"
+      />
+      <button type="button" aria-label="Expandir partitura">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_full</span>
+      </button>
+    </div>
+
+    <div class="sheet-copy-custom">
+      <p>Compassos atuais</p>
+      <h2>Bar 42–64</h2>
+      <button type="button">
+        <span class="material-symbols-outlined" aria-hidden="true">fullscreen</span>
+        Expandir partitura
+      </button>
+    </div>
+  </article>
+
+  <div class="sheet-actions-custom">
+    <button type="button" class="end-session-custom" (click)="completionRequested.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">stop_circle</span>
+      Encerrar prática
+    </button>
+    <button type="button" class="save-session-custom" (click)="completionRequested.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">save</span>
+      Salvar log e sair
+    </button>
+  </div>
+</div>

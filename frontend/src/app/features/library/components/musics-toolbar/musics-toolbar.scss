@@ -1,0 +1,92 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.musics-toolbar-custom {
+  display: flex;
+  padding-bottom: 1.8rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(72, 72, 71, 0.12);
+}
+
+.musics-filters-custom {
+  display: flex;
+  align-items: center;
+}
+
+.musics-filters-custom {
+  gap: clamp(1.8rem, 4vw, 4.8rem);
+}
+
+.musics-filter-custom {
+  position: relative;
+  padding: 0 0 1.4rem;
+  border: 0;
+  background: transparent;
+  color: $sonic-on-surface-variant;
+  font-size: 1.5rem;
+  font-weight: 650;
+  transition: color 180ms ease;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 0.3rem;
+    border-radius: 999rem;
+    background: $sonic-secondary;
+    box-shadow: 0 0 1rem rgba(29, 251, 165, 0.55);
+    content: '';
+    opacity: 0;
+    transform: scaleX(0.5);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  &:hover,
+  &--active {
+    color: $sonic-secondary;
+  }
+
+  &--active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+    border-radius: 0.6rem;
+  }
+}
+
+app-view-mode-toggle {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .musics-toolbar-custom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .musics-filters-custom {
+    padding-bottom: 0.4rem;
+    overflow-x: auto;
+    gap: 2.4rem;
+  }
+
+  .musics-filter-custom {
+    flex: 0 0 auto;
+  }
+
+  app-view-mode-toggle {
+    align-self: flex-end;
+  }
+}

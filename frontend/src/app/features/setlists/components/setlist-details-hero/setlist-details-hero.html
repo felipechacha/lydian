@@ -1,0 +1,51 @@
+<div class="setlist-details-hero-custom">
+  <div class="setlist-details-copy-custom">
+    <a routerLink="/setlist" class="setlist-back-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      Todos os setlists
+    </a>
+
+    <div class="setlist-context-custom">
+      <span>{{ setlist.context }}</span>
+      <span>{{ setlist.eventDate }}</span>
+    </div>
+
+    <h1 id="setlist-details-title">{{ setlist.title }}</h1>
+    <p>{{ setlist.description }}</p>
+  </div>
+
+  <div class="setlist-details-aside-custom">
+    <div class="setlist-event-custom">
+      <p>Próximo evento</p>
+      <strong>{{ setlist.venue }}</strong>
+      <span>{{ setlist.eventDate }}</span>
+      <div>
+        <span
+          ><strong>{{ songCount }}</strong> {{ songCount === 1 ? 'música' : 'músicas' }}</span
+        >
+        <span
+          ><strong>{{ duration }}</strong> duração estimada</span
+        >
+      </div>
+    </div>
+
+    <div class="setlist-detail-actions-custom">
+      <button type="button" class="stage-mode-custom" (click)="stageModeRequested.emit()">
+        <span class="material-symbols-outlined" aria-hidden="true">brand_awareness</span>
+        Stage Mode
+      </button>
+      <button type="button" class="add-music-custom" (click)="addMusicRequested.emit()">
+        <span class="material-symbols-outlined" aria-hidden="true">library_add</span>
+        Adicionar música
+      </button>
+      <button type="button" class="edit-setlist-custom" (click)="editSetlistRequested.emit()">
+        <span class="material-symbols-outlined" aria-hidden="true">edit</span>
+        Editar setlist
+      </button>
+      <button type="button" class="delete-setlist-custom" (click)="deleteSetlistRequested.emit()">
+        <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+        Excluir setlist
+      </button>
+    </div>
+  </div>
+</div>

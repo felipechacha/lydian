@@ -1,0 +1,35 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#profile-page {
+  @include dashboard-page-content;
+}
+
+#profile-practice-goal-section,
+#profile-stats-section,
+#profile-insights-section,
+#profile-medals-section {
+  margin-top: 5.5rem;
+}
+
+#profile-medals-title {
+  margin: 0 0 1.4rem;
+  color: $sonic-on-surface;
+  font-family: $sonic-font-heading;
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.12rem;
+}
+
+@media (max-width: 767.98px) {
+  #profile-practice-goal-section,
+  #profile-stats-section,
+  #profile-insights-section,
+  #profile-medals-section {
+    margin-top: 3.2rem;
+  }
+}

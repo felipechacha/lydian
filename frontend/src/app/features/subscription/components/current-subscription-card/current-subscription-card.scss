@@ -1,0 +1,146 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.current-subscription-card-custom {
+  display: grid;
+  min-height: 13rem;
+  padding: 2.4rem 2.8rem;
+  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 2rem;
+  border: 1px solid rgba(197, 154, 255, 0.24);
+  border-radius: 1.8rem;
+  background:
+    linear-gradient(110deg, rgba(197, 154, 255, 0.1), transparent 48%), $sonic-surface-low;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.16);
+}
+
+.current-plan-icon-custom {
+  display: inline-flex;
+  width: 5.6rem;
+  height: 5.6rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(197, 154, 255, 0.2);
+  border-radius: 1.5rem;
+  background: rgba(197, 154, 255, 0.1);
+  color: $sonic-primary;
+
+  .material-symbols-outlined {
+    font-size: 2.8rem;
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+.current-plan-copy-custom {
+  min-width: 0;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 0.5rem;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+  }
+
+  > p {
+    margin-top: 0.55rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+}
+
+.current-plan-heading-custom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  > p {
+    color: $sonic-primary;
+    font-size: 1.05rem;
+    font-weight: 850;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+  }
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: $sonic-secondary;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    > span {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: $sonic-secondary;
+      box-shadow: 0 0 1rem rgba(29, 251, 165, 0.65);
+    }
+  }
+}
+
+.current-plan-meta-custom {
+  display: flex;
+  min-width: 16rem;
+  padding-left: 2.4rem;
+  flex-direction: column;
+  border-left: 1px solid rgba(72, 72, 71, 0.32);
+
+  strong {
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 2.3rem;
+    letter-spacing: -0.035em;
+  }
+
+  span {
+    margin-top: 0.45rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .current-subscription-card-custom {
+    padding: 2.2rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.6rem;
+  }
+
+  .current-plan-meta-custom {
+    padding: 1.6rem 0 0;
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(72, 72, 71, 0.32);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 419.98px) {
+  .current-subscription-card-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .current-plan-icon-custom {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .current-plan-meta-custom {
+    grid-column: auto;
+  }
+}

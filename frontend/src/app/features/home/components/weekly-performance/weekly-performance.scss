@@ -1,0 +1,166 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.weekly-performance-custom {
+  > h2 {
+    margin: 0 0 3.2rem;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.6rem, 3vw, 3.4rem);
+    font-weight: 750;
+    letter-spacing: -0.08rem;
+  }
+}
+
+.weekly-performance-grid-custom {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  align-items: start;
+}
+
+.performance-insight-custom {
+  position: relative;
+  padding: 4rem;
+  overflow: hidden;
+  border: 1px solid rgba(72, 72, 71, 0.15);
+  border-radius: 1.6rem;
+  background: linear-gradient(135deg, rgba(32, 31, 31, 0.76), rgba(19, 19, 19, 0.58));
+  backdrop-filter: blur(2rem);
+
+  p {
+    position: relative;
+    z-index: 1;
+    margin: 2rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.45rem;
+    line-height: 1.7;
+
+    strong {
+      color: $sonic-on-surface;
+    }
+  }
+}
+
+.insight-watermark-custom {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: $sonic-on-surface;
+  font-size: 10rem;
+  opacity: 0.04;
+}
+
+.performance-score-custom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.4rem;
+
+  > strong {
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  > span {
+    display: flex;
+    padding-bottom: 0.6rem;
+    align-items: center;
+    gap: 0.4rem;
+    color: $sonic-secondary;
+    font-size: 1.15rem;
+    font-weight: 800;
+
+    .material-symbols-outlined {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.performance-metrics-custom {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.performance-metric-custom {
+  display: flex;
+  min-height: 7.2rem;
+  padding: 1.6rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-radius: 1.2rem;
+  background: rgba(19, 19, 19, 0.72);
+
+  dt {
+    color: $sonic-on-surface-variant;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.performance-metric-value-custom {
+  color: $sonic-on-surface;
+  font-family: $sonic-font-heading;
+  font-size: clamp(2rem, 2.6vw, 2.8rem);
+  font-weight: 800;
+  text-align: right;
+
+  &--success {
+    color: $sonic-secondary;
+  }
+
+  &--primary {
+    color: $sonic-primary-dim;
+  }
+}
+
+@container (max-width: 78rem) {
+  .weekly-performance-grid-custom {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+
+@container (max-width: 48rem) {
+  .performance-insight-custom {
+    padding: 3rem 2.4rem;
+  }
+
+  .performance-score-custom {
+    align-items: flex-start;
+    flex-direction: column;
+
+    > span {
+      padding-bottom: 0;
+    }
+  }
+
+  .performance-metric-custom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    dd {
+      text-align: left;
+    }
+  }
+}

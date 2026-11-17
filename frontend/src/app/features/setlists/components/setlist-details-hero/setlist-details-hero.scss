@@ -1,0 +1,210 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.setlist-details-hero-custom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(30rem, 0.65fr);
+  align-items: end;
+  gap: clamp(3rem, 6vw, 8rem);
+}
+
+.setlist-back-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: $sonic-on-surface-variant;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $sonic-primary;
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+    border-radius: 0.6rem;
+  }
+}
+
+.setlist-context-custom {
+  display: flex;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  span {
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(72, 72, 71, 0.5);
+    border-radius: 999px;
+    color: $sonic-on-surface-variant;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    &:first-child {
+      border-color: rgba(29, 251, 165, 0.25);
+      color: $sonic-secondary;
+    }
+  }
+}
+
+.setlist-details-copy-custom {
+  h1 {
+    max-width: 82rem;
+    margin: 1.8rem 0 0;
+    font-family: $sonic-font-heading;
+    font-size: clamp(4.6rem, 6.8vw, 8.8rem);
+    font-weight: 800;
+    letter-spacing: -0.065em;
+    line-height: 0.95;
+  }
+
+  > p {
+    max-width: 67rem;
+    margin: 2rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.3rem;
+    line-height: 1.65;
+  }
+}
+
+.setlist-details-aside-custom {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.setlist-event-custom {
+  @include sonic-card(2.4rem);
+
+  > p,
+  > strong,
+  > span {
+    display: block;
+    margin: 0;
+  }
+
+  > p {
+    color: $sonic-primary;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+  }
+
+  > strong {
+    margin-top: 1rem;
+    font-family: $sonic-font-heading;
+    font-size: 2.4rem;
+    letter-spacing: -0.04em;
+  }
+
+  > span {
+    margin-top: 0.5rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1rem;
+  }
+
+  > div {
+    display: grid;
+    margin-top: 2.4rem;
+    padding-top: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    border-top: 1px solid rgba(72, 72, 71, 0.35);
+
+    > span {
+      color: $sonic-on-surface-variant;
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    strong {
+      display: block;
+      color: $sonic-on-surface;
+      font-family: $sonic-font-heading;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.setlist-detail-actions-custom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  button {
+    display: flex;
+    min-height: 5.2rem;
+    padding: 0 1.2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition:
+      transform 180ms ease,
+      filter 180ms ease;
+
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.stage-mode-custom {
+  border: 1px solid $sonic-primary;
+  background: rgba(197, 154, 255, 0.1);
+  color: $sonic-primary;
+}
+
+.add-music-custom {
+  border: 1px solid $sonic-secondary;
+  background: $sonic-secondary;
+  color: $sonic-surface-lowest;
+}
+
+.edit-setlist-custom {
+  border: 1px solid $sonic-outline-variant;
+  background: transparent;
+  color: $sonic-on-surface;
+}
+
+.delete-setlist-custom {
+  border: 1px solid rgba(255, 111, 111, 0.36);
+  background: rgba(255, 111, 111, 0.06);
+  color: #ff8d8d;
+
+  &:hover {
+    border-color: rgba(255, 111, 111, 0.72);
+    background: rgba(255, 111, 111, 0.12);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .setlist-details-hero-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .setlist-details-aside-custom {
+    max-width: 58rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .setlist-detail-actions-custom {
+    grid-template-columns: 1fr;
+  }
+}

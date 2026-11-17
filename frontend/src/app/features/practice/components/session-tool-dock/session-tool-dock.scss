@@ -1,0 +1,50 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 2.4rem;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.session-tool-dock-custom {
+  display: flex;
+  padding: 0.7rem;
+  gap: 0.4rem;
+  border: 1px solid rgba(72, 72, 71, 0.5);
+  border-radius: 999px;
+  background: rgba(19, 19, 19, 0.94);
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(1.8rem);
+  pointer-events: auto;
+
+  button {
+    @include flex-center;
+    width: 4.6rem;
+    height: 4.6rem;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: $sonic-on-surface-variant;
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+
+    &:hover,
+    &.is-active {
+      background: $sonic-primary;
+      color: $sonic-surface-lowest;
+      transform: translateY(-0.2rem);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}

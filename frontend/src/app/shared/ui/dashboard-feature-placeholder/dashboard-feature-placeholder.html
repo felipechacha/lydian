@@ -1,0 +1,32 @@
+<article class="feature-placeholder-custom">
+  <div class="feature-icon-custom" aria-hidden="true">
+    <span class="material-symbols-outlined">{{ content.icon }}</span>
+  </div>
+
+  <div class="feature-copy-custom">
+    <p class="feature-eyebrow-custom">{{ content.eyebrow }}</p>
+    <h1>{{ content.title }}</h1>
+    <p class="feature-description-custom">{{ content.description }}</p>
+
+    <ul class="feature-highlights-custom" aria-label="Recursos planejados">
+      @for (highlight of content.highlights; track highlight) {
+        <li>
+          <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+          {{ highlight }}
+        </li>
+      }
+    </ul>
+  </div>
+
+  <footer class="feature-footer-custom">
+    <span class="feature-status-custom">
+      <span aria-hidden="true"></span>
+      {{ content.status }}
+    </span>
+
+    <a class="feature-action-custom" [routerLink]="content.actionRoute">
+      {{ content.actionLabel }}
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+    </a>
+  </footer>
+</article>

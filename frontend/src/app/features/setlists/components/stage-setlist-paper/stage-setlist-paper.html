@@ -1,0 +1,73 @@
+<article class="stage-paper-custom" aria-labelledby="stage-paper-title">
+  <span class="paper-tape-custom paper-tape-custom--left" aria-hidden="true"></span>
+  <span class="paper-tape-custom paper-tape-custom--right" aria-hidden="true"></span>
+
+  <header class="paper-header-custom">
+    <div class="paper-kicker-custom">
+      <span>Lydian // Stage copy</span>
+      <span>{{ setlist.context }}</span>
+    </div>
+
+    <h1 id="stage-paper-title">{{ setlist.title }}</h1>
+
+    <div class="paper-event-custom">
+      <span>{{ setlist.venue }}</span>
+      <span>{{ setlist.eventDate }}</span>
+      <span>{{ setlist.duration }}</span>
+    </div>
+  </header>
+
+  @if (setlist.tracks.length > 0) {
+    <ol class="paper-tracks-custom">
+      @for (track of setlist.tracks; track track.musicId; let trackIndex = $index) {
+        <li
+          [class]="applyTrackClass(trackIndex, track.musicId)"
+          [attr.data-track-index]="trackIndex"
+        >
+          <button
+            type="button"
+            class="track-select-custom"
+            [attr.aria-current]="trackIndex === currentTrackIndex ? 'step' : null"
+            (click)="trackSelected.emit(trackIndex)"
+          >
+            <span class="track-number-custom">{{ track.orderLabel }}</span>
+
+            <span class="track-copy-custom">
+              <strong>{{ track.title }}</strong>
+              <small>{{ track.composer }}</small>
+            </span>
+
+            <span class="track-cue-custom">{{ track.cue }}</span>
+
+            <span class="track-tempo-custom">
+              <strong>{{ track.bpm ?? '—' }}</strong>
+              <small>BPM</small>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="track-played-custom"
+            [attr.aria-pressed]="isTrackPlayed(track.musicId)"
+            [attr.aria-label]="applyPlayedButtonLabel(track.title, track.musicId)"
+            (click)="playedToggled.emit(track.musicId)"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+          </button>
+        </li>
+      }
+    </ol>
+  } @else {
+    <div class="paper-empty-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">playlist_add</span>
+      <strong>Sem músicas no palco</strong>
+      <p>Volte aos detalhes do setlist e defina a ordem antes de iniciar o Stage Mode.</p>
+    </div>
+  }
+
+  <footer class="paper-footer-custom">
+    <span>{{ completedTrackCount }}/{{ setlist.tracks.length }} tocadas</span>
+    <span class="paper-signature-custom">keep the flow</span>
+    <span>Não remover do palco</span>
+  </footer>
+</article>

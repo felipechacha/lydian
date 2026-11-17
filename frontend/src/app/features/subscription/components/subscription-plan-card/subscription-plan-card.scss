@@ -1,0 +1,306 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.subscription-plan-card-custom {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 64rem;
+  padding: clamp(2.4rem, 3vw, 3.2rem);
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid rgba(72, 72, 71, 0.3);
+  border-radius: 2rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 46%), $sonic-surface-low;
+  box-shadow: 0 2.4rem 6rem rgba(0, 0, 0, 0.18);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+
+  &::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.3rem;
+    background: $sonic-outline-variant;
+    content: '';
+  }
+
+  &:hover {
+    border-color: rgba(197, 154, 255, 0.38);
+    box-shadow: 0 3rem 7rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.5rem);
+  }
+}
+
+.subscription-plan-card-custom--primary::before {
+  background: linear-gradient(90deg, $sonic-primary, $sonic-primary-dim);
+}
+
+.subscription-plan-card-custom--secondary::before {
+  background: linear-gradient(90deg, $sonic-secondary, $sonic-secondary-dim);
+}
+
+.subscription-plan-card-custom--recommended {
+  border-color: rgba(197, 154, 255, 0.56);
+  background:
+    radial-gradient(circle at 90% 0, rgba(197, 154, 255, 0.16), transparent 32%), $sonic-surface-low;
+  box-shadow: 0 2.8rem 7rem rgba(149, 71, 247, 0.14);
+}
+
+.recommended-badge-custom {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.8rem;
+  display: inline-flex;
+  min-height: 3.2rem;
+  padding: 0.6rem 1.1rem;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  background: rgba(197, 154, 255, 0.12);
+  color: $sonic-primary;
+  font-size: 0.95rem;
+  font-weight: 850;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+
+  .material-symbols-outlined {
+    font-size: 1.5rem;
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+.plan-card-header-custom {
+  display: flex;
+  padding-right: 7rem;
+  align-items: center;
+  gap: 1.4rem;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 0.45rem;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.5rem, 2.7vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+  }
+}
+
+.plan-icon-custom {
+  display: inline-flex;
+  width: 5rem;
+  height: 5rem;
+  flex: 0 0 5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(247, 245, 242, 0.08);
+  border-radius: 1.4rem;
+  background: $sonic-surface-highest;
+  color: $sonic-primary;
+  font-size: 2.6rem;
+}
+
+.subscription-plan-card-custom--secondary .plan-icon-custom {
+  color: $sonic-secondary;
+}
+
+.subscription-plan-card-custom--neutral .plan-icon-custom {
+  color: $sonic-on-surface-variant;
+}
+
+.plan-eyebrow-custom {
+  color: $sonic-on-surface-variant;
+  font-size: 1.05rem;
+  font-weight: 850;
+  letter-spacing: 0.09rem;
+  text-transform: uppercase;
+}
+
+.plan-description-custom {
+  min-height: 8.2rem;
+  margin: 2.2rem 0 0;
+  color: $sonic-on-surface-variant;
+  font-size: 1.3rem;
+  line-height: 1.58;
+}
+
+.plan-pricing-custom {
+  display: flex;
+  margin-top: 2.4rem;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.monthly-price-custom,
+.annual-price-custom {
+  display: flex;
+  min-width: 0;
+  padding: 1.5rem;
+  flex-direction: column;
+  border: 1px solid rgba(72, 72, 71, 0.24);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.025);
+
+  > span,
+  > div > span {
+    display: block;
+    color: $sonic-on-surface-variant;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.07rem;
+    text-transform: uppercase;
+  }
+
+  small {
+    margin-top: 0.3rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.1rem;
+  }
+}
+
+.monthly-price-custom {
+  min-height: 10.8rem;
+
+  strong {
+    display: block;
+    margin-top: 0.65rem;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.5rem, 3vw, 3.2rem);
+    letter-spacing: -0.06em;
+    white-space: nowrap;
+  }
+}
+
+.annual-price-custom {
+  min-height: 8.2rem;
+  padding: 1.25rem 1.5rem;
+  border-color: rgba(29, 251, 165, 0.2);
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem 1.2rem;
+
+  > div {
+    min-width: 0;
+  }
+
+  strong {
+    display: block;
+    margin-top: 0.35rem;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 1.85rem;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+  }
+
+  > small {
+    flex: 1 1 12rem;
+    margin: 0;
+    text-align: right;
+  }
+
+  em {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.7rem;
+    margin-left: auto;
+    border-radius: 999px;
+    background: rgba(29, 251, 165, 0.1);
+    color: $sonic-secondary;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 850;
+    letter-spacing: 0.04rem;
+    text-transform: uppercase;
+  }
+}
+
+.plan-features-custom {
+  padding: 2.4rem 0;
+  flex: 1;
+
+  > p {
+    margin: 0 0 1.4rem;
+    color: $sonic-on-surface;
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+
+  ul {
+    display: grid;
+    padding: 0;
+    margin: 0;
+    gap: 1.15rem;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .material-symbols-outlined {
+    margin-top: 0.05rem;
+    color: $sonic-secondary;
+    font-size: 1.65rem;
+    font-variation-settings: 'FILL' 1;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .subscription-plan-card-custom {
+    min-height: 61rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .subscription-plan-card-custom {
+    min-height: 0;
+    padding: 2.2rem;
+  }
+
+  .recommended-badge-custom {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 1.8rem;
+  }
+
+  .plan-card-header-custom {
+    padding-right: 0;
+  }
+
+  .plan-description-custom {
+    min-height: 0;
+  }
+
+  .annual-price-custom > small {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subscription-plan-card-custom {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

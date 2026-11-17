@@ -1,0 +1,126 @@
+<div class="music-search-results-custom">
+  <div class="music-search-field-custom">
+    <label for="music-catalog-search">Buscar música ou artista</label>
+    <div class="music-search-control-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      <input
+        id="music-catalog-search"
+        type="search"
+        maxlength="80"
+        autocomplete="off"
+        placeholder="Ex.: Enter Sandman ou Metallica"
+        [value]="searchQuery()"
+        (input)="updateSearchQuery($event)"
+      />
+      @if (searchQuery()) {
+        <button type="button" aria-label="Limpar busca" (click)="clearSearchQuery()">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <p class="music-results-label-custom" aria-live="polite">
+    Resultados da busca <span>{{ musics().length }}</span>
+  </p>
+
+  @if (isLoading()) {
+    <div class="music-results-list-custom" aria-label="Buscando músicas" aria-busy="true">
+      @for (placeholder of [1, 2, 3, 4]; track placeholder) {
+        <div class="music-result-skeleton-custom" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      }
+    </div>
+  } @else if (searchErrorMessage()) {
+    <div class="music-results-empty-custom music-results-empty-custom--error" role="alert">
+      <span class="material-symbols-outlined" aria-hidden="true">cloud_off</span>
+      <strong>Busca indisponível</strong>
+      <p>{{ searchErrorMessage() }}</p>
+    </div>
+  } @else if (musics().length > 0) {
+    <div class="music-results-list-custom" role="list" aria-label="Resultados de músicas">
+      @for (music of musics(); track music.id) {
+        <article [class]="applyResultClass(music.id)" role="listitem">
+          <span class="music-result-artwork-custom">
+            <img [ngSrc]="music.artworkUrl" width="300" height="300" loading="lazy" alt="" />
+          </span>
+
+          <span class="music-result-copy-custom">
+            <button
+              type="button"
+              class="music-result-selection-custom"
+              [attr.aria-label]="'Selecionar ' + music.title + ', de ' + music.artist"
+              [attr.aria-pressed]="selectedMusicId() === music.id"
+              (click)="musicSelected.emit(music)"
+            >
+              <strong>{{ music.title }}</strong>
+              <small>{{ music.artist }}</small>
+              <span>{{ music.album }}</span>
+            </button>
+            <a
+              [href]="music.appleMusicUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="'Abrir ' + music.title + ' na Apple Music'"
+            >
+              Apple Music
+              <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+            </a>
+          </span>
+
+          <button
+            type="button"
+            class="music-result-play-custom"
+            [disabled]="!music.previewUrl"
+            [style.--preview-progress]="getPreviewProgressStyle(music.id)"
+            [attr.aria-label]="getPreviewButtonLabel(music)"
+            [attr.aria-pressed]="activePreviewMusicId() === music.id"
+            [attr.title]="getPreviewRemainingLabel(music.id)"
+            (click)="previewToggled.emit(music)"
+          >
+            <span class="material-symbols-outlined is-filled" aria-hidden="true">
+              {{ activePreviewMusicId() === music.id ? 'pause' : 'play_arrow' }}
+            </span>
+          </button>
+        </article>
+      }
+    </div>
+
+    <!-- <p class="music-preview-attribution-custom">Prévias fornecidas pela Apple Music.</p> -->
+  } @else if (hasSearched()) {
+    <div class="music-results-empty-custom" role="status">
+      <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+      <strong>Nenhuma música encontrada</strong>
+      <p>Tente buscar pelo artista ou por outro título.</p>
+    </div>
+  } @else {
+    <div class="music-results-empty-custom" role="status">
+      <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+      <strong>Explore o catálogo</strong>
+      <p>Digite ao menos duas letras para buscar músicas e ouvir uma prévia.</p>
+    </div>
+  }
+
+  @if (previewErrorMessage()) {
+    <p class="music-preview-error-custom" role="alert">{{ previewErrorMessage() }}</p>
+  }
+</div>
+
+<!--
+  Conteúdo estático original do protótipo preservado temporariamente como referência:
+
+  @if (musics().length > 0) {
+    <div class="music-results-list-custom" role="listbox" aria-label="Resultados de músicas">
+      @for (music of musics(); track music.id) {
+        <button type="button" role="option" class="music-result-custom">
+          <span class="music-result-artwork-custom">Capa estática</span>
+          <span class="music-result-copy-custom">Título e compositor estáticos</span>
+          <span class="music-result-play-custom">play_arrow</span>
+        </button>
+      }
+    </div>
+  }
+-->

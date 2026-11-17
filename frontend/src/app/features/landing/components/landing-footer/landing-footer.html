@@ -1,0 +1,18 @@
+  <footer id="site-footer">
+    <div class="section-shell site-footer__content">
+      <a class="brand" routerLink="/" aria-label="Lydian - página inicial">
+        <span class="brand__name">Lydian</span>
+        <span class="brand__edition">Noir</span>
+      </a>
+      <p>Prática organizada para o músico moderno.</p>
+      <div class="site-footer__links">
+        <a href="#about-section" (click)="navigateToSection($event, 'about-section')">Sobre</a>
+        <a href="#features-section" (click)="navigateToSection($event, 'features-section')"
+          >Recursos</a
+        >
+        <a href="#plans-section" (click)="navigateToSection($event, 'plans-section')">Planos</a>
+        <a href="#faq-section" (click)="navigateToSection($event, 'faq-section')">FAQ</a>
+      </div>
+      <small>© 2026 Lydian Music</small>
+    </div>
+  </footer>

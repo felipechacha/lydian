@@ -1,0 +1,164 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+}
+
+.overview-card-custom {
+  @include sonic-card(2.8rem);
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.overview-card-header-custom {
+  display: flex;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  h2 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 1.75rem;
+    font-weight: 750;
+  }
+
+  .material-symbols-outlined {
+    color: $sonic-primary-dim;
+    font-size: 2.3rem;
+  }
+}
+
+.next-piece-custom {
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: 8.6rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1.8rem;
+  border-radius: 1.6rem;
+  background: $sonic-surface-highest;
+
+  h3 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 1.7rem;
+    font-weight: 750;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.3rem;
+    font-style: italic;
+  }
+}
+
+.sheet-cover-custom {
+  position: relative;
+  width: 8.6rem;
+  height: 8.6rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #183b39, #0e2222);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.28);
+}
+
+.sheet-clef-custom {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 2;
+  color: rgba(197, 154, 255, 0.8);
+  font-size: 4.4rem;
+  transform: translate(-50%, -50%);
+}
+
+.sheet-lines-custom {
+  position: absolute;
+  inset: 1.4rem 0.8rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 0.8rem,
+    rgba(173, 170, 170, 0.32) 0.85rem,
+    transparent 0.95rem
+  );
+}
+
+.technical-focus-custom {
+  margin-top: 2.8rem;
+}
+
+.focus-label-custom {
+  display: block;
+  margin-bottom: 1.4rem;
+  color: $sonic-on-surface-variant;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.focus-tags-custom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  span {
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(197, 154, 255, 0.2);
+    border-radius: 999rem;
+    background: rgba(149, 71, 247, 0.09);
+    color: $sonic-primary;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.overview-card-action-custom {
+  width: 100%;
+  min-height: 5rem;
+  margin-top: auto;
+  border: 0;
+  border-radius: 1.6rem;
+  background: $sonic-surface-highest;
+  color: $sonic-on-surface;
+  font-size: 1.35rem;
+  font-weight: 800;
+  transition: background-color 180ms ease, color 180ms ease;
+
+  &:hover {
+    background: $sonic-surface-high;
+    color: $sonic-primary;
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+}
+
+@container (max-width: 48rem) {
+  .overview-card-action-custom {
+    margin-top: 3rem;
+  }
+}
+
+@container (max-width: 30rem) {
+  .next-piece-custom {
+    padding: 1.4rem;
+    grid-template-columns: 6.4rem minmax(0, 1fr);
+    gap: 1.2rem;
+  }
+
+  .sheet-cover-custom {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+}

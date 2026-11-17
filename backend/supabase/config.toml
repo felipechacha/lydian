@@ -1,0 +1,15 @@
+project_id = "lydian-api"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+
+[db]
+port = 54322
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "https://localhost:4200"
+additional_redirect_urls = ["https://localhost:4200/reset-password/confirm", "https://localhost:4200/reset-password/confirm?recovery_token=*"]

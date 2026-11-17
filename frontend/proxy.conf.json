@@ -1,0 +1,7 @@
+{
+  "/v1": {
+    "target": "https://lydian-app-api.onrender.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

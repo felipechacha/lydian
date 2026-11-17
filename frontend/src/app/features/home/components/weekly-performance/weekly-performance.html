@@ -1,0 +1,34 @@
+<div class="weekly-performance-custom">
+  <h2 id="weekly-performance-title">Desempenho Semanal</h2>
+
+  <div class="weekly-performance-grid-custom">
+    <article class="performance-insight-custom">
+      <span class="material-symbols-outlined insight-watermark-custom" aria-hidden="true">
+        insights
+      </span>
+      <div class="performance-score-custom">
+        <strong>{{ performance.score }}%</strong>
+        <span>
+          <span class="material-symbols-outlined" aria-hidden="true">trending_up</span>
+          {{ variationLabel }}
+        </span>
+      </div>
+      <p>
+        Progresso da meta semanal de frequência:
+        <strong>{{ performance.recommendedFocus }}</strong
+        >.
+      </p>
+    </article>
+
+    <dl class="performance-metrics-custom">
+      @for (metric of performance.metrics; track metric.label) {
+        <div class="performance-metric-custom">
+          <dt>{{ metric.label }}</dt>
+          <dd [class]="applyMetricStyle(metric.tone)">
+            {{ metric.value }}
+          </dd>
+        </div>
+      }
+    </dl>
+  </div>
+</div>

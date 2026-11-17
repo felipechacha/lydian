@@ -1,0 +1,32 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($prop: all, $time: 0.3s, $ease: ease-in-out) {
+  transition: $prop $time $ease;
+}
+
+@mixin sonic-card($padding: 2.8rem) {
+  padding: $padding;
+  background: var(--sonic-surface-low);
+  border: 1px solid rgba(72, 72, 71, 0.15);
+  border-radius: 1.6rem;
+}
+
+@mixin sonic-focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(29, 251, 165, 0.28);
+}
+
+@mixin dashboard-page-content {
+  min-height: calc(100vh - 9rem);
+  padding: clamp(3.2rem, 5vw, 6rem) 0 8rem;
+  background: var(--sonic-surface);
+
+  @media (max-width: 767.98px) {
+    min-height: calc(100vh - 12.8rem);
+    padding: 2.4rem 0 7rem;
+  }
+}

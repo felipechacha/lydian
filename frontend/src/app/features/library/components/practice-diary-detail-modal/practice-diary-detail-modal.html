@@ -1,0 +1,44 @@
+<div class="practice-detail-backdrop-custom" aria-hidden="true" (click)="closed.emit()"></div>
+
+<section
+  class="practice-detail-panel-custom"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="practice-detail-title"
+>
+  <header class="practice-detail-header-custom">
+    <div>
+      <span>Sessão #{{ entry().session }}</span>
+      <h2 id="practice-detail-title">{{ entry().title }}</h2>
+      <p>{{ entry().date }}</p>
+    </div>
+    <button type="button" aria-label="Fechar detalhes da sessão" (click)="closed.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <div class="practice-detail-metrics-custom">
+    <div><small>Duração</small><strong>{{ entry().duration }}</strong></div>
+    <div><small>Progresso</small><strong>{{ entry().progress }}%</strong></div>
+    <div><small>Andamento</small><strong>{{ entry().tempo }} BPM</strong></div>
+    <div><small>Como você terminou</small><strong>{{ moodLabel }}</strong></div>
+  </div>
+
+  <div class="practice-detail-focus-custom">
+    <span class="material-symbols-outlined" aria-hidden="true">center_focus_strong</span>
+    <div>
+      <small>Foco da sessão</small><strong>{{ entry().focusArea || 'Não informado' }}</strong>
+    </div>
+  </div>
+
+  <div class="practice-detail-notes-custom">
+    <article>
+      <span>Anotação da sessão</span>
+      <p>{{ entry().sessionNotes || 'Nenhuma anotação registrada para esta sessão.' }}</p>
+    </article>
+    <article>
+      <span>Anotação sobre a música</span>
+      <p>{{ entry().songNotes || 'Nenhuma anotação específica registrada para a música.' }}</p>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+<div class="create-setlist-panel-custom">
+  <div class="create-panel-heading-custom">
+    <div>
+      <p>Novo repertório</p>
+      <h2>Crie um setlist</h2>
+      <span>Comece pelo contexto. As músicas podem ser adicionadas na próxima etapa.</span>
+    </div>
+    <button
+      type="button"
+      aria-label="Fechar criação de setlist"
+      [disabled]="isSubmitting"
+      (click)="cancelled.emit()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </div>
+
+  <form [formGroup]="setlistForm" (ngSubmit)="submit()" novalidate>
+    <div class="create-fields-custom">
+      <div class="create-field-custom">
+        <label for="new-setlist-title">Nome do setlist</label>
+        <input
+          id="new-setlist-title"
+          type="text"
+          formControlName="title"
+          maxlength="60"
+          [readonly]="isSubmitting"
+          placeholder="Ex.: Show de lançamento"
+          [class.is-invalid]="
+            setlistForm.controls.title.touched && setlistForm.controls.title.invalid
+          "
+        />
+        <div class="field-support-custom">
+          @if (setlistForm.controls.title.touched && setlistForm.controls.title.invalid) {
+            <small class="field-error-custom">Use entre 3 e 60 caracteres.</small>
+          } @else {
+            <small>Dê um nome fácil de reconhecer antes do evento.</small>
+          }
+          <small>{{ titleCharacterCount }}/60</small>
+        </div>
+      </div>
+
+      <div class="create-field-custom">
+        <label for="setlist-context">Contexto</label>
+        <select id="setlist-context" formControlName="context" [attr.aria-disabled]="isSubmitting">
+          @for (context of contexts; track context) {
+            <option [value]="context">{{ context }}</option>
+          }
+        </select>
+        <small>Isso ajuda a priorizar duração, dinâmica e transições.</small>
+      </div>
+    </div>
+
+    <div class="create-field-custom create-description-custom">
+      <label for="setlist-description">Descrição</label>
+      <textarea
+        id="setlist-description"
+        rows="4"
+        formControlName="description"
+        maxlength="180"
+        [readonly]="isSubmitting"
+        placeholder="Registre o objetivo, clima ou formação deste repertório..."
+        [class.is-invalid]="
+          setlistForm.controls.description.touched && setlistForm.controls.description.invalid
+        "
+      ></textarea>
+      <div class="field-support-custom">
+        @if (setlistForm.controls.description.touched && setlistForm.controls.description.invalid) {
+          <small class="field-error-custom">Use entre 10 e 180 caracteres.</small>
+        } @else {
+          <small>Uma nota curta para lembrar a intenção do set.</small>
+        }
+        <small>{{ descriptionCharacterCount }}/180</small>
+      </div>
+    </div>
+
+    @if (errorMessage) {
+      <p class="create-request-error-custom" role="alert">{{ errorMessage }}</p>
+    }
+
+    <div class="create-actions-custom">
+      <button type="button" [disabled]="isSubmitting" (click)="cancelled.emit()">Cancelar</button>
+      <button type="submit" [disabled]="isSubmitting" [attr.aria-busy]="isSubmitting">
+        @if (isSubmitting) {
+          Criando setlist...
+        } @else {
+          Criar e adicionar músicas
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        }
+      </button>
+    </div>
+  </form>
+</div>

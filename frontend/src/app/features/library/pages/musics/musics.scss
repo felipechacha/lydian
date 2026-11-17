@@ -1,0 +1,62 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#musics-page {
+  @include dashboard-page-content;
+}
+
+#musics-toolbar-section {
+  margin-top: 4rem;
+}
+
+#musics-library-section {
+  margin-top: 4.8rem;
+}
+
+.musics-empty-custom {
+  @include sonic-card(5rem 2.4rem);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+
+  .material-symbols-outlined {
+    margin-bottom: 1.6rem;
+    color: $sonic-primary;
+    font-size: 4rem;
+  }
+
+  h2 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 2.2rem;
+  }
+
+  p {
+    margin: 1rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.4rem;
+  }
+}
+
+app-pagination {
+  margin-top: 5.6rem;
+}
+
+@media (max-width: 767.98px) {
+  #musics-toolbar-section {
+    margin-top: 3rem;
+  }
+
+  #musics-library-section {
+    margin-top: 3.2rem;
+  }
+
+  app-pagination {
+    margin-top: 4rem;
+  }
+}

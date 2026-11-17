@@ -1,0 +1,66 @@
+<button
+  type="button"
+  class="confirmation-modal-backdrop-custom"
+  tabindex="-1"
+  aria-label="Cancelar ação"
+  [disabled]="isProcessing()"
+  (click)="cancel()"
+></button>
+
+<dialog
+  class="confirmation-modal-dialog-custom"
+  open
+  role="alertdialog"
+  aria-modal="true"
+  aria-labelledby="confirmation-modal-title"
+  aria-describedby="confirmation-modal-description"
+  [attr.aria-busy]="isProcessing() ? 'true' : null"
+>
+  <header class="confirmation-modal-header-custom">
+    <span class="confirmation-modal-icon-custom material-symbols-outlined" aria-hidden="true">
+      warning
+    </span>
+    <button
+      type="button"
+      class="confirmation-modal-close-custom"
+      aria-label="Fechar confirmação"
+      [disabled]="isProcessing()"
+      (click)="cancel()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <div class="confirmation-modal-copy-custom">
+    <span>{{ eyebrow() }}</span>
+    <h2 id="confirmation-modal-title">{{ title() }}</h2>
+    <p id="confirmation-modal-description">
+      <strong>{{ subject() }}</strong> {{ description() }}
+    </p>
+  </div>
+
+  @if (errorMessage()) {
+    <p class="confirmation-modal-error-custom" role="alert">{{ errorMessage() }}</p>
+  }
+
+  <footer class="confirmation-modal-actions-custom">
+    <app-button
+      type="button"
+      variant="ghost"
+      [disabled]="isProcessing()"
+      (buttonClicked)="cancel()"
+    >
+      {{ cancelLabel() }}
+    </app-button>
+    <app-button
+      type="submit"
+      variant="danger"
+      [loading]="isProcessing()"
+      [loadingLabel]="loadingLabel()"
+      (buttonClicked)="confirm()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+      {{ confirmLabel() }}
+    </app-button>
+  </footer>
+</dialog>

@@ -1,0 +1,79 @@
+<header id="header-main" class="dashboard-topbar-custom">
+  <div class="topbar-title-group-custom">
+    <button
+      type="button"
+      class="topbar-icon-button-custom topbar-menu-button-custom"
+      aria-label="Alternar menu de navegação"
+      [attr.aria-expanded]="isSidebarOpen"
+      aria-controls="dashboard-sidebar"
+      (click)="toggleSidebar()"
+    >
+      <span
+        class="material-symbols-outlined sidebar-toggle-icon-desktop-custom"
+        aria-hidden="true"
+      >
+        {{ isSidebarOpen ? 'left_panel_close' : 'left_panel_open' }}
+      </span>
+      <span
+        class="material-symbols-outlined sidebar-toggle-icon-mobile-custom"
+        aria-hidden="true"
+      >
+        {{ isSidebarOpen ? 'close' : 'menu' }}
+      </span>
+    </button>
+    <span class="topbar-title-custom">{{ pageTitle }}</span>
+  </div>
+
+  <label class="topbar-search-custom">
+    <span class="visually-hidden">Buscar repertório</span>
+    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+    <input type="search" placeholder="Buscar repertório..." autocomplete="off" />
+  </label>
+
+  <div class="topbar-actions-custom">
+    <button type="button" class="topbar-icon-button-custom notification-button-custom" aria-label="Notificações">
+      <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+      <span class="notification-indicator-custom" aria-hidden="true"></span>
+    </button>
+
+    <button
+      type="button"
+      class="topbar-icon-button-custom settings-button-custom"
+      aria-label="Preferências"
+      (click)="navigateToPreferences()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+    </button>
+
+    <div class="user-area-container">
+      <button
+        type="button"
+        class="user-logged-info"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-haspopup="menu"
+        (click)="toggleMenu()"
+      >
+        <span class="user-name-custom">{{ userName }}</span>
+        <span class="user-thumb-circle">{{ userThumb }}</span>
+        <span class="visually-hidden">Abrir menu de {{ userName }}</span>
+      </button>
+
+      @if (isMenuOpen) {
+        <div class="dropdown-menu-custom" role="menu">
+          <div class="dropdown-user-custom">
+            <strong>{{ userName }}</strong>
+            <span>Conta de estudante</span>
+          </div>
+          <button type="button" class="dropdown-item-custom" role="menuitem" (click)="navigateToPreferences()">
+            <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+            Preferências
+          </button>
+          <button type="button" class="dropdown-item-custom logout-item" role="menuitem" (click)="logout()">
+            <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+            Sair
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</header>

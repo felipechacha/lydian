@@ -1,0 +1,17 @@
+**/node_modules/
+**/dist/
+**/coverage/
+**/.angular/
+**/.env
+**/.env.*
+!**/.env.example
+**/secrets/
+**/.data/
+**/.supabase/
+**/.DS_Store
+**/qa-artifacts/
+**/qa-auth/
+**/.agent-browser/
+*.pem
+*.key
+*.p12

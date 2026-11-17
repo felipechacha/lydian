@@ -1,0 +1,249 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+/*
+ * V1 — console de estúdio preservado para comparação futura.
+ * Para reativar, remova este comentário e restaure o markup V1 no HTML.
+ * ------------------------------------------------------------------
+:host {
+  display: block;
+  width: 100%;
+}
+
+.music-loading-custom {
+  @include sonic-card(clamp(3rem, 4vw, 5.2rem));
+  position: relative;
+  display: flex;
+  min-height: 41rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(197, 154, 255, 0.12), transparent 34%),
+    $sonic-surface-low;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(72, 72, 71, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(72, 72, 71, 0.08) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    content: '';
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  }
+}
+
+.music-loading-console-custom {
+  position: relative;
+  z-index: 1;
+  width: min(48rem, 100%);
+  padding: 1.6rem 1.8rem;
+  border: 1px solid rgba(197, 154, 255, 0.18);
+  border-radius: 1.6rem;
+  background: rgba(0, 0, 0, 0.58);
+  box-shadow: 0 2.4rem 6rem rgba(0, 0, 0, 0.34);
+}
+
+.music-loading-console-header-custom,
+.music-loading-console-footer-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $sonic-on-surface-variant;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.music-loading-console-header-custom span {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: $sonic-secondary;
+
+  i {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 1rem rgba(29, 251, 165, 0.72);
+  }
+}
+
+.music-loading-wave-custom {
+  position: relative;
+  display: flex;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.55rem, 1.5vw, 1.1rem);
+  margin: 1.6rem 0;
+  overflow: hidden;
+
+  span {
+    width: clamp(0.35rem, 0.8vw, 0.55rem);
+    height: 70%;
+    border-radius: 999px;
+    background: linear-gradient(to bottom, $sonic-primary, $sonic-secondary);
+    box-shadow: 0 0 1.2rem rgba(197, 154, 255, 0.34);
+
+    &:nth-child(2n) { height: 42%; }
+    &:nth-child(3n) { height: 88%; }
+    &:nth-child(5n) { height: 58%; }
+  }
+}
+
+.music-loading-playhead-custom {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: $sonic-tertiary;
+  box-shadow: 0 0 1rem rgba(255, 139, 160, 0.7);
+}
+
+.music-loading-console-footer-custom {
+  div {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  i {
+    width: 1.8rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: $sonic-secondary;
+    opacity: 0.28;
+
+    &:first-child,
+    &:nth-child(2) { opacity: 0.82; }
+  }
+}
+
+.music-loading-copy-custom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: center;
+
+  strong {
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+  }
+
+  span {
+    color: $sonic-on-surface-variant;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .music-loading-custom {
+    min-height: 34rem;
+    padding: 2.4rem 1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-loading-playhead-custom { display: none; }
+}
+*/
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.music-loading-minimal-custom {
+  display: flex;
+  min-height: 41rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2.8rem;
+  border-radius: 1.6rem;
+  background: $sonic-surface-low;
+}
+
+.music-loading-minimal-wave-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    height: 72%;
+    border-radius: 999px;
+    background: $sonic-primary;
+    box-shadow: 0 0 1.2rem rgba(197, 154, 255, 0.28);
+
+    &:nth-child(2n) { height: 44%; }
+    &:nth-child(3n) { height: 92%; }
+    &:nth-child(5n) { height: 58%; }
+  }
+}
+
+.music-loading-minimal-wave-custom--small {
+  height: 4.8rem;
+  gap: 0.55rem;
+
+  span { width: 0.32rem; }
+}
+
+.music-loading-minimal-wave-custom--medium {
+  height: 7rem;
+  gap: 0.8rem;
+
+  span { width: 0.45rem; }
+}
+
+.music-loading-minimal-wave-custom--large {
+  height: 11rem;
+  gap: 1.15rem;
+
+  span {
+    width: 0.65rem;
+    box-shadow: 0 0 1.8rem rgba(197, 154, 255, 0.34);
+  }
+}
+
+.music-loading-minimal-copy-custom {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0 2rem;
+  text-align: center;
+
+  strong {
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  }
+
+  span {
+    color: $sonic-on-surface-variant;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .music-loading-minimal-custom {
+    min-height: 34rem;
+  }
+
+  .music-loading-minimal-wave-custom--large {
+    height: 8.5rem;
+    gap: 0.8rem;
+
+    span { width: 0.5rem; }
+  }
+}

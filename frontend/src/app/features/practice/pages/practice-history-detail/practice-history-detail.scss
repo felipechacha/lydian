@@ -1,0 +1,234 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+#practice-history-detail-page {
+  @include dashboard-page-content;
+}
+.practice-detail-back-custom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: $sonic-on-surface-variant;
+  font-weight: 800;
+  text-decoration: none;
+}
+.practice-detail-back-custom:hover {
+  color: $sonic-primary;
+}
+.practice-detail-hero-custom {
+  display: flex;
+  margin-top: 3rem;
+  align-items: end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.practice-detail-hero-custom p,
+.practice-detail-hero-custom h1 {
+  margin: 0;
+}
+.practice-detail-hero-custom p {
+  color: $sonic-primary;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+.practice-detail-hero-custom h1 {
+  margin-top: 0.8rem;
+  font-family: $sonic-font-heading;
+  font-size: clamp(4rem, 6vw, 7rem);
+  letter-spacing: -0.06em;
+}
+.practice-detail-hero-custom > div > span {
+  color: $sonic-on-surface-variant;
+  font-size: 1.15rem;
+}
+.practice-detail-duration-custom {
+  @include sonic-card(2rem);
+  min-width: 22rem;
+}
+.practice-detail-duration-custom span,
+.practice-detail-duration-custom strong,
+.practice-detail-duration-custom small {
+  display: block;
+}
+.practice-detail-duration-custom span {
+  color: $sonic-on-surface-variant;
+  font-weight: 800;
+}
+.practice-detail-duration-custom strong {
+  margin-top: 0.6rem;
+  color: $sonic-secondary;
+  font-family: $sonic-font-heading;
+  font-size: 3rem;
+}
+.practice-detail-duration-custom small {
+  margin-top: 0.5rem;
+  color: $sonic-on-surface-variant;
+}
+#practice-detail-song-section,
+#practice-detail-notes-section {
+  margin-top: 4rem;
+}
+.practice-song-card-custom {
+  @include sonic-card(1.6rem);
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 1.6rem;
+}
+.practice-song-card-custom img {
+  width: 10rem;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+.practice-song-card-custom p,
+.practice-song-card-custom h2 {
+  margin: 0;
+}
+.practice-song-card-custom p {
+  color: $sonic-primary;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.practice-song-card-custom h2 {
+  margin-top: 0.5rem;
+  font-family: $sonic-font-heading;
+  font-size: 2rem;
+}
+.practice-song-card-custom span {
+  color: $sonic-on-surface-variant;
+}
+.practice-song-card-custom a {
+  display: inline-flex;
+  margin-top: 1rem;
+  align-items: center;
+  gap: 0.4rem;
+  color: $sonic-secondary;
+  font-weight: 800;
+  text-decoration: none;
+}
+.practice-metrics-custom {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+.practice-metrics-custom article {
+  @include sonic-card(1.8rem);
+}
+.practice-metrics-custom span,
+.practice-metrics-custom strong {
+  display: block;
+}
+.practice-metrics-custom span {
+  color: $sonic-on-surface-variant;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+.practice-metrics-custom strong {
+  margin-top: 0.7rem;
+  font-family: $sonic-font-heading;
+  font-size: 2.4rem;
+}
+.practice-notes-custom,
+.practice-context-custom {
+  @include sonic-card(2.4rem);
+  height: 100%;
+}
+.practice-notes-custom > p,
+.practice-notes-custom h2,
+.practice-context-custom > p {
+  margin: 0;
+}
+.practice-notes-custom > p,
+.practice-context-custom > p {
+  color: $sonic-primary;
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.practice-notes-custom h2 {
+  margin-top: 0.6rem;
+  font-family: $sonic-font-heading;
+  font-size: 2.8rem;
+}
+.practice-notes-custom > div {
+  display: grid;
+  margin-top: 2rem;
+  gap: 0.6rem;
+}
+.practice-notes-custom > div span {
+  color: $sonic-on-surface-variant;
+  line-height: 1.6;
+}
+.practice-context-custom dl {
+  margin: 2rem 0 0;
+}
+.practice-context-custom dl div {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid $sonic-outline-variant;
+}
+.practice-context-custom dt {
+  color: $sonic-on-surface-variant;
+}
+.practice-context-custom dd {
+  margin: 0;
+  font-weight: 800;
+}
+.practice-techniques-custom {
+  margin-top: 2rem;
+}
+.practice-techniques-custom > span {
+  color: $sonic-on-surface-variant;
+  font-weight: 800;
+}
+.practice-techniques-custom > div {
+  display: flex;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.practice-techniques-custom small {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(29, 251, 165, 0.3);
+  border-radius: 999px;
+  color: $sonic-secondary;
+}
+.practice-detail-error-custom {
+  @include sonic-card(3rem);
+}
+.practice-detail-error-custom button {
+  min-height: 4.4rem;
+  padding: 0 1.5rem;
+  border: 1px solid $sonic-primary;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: $sonic-primary;
+  font-weight: 900;
+}
+@media (max-width: 767.98px) {
+  .practice-detail-hero-custom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .practice-detail-duration-custom {
+    min-width: 0;
+  }
+}
+@media (max-width: 575.98px) {
+  .practice-song-card-custom,
+  .practice-metrics-custom {
+    grid-template-columns: 1fr;
+  }
+  .practice-song-card-custom img {
+    width: 100%;
+  }
+}

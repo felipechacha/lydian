@@ -1,0 +1,274 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  display: grid;
+  padding: 2rem;
+  place-items: center;
+  overflow-y: auto;
+}
+
+.practice-completion-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1.2rem);
+}
+
+.practice-completion-panel-custom {
+  position: relative;
+  width: min(100%, 78rem);
+  padding: clamp(2.4rem, 5vw, 4rem);
+  border: 1px solid rgba(29, 251, 165, 0.22);
+  border-radius: 2.4rem;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(29, 251, 165, 0.1), transparent 25rem),
+    $sonic-surface-low;
+  box-shadow: 0 3rem 10rem rgba(0, 0, 0, 0.58);
+  color: $sonic-on-surface;
+}
+
+.practice-completion-header-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+
+  > div > span {
+    color: $sonic-secondary;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.8rem 0 0;
+    font-family: $sonic-font-heading;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    letter-spacing: -0.055em;
+  }
+
+  p {
+    margin: 1rem 0 0;
+    color: $sonic-primary;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+  }
+}
+
+.practice-completion-close-custom {
+  @include flex-center;
+  width: 4.2rem;
+  height: 4.2rem;
+  flex: 0 0 auto;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 50%;
+  background: transparent;
+  color: $sonic-on-surface-variant;
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+}
+
+.practice-time-summary-custom {
+  display: flex;
+  margin-top: 2.8rem;
+  padding: 1.8rem;
+  align-items: center;
+  gap: 1.4rem;
+  border: 1px solid rgba(29, 251, 165, 0.2);
+  border-radius: 1.4rem;
+  background: rgba(29, 251, 165, 0.06);
+
+  > .material-symbols-outlined {
+    color: $sonic-secondary;
+    font-size: 3rem;
+  }
+
+  small,
+  strong,
+  p {
+    display: block;
+    margin: 0;
+  }
+
+  small,
+  p {
+    color: $sonic-on-surface-variant;
+  }
+
+  strong {
+    margin-top: 0.2rem;
+    font-family: $sonic-font-heading;
+    font-size: 2.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  p {
+    margin-top: 0.4rem;
+    font-size: 1.05rem;
+  }
+}
+
+form {
+  margin-top: 2.8rem;
+}
+
+.practice-rating-custom {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    font-size: 1.2rem;
+    font-weight: 850;
+  }
+
+  > p {
+    margin: 0.6rem 0 1.2rem;
+    color: $sonic-on-surface-variant;
+  }
+
+  > div {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  button {
+    @include flex-center;
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 1px solid $sonic-outline-variant;
+    border-radius: 50%;
+    background: transparent;
+    color: $sonic-on-surface-variant;
+    font-weight: 900;
+
+    &.is-active {
+      border-color: $sonic-secondary;
+      background: $sonic-secondary;
+      color: $sonic-surface-lowest;
+      box-shadow: 0 0 2rem rgba(29, 251, 165, 0.18);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.practice-rating-custom--quality {
+  margin-top: 2.2rem;
+}
+
+.practice-completion-grid-custom {
+  display: grid;
+  margin-top: 2.2rem;
+  grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 2rem;
+}
+
+.practice-completion-field-custom {
+  display: grid;
+  gap: 0.8rem;
+
+  &--full {
+    margin-top: 2rem;
+  }
+
+  label {
+    font-size: 1.2rem;
+    font-weight: 850;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    border: 1px solid $sonic-outline-variant;
+    border-radius: 1.2rem;
+    outline: 0;
+    background: rgba(0, 0, 0, 0.24);
+    color: $sonic-on-surface;
+    font: inherit;
+
+    &:focus {
+      border-color: $sonic-secondary;
+      box-shadow: 0 0 0 0.3rem rgba(29, 251, 165, 0.1);
+    }
+  }
+
+  select {
+    min-height: 5rem;
+    padding: 0 1.4rem;
+  }
+
+  input {
+    min-height: 5rem;
+    padding: 0 1.4rem;
+  }
+
+  textarea {
+    padding: 1.4rem;
+    resize: vertical;
+  }
+
+  small {
+    color: $sonic-on-surface-variant;
+    font-size: 1.05rem;
+    text-align: right;
+  }
+}
+
+.practice-completion-field-custom--wide {
+  grid-column: 1 / -1;
+}
+
+.practice-completion-error-custom {
+  margin: 2rem 0 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(255, 139, 160, 0.34);
+  border-radius: 1rem;
+  background: rgba(255, 139, 160, 0.08);
+  color: #ffb7c4;
+  font-weight: 750;
+}
+
+.practice-completion-actions-custom {
+  display: flex;
+  margin-top: 3rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  :host {
+    padding: 1rem;
+    align-items: end;
+  }
+
+  .practice-completion-panel-custom {
+    padding: 2.4rem 1.8rem;
+    border-radius: 2rem 2rem 0 0;
+  }
+
+  .practice-completion-grid-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-completion-actions-custom {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    app-button {
+      width: 100%;
+    }
+  }
+}

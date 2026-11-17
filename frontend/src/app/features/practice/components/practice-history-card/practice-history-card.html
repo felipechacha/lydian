@@ -1,0 +1,33 @@
+<article class="history-card-custom">
+  <img [src]="artworkUrl" [alt]="'Capa de ' + primarySongTitle" />
+  <div class="history-card-copy-custom">
+    <p>Sessão #{{ item.sequence }} · {{ practicedAt }}</p>
+    <h2>{{ title }}</h2>
+    <span>{{ primarySongTitle }} — {{ primaryArtist }}</span>
+    <div>
+      <span
+        ><span class="material-symbols-outlined" aria-hidden="true">timer</span>{{ duration }}</span
+      >
+      @if (item.session.focus_area) {
+        <span
+          ><span class="material-symbols-outlined" aria-hidden="true">my_location</span
+          >{{ item.session.focus_area }}</span
+        >
+      }
+      @if (item.session.mood) {
+        <span
+          ><span class="material-symbols-outlined" aria-hidden="true">mood</span
+          >{{ item.session.mood }}</span
+        >
+      }
+    </div>
+  </div>
+  <button
+    type="button"
+    [attr.aria-label]="'Ver detalhes da sessão ' + title"
+    (click)="opened.emit(item.session.id)"
+  >
+    Ver detalhes
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+  </button>
+</article>

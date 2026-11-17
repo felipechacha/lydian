@@ -1,0 +1,103 @@
+:host {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(157, 80, 255, 0.12), transparent 32%), #050505;
+  color: #fff;
+  font-family: 'Manrope', 'Inter', sans-serif;
+}
+
+:host::before {
+  position: absolute;
+  width: min(72rem, 80vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(157, 80, 255, 0.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 8rem rgba(157, 80, 255, 0.018),
+    0 0 0 16rem rgba(157, 80, 255, 0.012);
+  content: '';
+}
+
+.landing-preloader__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(42rem, calc(100% - 4.8rem));
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-preloader__brand {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+
+  strong {
+    font-size: clamp(3.2rem, 5vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.18rem;
+  }
+
+  span {
+    padding: 0.45rem 1rem;
+    border: 1px solid rgba(157, 80, 255, 0.42);
+    border-radius: 0.8rem;
+    color: #9d50ff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.28rem;
+    text-transform: uppercase;
+  }
+}
+
+.landing-preloader__wave {
+  display: flex;
+  width: min(24rem, 68vw);
+  height: 8rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+
+  i {
+    width: 0.55rem;
+    height: 42%;
+    border-radius: 999px;
+    background: #9d50ff;
+    box-shadow: 0 0 1.4rem rgba(157, 80, 255, 0.5);
+    will-change: opacity, transform;
+
+    &:nth-child(2n) {
+      height: 72%;
+    }
+
+    &:nth-child(3n) {
+      height: 100%;
+    }
+
+    &:nth-child(4n) {
+      height: 58%;
+    }
+  }
+}
+
+.landing-preloader__copy {
+  margin: 2rem 0 0;
+  color: rgba(173, 170, 170, 0.62);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.18rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-preloader__wave i {
+    transform: none !important;
+  }
+}

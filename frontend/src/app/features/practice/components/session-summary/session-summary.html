@@ -1,0 +1,61 @@
+<div class="session-summary-grid-custom">
+  <article class="session-summary-card-custom">
+    <div class="summary-heading-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">neurology</span>
+      <div>
+        <h2>Foco técnico</h2>
+        <p>Selecione a intenção desta passagem.</p>
+      </div>
+    </div>
+
+    <div class="technique-list-custom">
+      @for (technique of techniques; track technique.label; let index = $index) {
+        <button
+          type="button"
+          [class.is-active]="technique.isActive"
+          [attr.aria-pressed]="technique.isActive"
+          (click)="techniqueSelected.emit(index)"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">{{ technique.icon }}</span>
+          <span>{{ technique.label }}</span>
+          <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+        </button>
+      }
+    </div>
+  </article>
+
+  <article class="session-summary-card-custom repetition-card-custom">
+    <div class="summary-heading-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">repeat</span>
+      <div>
+        <h2>Repetições</h2>
+        <p>A consistência vence a pressa.</p>
+      </div>
+    </div>
+
+    <div class="repetition-value-custom">
+      <strong>24</strong>
+      <span>/ 30 planejadas</span>
+    </div>
+
+    <div
+      class="repetition-progress-custom"
+      role="progressbar"
+      aria-label="Repetições concluídas"
+      aria-valuemin="0"
+      aria-valuemax="30"
+      aria-valuenow="24"
+    >
+      <span></span>
+    </div>
+
+    <div class="quality-custom">
+      <small>Qualidade recente</small>
+      <div role="img" aria-label="Três de cinco repetições avaliadas como precisas">
+        @for (dot of [1, 2, 3, 4, 5]; track dot) {
+          <span [class.is-positive]="dot <= 3"></span>
+        }
+      </div>
+    </div>
+  </article>
+</div>

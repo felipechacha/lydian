@@ -1,0 +1,202 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.music-card-link-custom {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+    border-radius: 1.2rem;
+  }
+}
+
+.music-library-card-custom {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: $sonic-surface-low;
+  box-shadow: inset 0 0 0 1px rgba(72, 72, 71, 0.12);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+
+  &:hover {
+    background: $sonic-surface-high;
+    transform: translateY(-0.4rem);
+
+    img {
+      transform: scale(1.035);
+    }
+  }
+}
+
+.music-artwork-custom {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: $sonic-surface-highest;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 420ms ease;
+  }
+}
+
+.music-bpm-custom {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.7rem;
+  background: rgba(14, 14, 14, 0.9);
+  color: $sonic-secondary;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.music-card-body-custom {
+  padding: 2.2rem;
+}
+
+.music-card-heading-custom {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+
+  > div {
+    min-width: 0;
+  }
+
+  h2 {
+    margin: 0;
+    overflow: hidden;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 1.8rem;
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p {
+    margin: 0.8rem 0 0;
+    overflow: hidden;
+    color: $sonic-on-surface-variant;
+    font-size: 1.35rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.music-difficulty-custom {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  &--easy {
+    background: rgba(29, 251, 165, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(29, 251, 165, 0.25);
+    color: $sonic-secondary;
+  }
+
+  &--medium,
+  &--hard {
+    background: rgba(255, 139, 160, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 139, 160, 0.22);
+    color: $sonic-tertiary;
+  }
+}
+
+.music-study-summary-custom {
+  display: flex;
+  margin-top: 2.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  > span {
+    padding: 0.45rem 0.75rem;
+    border-radius: 999rem;
+    background: $sonic-surface-highest;
+  }
+}
+
+.music-status-custom {
+  &--new,
+  &--learning {
+    color: $sonic-primary;
+  }
+
+  &--maintaining,
+  &--practicing,
+  &--mastered {
+    color: $sonic-secondary;
+  }
+
+  &--archived {
+    color: $sonic-on-surface-variant;
+  }
+}
+
+.music-last-practice-custom {
+  margin-top: 1rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1.1rem;
+}
+
+.music-library-card-custom--list {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+
+  .music-artwork-custom {
+    min-height: 15rem;
+  }
+
+  .music-card-body-custom {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .music-library-card-custom--list {
+    grid-template-columns: 10rem minmax(0, 1fr);
+
+    .music-artwork-custom {
+      min-height: 10rem;
+    }
+
+    .music-card-body-custom {
+      padding: 1.6rem;
+    }
+
+    .music-difficulty-custom {
+      display: none;
+    }
+
+    .music-study-summary-custom {
+      margin-top: 1.6rem;
+    }
+  }
+}

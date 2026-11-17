@@ -1,0 +1,230 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.music-details-hero-custom {
+  display: grid;
+  grid-template-columns: minmax(22rem, 36rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(3.2rem, 6vw, 8rem);
+}
+
+.music-artwork-custom {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 1.8rem;
+  background: $sonic-surface-high;
+  box-shadow: 0 3rem 7rem rgba(0, 0, 0, 0.3);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, transparent 50%, rgba(197, 154, 255, 0.18));
+    content: '';
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.artwork-index-custom {
+  position: absolute;
+  z-index: 1;
+  right: 2rem;
+  bottom: 1.5rem;
+  color: rgba(247, 245, 242, 0.72);
+  font-family: $sonic-font-heading;
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.music-badges-custom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  > span {
+    display: inline-flex;
+    padding: 0.65rem 1rem;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(72, 72, 71, 0.55);
+    border-radius: 999px;
+    color: $sonic-on-surface-variant;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    &.is-complete {
+      border-color: rgba(29, 251, 165, 0.25);
+      color: $sonic-secondary;
+    }
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.4rem;
+  }
+}
+
+.music-details-back-custom {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 2rem;
+  padding: 0.8rem 0;
+  align-items: center;
+  gap: 0.8rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+
+  &:hover {
+    color: $sonic-primary;
+    transform: translateX(-0.3rem);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+    border-radius: 0.6rem;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.8rem;
+  }
+}
+
+.music-hero-copy-custom {
+  min-width: 0;
+
+  h1 {
+    max-width: 82rem;
+    margin: 2.4rem 0 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(4.8rem, 7vw, 9.4rem);
+    font-weight: 800;
+    letter-spacing: -0.065em;
+    line-height: 0.95;
+  }
+
+  > p {
+    margin: 2rem 0 0;
+    color: $sonic-primary;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.8rem, 2.3vw, 3rem);
+    font-style: italic;
+  }
+}
+
+.music-hero-actions-custom {
+  display: flex;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+
+  a,
+  button {
+    display: inline-flex;
+    min-height: 5.2rem;
+    padding: 0 2.2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+
+    &:disabled {
+      cursor: wait;
+      opacity: 0.55;
+      transform: none;
+    }
+  }
+
+  button {
+    border: 1px solid $sonic-outline-variant;
+    background: transparent;
+    color: $sonic-on-surface;
+
+    &:hover,
+    &.is-saved {
+      border-color: $sonic-primary;
+      color: $sonic-primary;
+    }
+  }
+}
+
+.music-hero-actions-custom .delete-music-custom {
+  border-color: rgba(255, 111, 111, 0.42);
+  color: #ffaaaa;
+
+  &:hover:not(:disabled) {
+    border-color: rgba(255, 111, 111, 0.8);
+    background: rgba(255, 111, 111, 0.1);
+    color: #ffc1c1;
+  }
+}
+
+.music-hero-actions-custom .start-practice-custom {
+  border: 1px solid $sonic-secondary;
+  background: $sonic-secondary;
+  color: $sonic-surface-lowest;
+
+  &:hover:not(:disabled) {
+    border-color: $sonic-secondary;
+    background: $sonic-secondary;
+    color: $sonic-surface-lowest;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .music-details-hero-custom {
+    grid-template-columns: minmax(20rem, 28rem) minmax(0, 1fr);
+    gap: 3.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .music-details-hero-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .music-artwork-custom {
+    max-width: 32rem;
+  }
+
+  .music-hero-actions-custom {
+    a,
+    button {
+      width: 100%;
+    }
+  }
+}

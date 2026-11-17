@@ -1,0 +1,27 @@
+<div class="setlist-hero-custom">
+  <div class="setlist-hero-copy-custom">
+    <p>Repertórios em movimento</p>
+    <h1 id="setlist-title">Organize o próximo <em>momento.</em></h1>
+    <span>
+      Monte a ordem de músicas para shows, ensaios e gigs sem perder o fluxo da apresentação.
+    </span>
+  </div>
+
+  <div class="setlist-hero-aside-custom">
+    <div class="setlist-metrics-custom">
+      <div>
+        <strong>{{ setlistCount }}</strong>
+        <span>Setlists</span>
+      </div>
+      <div>
+        <strong>{{ totalSongs ?? '—' }}</strong>
+        <span>Músicas organizadas</span>
+      </div>
+    </div>
+
+    <button type="button" (click)="createRequested.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      Novo setlist
+    </button>
+  </div>
+</div>

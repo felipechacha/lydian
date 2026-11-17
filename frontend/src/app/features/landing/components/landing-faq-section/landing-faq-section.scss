@@ -1,0 +1,148 @@
+:host {
+  display: contents;
+}
+
+#faq-section {
+  padding: 18rem 0;
+  background: #050505;
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 12rem;
+}
+
+.faq-heading {
+  .section-heading {
+    font-size: clamp(4rem, 4.5vw, 6rem);
+  }
+
+  .section-copy {
+    margin-top: 3rem;
+  }
+}
+
+.faq-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  h3 {
+    margin: 0;
+  }
+
+  button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 3.2rem 0;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.84);
+    cursor: pointer;
+    font: inherit;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+
+    i {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      flex: 0 0 2rem;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 1px;
+        background: var(--landing-primary);
+        content: '';
+        transition: transform 220ms ease;
+      }
+
+      &::before {
+        transform: translate(-50%, -50%);
+      }
+      &::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+  }
+
+  &--open button i::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.faq-answer {
+  overflow: hidden;
+  animation: faq-answer-in 280ms ease both;
+
+  p {
+    max-width: 72rem;
+    margin: -0.8rem 0 3.2rem;
+    color: rgba(173, 170, 170, 0.66);
+    font-size: 1.5rem;
+    line-height: 1.75;
+  }
+}
+
+@keyframes faq-answer-in {
+  from {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    max-height: 20rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .faq-layout {
+    gap: 6rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #faq-section {
+    padding: 13rem 0;
+  }
+
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-heading {
+    max-width: 68rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #faq-section {
+    padding: 10rem 0;
+  }
+
+  .faq-layout {
+    gap: 5rem;
+  }
+
+  .faq-heading .section-heading {
+    font-size: clamp(3.8rem, 10.5vw, 5.8rem);
+  }
+
+  .faq-item button {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
+  }
+}

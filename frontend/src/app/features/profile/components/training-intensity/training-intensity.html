@@ -1,0 +1,24 @@
+<article class="training-intensity-custom">
+  <h2>Intensidade de Treino</h2>
+
+  <div class="training-list-custom">
+    @for (metric of metrics; track metric.label) {
+      <div [class]="applyMetricStyle(metric)">
+        <div class="training-metric-header-custom">
+          <span>{{ metric.label }}</span>
+          <strong>{{ metric.value }}%</strong>
+        </div>
+        <div
+          class="training-track-custom"
+          role="progressbar"
+          [attr.aria-label]="metric.label"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [attr.aria-valuenow]="metric.value"
+        >
+          <span [style.width.%]="metric.value"></span>
+        </div>
+      </div>
+    }
+  </div>
+</article>

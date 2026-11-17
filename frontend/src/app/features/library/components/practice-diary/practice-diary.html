@@ -1,0 +1,50 @@
+<article class="practice-diary-custom">
+  <div class="diary-heading-custom">
+    <div>
+      <p>Histórico recente</p>
+      <h2>Diário de prática</h2>
+    </div>
+    <button type="button" aria-label="Ver diário completo">
+      Ver tudo
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span>
+    </button>
+  </div>
+
+  <div class="diary-list-custom">
+    @for (entry of entries; track entry.session) {
+      <div class="diary-entry-custom" [attr.data-accent]="entry.accent">
+        <div class="entry-session-custom">
+          <span>#{{ entry.session }}</span>
+          <small>{{ entry.date }}</small>
+        </div>
+        <div>
+          <small>Duração</small>
+          <strong>{{ entry.duration }}</strong>
+        </div>
+        <div>
+          <small>Progresso</small>
+          <strong>{{ entry.progress }}%</strong>
+        </div>
+        <div>
+          <small>Andamento</small>
+          <strong>{{ entry.tempo }} BPM</strong>
+        </div>
+        <button
+          type="button"
+          [attr.aria-label]="'Abrir detalhes da sessão ' + entry.session"
+          (click)="entrySelected.emit(entry)"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+        </button>
+      </div>
+    } @empty {
+      <div class="diary-empty-custom">
+        <span class="material-symbols-outlined" aria-hidden="true">history</span>
+        <div>
+          <strong>Nenhuma prática concluída ainda</strong>
+          <p>As próximas sessões desta música aparecerão aqui.</p>
+        </div>
+      </div>
+    }
+  </div>
+</article>

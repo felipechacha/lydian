@@ -1,0 +1,216 @@
+  <section id="hero-section" aria-labelledby="landing-title">
+    <div class="hero-background" aria-hidden="true">
+      <img
+        ngSrc="assets/images/landing/studio-background.png"
+        width="512"
+        height="512"
+        priority
+        alt=""
+      />
+      <div class="hero-background__veil"></div>
+    </div>
+
+    <header class="landing-header">
+      <div class="landing-header__container">
+        <a class="brand" routerLink="/" aria-label="Lydian - página inicial">
+          <span class="brand__name">Lydian</span>
+          <span class="brand__edition">Noir</span>
+        </a>
+
+        <nav class="landing-navigation" aria-label="Navegação principal">
+          <span class="navigation-indicator" aria-hidden="true"></span>
+          <a
+            class="navigation-link"
+            data-section="about-section"
+            href="#about-section"
+            (click)="navigateToSection($event, 'about-section')"
+            >Sobre</a
+          >
+          <a
+            class="navigation-link"
+            data-section="experience-section"
+            href="#experience-section"
+            (click)="navigateToSection($event, 'experience-section')"
+            >Experiência</a
+          >
+          <a
+            class="navigation-link"
+            data-section="features-section"
+            href="#features-section"
+            (click)="navigateToSection($event, 'features-section')"
+            >Recursos</a
+          >
+          <a
+            class="navigation-link"
+            data-section="plans-section"
+            href="#plans-section"
+            (click)="navigateToSection($event, 'plans-section')"
+            >Planos</a
+          >
+          <a
+            class="navigation-link"
+            data-section="faq-section"
+            href="#faq-section"
+            (click)="navigateToSection($event, 'faq-section')"
+            >FAQ</a
+          >
+        </nav>
+
+        <div class="header-actions">
+          <a class="header-login" routerLink="/login">Entrar</a>
+          <a class="header-cta" routerLink="/register">
+            <span>Começar</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+
+        <button
+          class="menu-trigger"
+          type="button"
+          (click)="toggleNavigationMenu()"
+          [class.menu-trigger--open]="navigationMenuOpen()"
+          [attr.aria-expanded]="navigationMenuOpen()"
+          aria-controls="navigation-overlay"
+          [attr.aria-label]="
+            navigationMenuOpen() ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+          "
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <span class="page-progress" aria-hidden="true"></span>
+    </header>
+
+    <div
+      id="navigation-overlay"
+      class="navigation-overlay"
+      [class.navigation-overlay--open]="navigationMenuOpen()"
+      [attr.aria-hidden]="!navigationMenuOpen()"
+    >
+      <div class="navigation-overlay__ambient" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="navigation-overlay__content">
+        <span class="navigation-overlay__kicker">Explore Lydian</span>
+        <nav aria-label="Menu expandido">
+          <a
+            class="navigation-overlay__link"
+            href="#about-section"
+            (click)="navigateToSection($event, 'about-section')"
+            ><small>01</small><span>Sobre o app</span></a
+          >
+          <a
+            class="navigation-overlay__link"
+            href="#experience-section"
+            (click)="navigateToSection($event, 'experience-section')"
+            ><small>02</small><span>Experiência</span></a
+          >
+          <a
+            class="navigation-overlay__link"
+            href="#features-section"
+            (click)="navigateToSection($event, 'features-section')"
+            ><small>03</small><span>Recursos</span></a
+          >
+          <a
+            class="navigation-overlay__link"
+            href="#plans-section"
+            (click)="navigateToSection($event, 'plans-section')"
+            ><small>04</small><span>Planos</span></a
+          >
+          <a
+            class="navigation-overlay__link"
+            href="#faq-section"
+            (click)="navigateToSection($event, 'faq-section')"
+            ><small>05</small><span>FAQ</span></a
+          >
+        </nav>
+        <div class="navigation-overlay__footer">
+          <span>Prática musical organizada</span>
+          <div class="navigation-overlay__account">
+            <a routerLink="/login">Entrar</a>
+            <a routerLink="/register">Começar agora →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="release-badge">
+        <svg class="release-badge__desktop-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2l1.5 5.1L18 9l-4.5 1.9L12 16l-1.5-5.1L6 9l4.5-1.9L12 2Z" />
+          <path d="M19 14l.8 2.7L22 18l-2.2 1.3L19 22l-.8-2.7L16 18l2.2-1.3L19 14Z" />
+        </svg>
+        <svg class="release-badge__mobile-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 3v12.2a4 4 0 1 1-2-3.5V6.5L9 8v9.2a4 4 0 1 1-2-3.5V6.4L18 3Z" />
+        </svg>
+        <span>Biblioteca, prática e palco</span>
+      </div>
+
+      <h1 id="landing-title">
+        Domine sua<br />
+        <span>arte</span> com<br />
+        Lydian.
+      </h1>
+
+      <p>
+        <span class="hero-copy hero-copy--desktop">
+          Organize sua biblioteca, pratique com foco e prepare setlists para levar seu repertório
+          do estudo ao palco.
+        </span>
+        <span class="hero-copy hero-copy--mobile">
+          Biblioteca, sessões focadas e setlists para levar seu repertório ao palco.
+        </span>
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button--primary" routerLink="/register">Começar Agora</a>
+        <a
+          class="button button--secondary"
+          href="#about-section"
+          (click)="navigateToSection($event, 'about-section')"
+        >
+          <span>Explorar Recursos</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <footer class="landing-footer">
+      <a
+        class="scroll-cue"
+        href="#about-section"
+        (click)="navigateToSection($event, 'about-section')"
+      >
+        <span>Descubra o método</span>
+        <i aria-hidden="true"><span></span></i>
+      </a>
+
+      <div class="landing-footer__right">
+        <div class="system-status">
+          <span>Status do sistema</span>
+          <p>
+            Lydian App •
+            <span class="system-status__desktop-location">Online</span>
+            <span class="system-status__mobile-location">Online</span>
+          </p>
+        </div>
+
+        <div class="quick-actions">
+          <button type="button" (click)="shareLandingPage()" aria-label="Compartilhar Lydian">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <path class="stroke" d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </section>

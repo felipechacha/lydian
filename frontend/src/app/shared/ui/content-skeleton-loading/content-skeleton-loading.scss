@@ -1,0 +1,105 @@
+@import 'styles/variables';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.content-skeleton-custom {
+  display: grid;
+  gap: 2.4rem;
+}
+
+.content-skeleton-hero-custom,
+.content-skeleton-card-custom,
+.content-skeleton-panel-custom {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(72, 72, 71, 0.16);
+  border-radius: 1.6rem;
+  background: $sonic-surface-low;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(197, 154, 255, 0.08) 48%,
+      transparent 66%
+    );
+    content: '';
+    transform: translateX(-100%);
+    animation: skeleton-shimmer-custom 1.6s ease-in-out infinite;
+  }
+}
+
+.content-skeleton-hero-custom {
+  display: flex;
+  min-height: 30rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: clamp(3rem, 4vw, 5rem);
+}
+
+.content-skeleton-line-custom,
+.content-skeleton-card-custom span,
+.content-skeleton-panel-custom span {
+  display: block;
+  height: 1.4rem;
+  border-radius: 999px;
+  background: $sonic-surface-highest;
+}
+
+.content-skeleton-line-custom--eyebrow { width: 14rem; height: 1rem; }
+.content-skeleton-line-custom--title { width: min(52rem, 82%); height: 4.6rem; }
+.content-skeleton-line-custom--copy { width: min(62rem, 92%); }
+.content-skeleton-line-custom--action { width: 16rem; height: 5rem; margin-top: 1rem; }
+
+.content-skeleton-grid-custom {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.4rem;
+}
+
+.content-skeleton-card-custom {
+  display: flex;
+  min-height: 24rem;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 2.4rem;
+
+  span:first-child { width: 35%; }
+  span:nth-child(2) { width: 82%; height: 2.6rem; }
+  span:last-child { width: 58%; }
+}
+
+.content-skeleton-panel-custom {
+  display: flex;
+  min-height: 18rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 3rem;
+
+  span:first-child { width: 28%; height: 2.8rem; }
+  span:last-child { width: 72%; }
+}
+
+@keyframes skeleton-shimmer-custom {
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 767.98px) {
+  .content-skeleton-grid-custom { grid-template-columns: 1fr; }
+  .content-skeleton-hero-custom { min-height: 26rem; }
+  .content-skeleton-line-custom--title { height: 3.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-skeleton-hero-custom::after,
+  .content-skeleton-card-custom::after,
+  .content-skeleton-panel-custom::after { animation: none; }
+}

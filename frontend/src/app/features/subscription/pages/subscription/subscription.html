@@ -1,0 +1,86 @@
+<app-dashboard-shell pageTitle="Assinatura">
+  <div id="subscription-page">
+    <section id="subscription-intro-section" aria-labelledby="subscription-title">
+      <div class="container">
+        <div class="row justify-content-between align-items-end g-4">
+          <div class="col-12 col-md-8 col-xl-7">
+            <p class="subscription-eyebrow-custom">
+              <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+              Seu Lydian, no seu ritmo
+            </p>
+            <h1 id="subscription-title">Escolha o plano que acompanha sua evolução.</h1>
+          </div>
+
+          <div class="col-12 col-md-4 col-xl-4">
+            <p class="subscription-intro-copy-custom">
+              Comece gratuitamente e evolua quando seu repertório pedir mais espaço. Cancele ou
+              altere o plano quando quiser.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="current-subscription-section" aria-label="Plano atual">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <app-current-subscription-card [subscription]="currentSubscription" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscription-plans-section" aria-label="Planos disponíveis">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          @for (plan of plans; track plan.id) {
+            <div class="col-12 col-md-12 col-xl-4 d-flex">
+              <app-subscription-plan-card
+                class="w-100"
+                [plan]="plan"
+                (planSelected)="selectPlan($event)"
+              />
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="subscription-trust-section" aria-label="Garantias da assinatura">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <div class="trust-item-custom">
+              <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+              <div>
+                <strong>Pagamento seguro</strong>
+                <span>Seus dados sempre protegidos.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="trust-item-custom">
+              <span class="material-symbols-outlined" aria-hidden="true">sync</span>
+              <div>
+                <strong>Troque quando quiser</strong>
+                <span>Seu plano acompanha o seu momento.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="trust-item-custom">
+              <span class="material-symbols-outlined" aria-hidden="true">headphones</span>
+              <div>
+                <strong>Feito para músicos</strong>
+                <span>Recursos pensados para a prática real.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</app-dashboard-shell>

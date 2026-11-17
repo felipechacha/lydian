@@ -1,0 +1,35 @@
+<header class="practice-header-custom">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="practice-header-inner-custom">
+          <a class="practice-brand-custom" routerLink="/home" aria-label="Voltar para o início">
+            <strong>Lydian</strong>
+            <span aria-hidden="true"></span>
+            <small>{{ sessionStatusLabel }}</small>
+          </a>
+
+          <div class="practice-status-custom">
+            <span
+              class="practice-live-custom"
+              [class.is-running]="isTimerRunning"
+              aria-hidden="true"
+            ></span>
+            <time>{{ elapsedTime }}</time>
+            <button
+              type="button"
+              [class.is-running]="isTimerRunning"
+              [attr.aria-label]="isTimerRunning ? 'Pausar timer da sessão' : 'Iniciar timer da sessão'"
+              [attr.aria-pressed]="isTimerRunning"
+              (click)="timerToggled.emit()"
+            >
+              <span class="material-symbols-outlined" aria-hidden="true">
+                {{ isTimerRunning ? 'pause' : 'play_arrow' }}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

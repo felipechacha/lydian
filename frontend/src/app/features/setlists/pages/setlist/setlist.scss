@@ -1,0 +1,134 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#setlist-page {
+  @include dashboard-page-content;
+}
+
+#setlist-create-section,
+#setlist-collection-section {
+  margin-top: 4.8rem;
+}
+
+app-setlist-card {
+  display: block;
+  height: 100%;
+}
+
+.setlist-error-custom {
+  display: flex;
+  min-height: 24rem;
+  padding: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  color: $sonic-on-surface-variant;
+  background: $sonic-surface-low;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 2rem;
+  text-align: center;
+
+  .material-symbols-outlined {
+    color: $sonic-primary;
+    font-size: 2.4rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+.setlist-collection-heading-custom {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: $sonic-primary;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-top: 0.8rem;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    letter-spacing: -0.055em;
+  }
+}
+
+.setlist-collection-grid-custom {
+  margin-top: 2.4rem;
+}
+
+app-pagination {
+  margin-top: 5.6rem;
+}
+
+.setlist-empty-custom {
+  @include sonic-card(6rem 2.4rem);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+
+  > .material-symbols-outlined {
+    color: $sonic-primary;
+    font-size: 4.8rem;
+  }
+
+  h2 {
+    margin: 2rem 0 0;
+    font-family: $sonic-font-heading;
+    font-size: 2.8rem;
+  }
+
+  p {
+    max-width: 52rem;
+    margin: 1rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+
+  button {
+    margin-top: 2.4rem;
+    padding: 1.2rem 2rem;
+    border: 0;
+    border-radius: 1rem;
+    background: $sonic-secondary;
+    color: $sonic-surface-lowest;
+    font-weight: 900;
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  #setlist-create-section,
+  #setlist-collection-section {
+    margin-top: 3.2rem;
+  }
+
+  .setlist-collection-heading-custom {
+    align-items: center;
+  }
+
+  app-pagination {
+    margin-top: 4rem;
+  }
+}

@@ -1,0 +1,26 @@
+<div
+  class="content-skeleton-custom"
+  role="status"
+  aria-live="polite"
+  aria-busy="true"
+  [attr.aria-label]="label()"
+>
+  <div class="content-skeleton-hero-custom" aria-hidden="true">
+    <span class="content-skeleton-line-custom content-skeleton-line-custom--eyebrow"></span>
+    <span class="content-skeleton-line-custom content-skeleton-line-custom--title"></span>
+    <span class="content-skeleton-line-custom content-skeleton-line-custom--copy"></span>
+    <span class="content-skeleton-line-custom content-skeleton-line-custom--action"></span>
+  </div>
+
+  <div class="content-skeleton-grid-custom" aria-hidden="true">
+    @for (placeholder of [1, 2, 3]; track placeholder) {
+      <div class="content-skeleton-card-custom">
+        <span></span><span></span><span></span>
+      </div>
+    }
+  </div>
+
+  <div class="content-skeleton-panel-custom" aria-hidden="true">
+    <span></span><span></span>
+  </div>
+</div>

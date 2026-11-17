@@ -1,0 +1,44 @@
+<a
+  [routerLink]="['/music-details', music().id]"
+  class="music-card-link-custom"
+  [attr.aria-label]="'Ver detalhes de ' + music().title"
+>
+  <article [class]="applyCardClass()">
+    <div class="music-artwork-custom">
+      <img
+        [ngSrc]="music().artworkUrl"
+        width="640"
+        height="640"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        alt="Capa de {{ music().title }}"
+        (error)="handleArtworkError($event)"
+      />
+      <span class="music-bpm-custom">{{ music().bpm > 0 ? music().bpm : '—' }} BPM</span>
+    </div>
+
+    <div class="music-card-body-custom">
+      <div class="music-card-heading-custom">
+        <div>
+          <h2 title="{{ music().title }}">{{ music().title }}</h2>
+          <p>{{ music().composer }}</p>
+        </div>
+        <span [class]="applyDifficultyClass(music().difficulty)">{{ music().difficulty }}</span>
+      </div>
+
+      <div class="music-study-summary-custom">
+        <span [class]="applyStatusClass(music().status)">
+          {{ getStatusLabel(music().status) }}
+        </span>
+        <span>{{ formatDuration(music().durationSeconds) }}</span>
+        @if (music().targetBpm; as targetBpm) {
+          <span>{{ targetBpm }} BPM alvo</span>
+        }
+        @if ((music().priority ?? 0) > 0) {
+          <span>Prioridade {{ music().priority ?? 0 }}/5</span>
+        }
+      </div>
+      <p class="music-last-practice-custom">{{ formatLastPracticedAt(music().lastPracticedAt) }}</p>
+    </div>
+  </article>
+</a>

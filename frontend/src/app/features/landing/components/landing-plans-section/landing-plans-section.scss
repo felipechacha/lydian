@@ -1,0 +1,297 @@
+:host {
+  display: contents;
+}
+
+#plans-section {
+  position: relative;
+  padding: 18rem 0;
+  background:
+    radial-gradient(circle at 50% 5%, rgba(157, 80, 255, 0.12), transparent 32%),
+    #080808;
+
+  > .container {
+    position: relative;
+    z-index: 1;
+    max-width: 124rem;
+  }
+}
+
+.plans-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(28rem, 0.65fr);
+  align-items: end;
+  gap: 8rem;
+
+  .section-copy {
+    padding-bottom: 1rem;
+  }
+}
+
+.landing-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+  margin-top: 7rem;
+}
+
+.landing-plan-card {
+  position: relative;
+  display: flex;
+  min-height: 68rem;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 3.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2.4rem;
+  background: linear-gradient(155deg, rgba(26, 26, 26, 0.96), rgba(13, 13, 13, 0.98));
+  box-shadow: 0 2.5rem 8rem rgba(0, 0, 0, 0.22);
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 2.8rem;
+    left: 2.8rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    content: '';
+  }
+
+  &--recommended {
+    border-color: rgba(157, 80, 255, 0.5);
+    background:
+      radial-gradient(circle at 85% 0, rgba(157, 80, 255, 0.22), transparent 30%),
+      linear-gradient(155deg, #21172d, #111011 58%);
+    box-shadow:
+      0 3rem 9rem rgba(0, 0, 0, 0.3),
+      0 0 5rem rgba(126, 41, 223, 0.11);
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0;
+    right: 3rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 0 0 1rem 1rem;
+    background: var(--landing-primary);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+
+    > div > span {
+      color: rgba(173, 170, 170, 0.62);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0.6rem 0 0;
+      color: #fff;
+      font-size: 3.6rem;
+      font-weight: 700;
+      letter-spacing: -0.16rem;
+    }
+  }
+
+  &__index {
+    display: grid;
+    width: 4.6rem;
+    height: 4.6rem;
+    flex: 0 0 4.6rem;
+    border: 1px solid rgba(157, 80, 255, 0.28);
+    border-radius: 50%;
+    color: var(--landing-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    place-items: center;
+  }
+
+  &__description {
+    min-height: 7.5rem;
+    margin: 2.8rem 0 0;
+    color: rgba(173, 170, 170, 0.72);
+    font-size: 1.45rem;
+    line-height: 1.7;
+  }
+
+  &__pricing {
+    display: grid;
+    gap: 1.8rem;
+    margin-top: 2.4rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &__monthly,
+  &__annual {
+    display: grid;
+    grid-template-columns: 5.4rem auto 1fr;
+    align-items: baseline;
+    column-gap: 1.2rem;
+
+    > span {
+      color: rgba(173, 170, 170, 0.52);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
+
+    strong {
+      color: #fff;
+      font-size: 3.1rem;
+      letter-spacing: -0.12rem;
+      line-height: 1;
+    }
+
+    small {
+      color: rgba(173, 170, 170, 0.52);
+      font-size: 1.05rem;
+    }
+  }
+
+  &__annual strong {
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: -0.03rem;
+  }
+
+  &__features {
+    display: grid;
+    gap: 1.3rem;
+    margin: 1.2rem 0 3.4rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.28rem;
+      line-height: 1.55;
+
+      span {
+        color: #1dfba5;
+        font-weight: 800;
+      }
+    }
+  }
+
+  &__features-label {
+    margin-top: 2.8rem;
+    color: rgba(173, 170, 170, 0.48);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.11rem;
+    text-transform: uppercase;
+  }
+
+  &__cta {
+    display: inline-flex;
+    width: 100%;
+    min-height: 5.4rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    border: 1px solid rgba(157, 80, 255, 0.34);
+    border-radius: 1.2rem;
+    background: rgba(157, 80, 255, 0.08);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--landing-primary);
+      background: var(--landing-primary);
+      transform: translateY(-0.2rem);
+    }
+  }
+
+  &--recommended &__cta {
+    background: var(--landing-primary);
+    box-shadow: 0 1.6rem 4rem rgba(126, 41, 223, 0.24);
+  }
+}
+
+.plans-footnote {
+  margin: 3rem 0 0;
+  color: rgba(173, 170, 170, 0.52);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .landing-plan-card:hover {
+    box-shadow: 0 3rem 9rem rgba(0, 0, 0, 0.28);
+    transform: translateY(-0.6rem);
+  }
+}
+
+@media (max-width: 991.98px) {
+  #plans-section {
+    padding: 13rem 0;
+  }
+
+  .plans-heading {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    .section-copy {
+      max-width: 68rem;
+    }
+  }
+
+  .landing-plans {
+    max-width: 68rem;
+    grid-template-columns: 1fr;
+    margin-inline: auto;
+  }
+
+  .landing-plan-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #plans-section {
+    padding: 10rem 0;
+  }
+
+  .landing-plans {
+    margin-top: 5rem;
+  }
+
+  .landing-plan-card {
+    padding: 3rem;
+
+    &__description {
+      min-height: 0;
+    }
+
+    &__monthly,
+    &__annual {
+      grid-template-columns: 4.8rem auto 1fr;
+    }
+  }
+}

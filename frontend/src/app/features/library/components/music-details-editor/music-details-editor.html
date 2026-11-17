@@ -1,0 +1,57 @@
+<article class="music-details-editor-custom">
+  <header>
+    <div>
+      <p>Configuração da biblioteca</p>
+      <h2>Dados de estudo</h2>
+    </div>
+    <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="music-editor-grid-custom">
+      <label>Título <input type="text" maxlength="200" formControlName="title" /></label>
+      <label>Artista <input type="text" maxlength="200" formControlName="artist" /></label>
+      <label>BPM atual <input type="number" min="1" max="400" formControlName="bpm" /></label>
+      <label>BPM alvo <input type="number" min="1" max="400" formControlName="targetBpm" /></label>
+      <label>Prioridade <input type="number" min="0" max="100" formControlName="priority" /></label>
+      <label>
+        Status
+        <select formControlName="learningStatus">
+          @for (status of learningStatusOptions; track status.value) {
+            <option [value]="status.value">{{ status.label }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <label class="music-editor-notes-custom">
+      Notas
+      <textarea rows="4" maxlength="5000" formControlName="notes"></textarea>
+      <small>{{ form.controls.notes.value.length }}/5000</small>
+    </label>
+
+    <div class="music-editor-techniques-custom">
+      <span>Técnicas relacionadas</span>
+      <app-technique-selector
+        [techniques]="techniques()"
+        [selectedTechniqueIds]="selectedTechniqueIds"
+        [isLoading]="isLoadingTechniques()"
+        [errorMessage]="techniquesErrorMessage()"
+        (selectedTechniqueIdsChange)="updateSelectedTechniqueIds($event)"
+        (retryRequested)="retryTechniquesRequested.emit()"
+      />
+    </div>
+
+    <footer>
+      <app-button
+        type="submit"
+        variant="secondary"
+        [loading]="isSaving()"
+        loadingLabel="Salvando música"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">save</span>
+        Salvar alterações
+      </app-button>
+    </footer>
+  </form>
+</article>

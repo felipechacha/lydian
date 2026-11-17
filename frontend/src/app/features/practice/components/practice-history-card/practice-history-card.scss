@@ -1,0 +1,95 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+.history-card-custom {
+  @include sonic-card(1.6rem);
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.8rem;
+}
+img {
+  width: 8rem;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+.history-card-copy-custom {
+  min-width: 0;
+}
+p,
+h2 {
+  margin: 0;
+}
+p {
+  color: $sonic-primary;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+h2 {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  font-family: $sonic-font-heading;
+  font-size: 1.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.history-card-copy-custom > span {
+  display: block;
+  margin-top: 0.4rem;
+  color: $sonic-on-surface-variant;
+}
+.history-card-copy-custom > div {
+  display: flex;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  color: $sonic-on-surface-variant;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.history-card-copy-custom > div > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.material-symbols-outlined {
+  color: $sonic-secondary;
+  font-size: 1.6rem;
+}
+button {
+  display: inline-flex;
+  min-height: 4.4rem;
+  padding: 0 1.4rem;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: $sonic-on-surface;
+  font-weight: 900;
+}
+button:hover {
+  border-color: $sonic-primary;
+  color: $sonic-primary;
+}
+button:focus-visible {
+  @include sonic-focus-ring;
+}
+@media (max-width: 767.98px) {
+  .history-card-custom {
+    grid-template-columns: 6.4rem minmax(0, 1fr);
+  }
+  img {
+    width: 6.4rem;
+  }
+  button {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+}

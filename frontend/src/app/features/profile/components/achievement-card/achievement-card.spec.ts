@@ -1,0 +1,28 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AchievementCard } from './achievement-card';
+
+describe('AchievementCard', () => {
+  let component: AchievementCard;
+  let fixture: ComponentFixture<AchievementCard>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AchievementCard],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AchievementCard);
+    component = fixture.componentInstance;
+    fixture.componentRef.setInput('achievement', {
+      title: 'Mestre das Escalas',
+      description: 'Desbloqueou todas as escalas maiores e menores.',
+      icon: 'military_tech',
+      tone: 'secondary',
+    });
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

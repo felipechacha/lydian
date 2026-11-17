@@ -1,0 +1,195 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.daily-practice-custom {
+  @include sonic-card(clamp(3rem, 4vw, 5.2rem));
+  display: grid;
+  min-height: 41rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(26rem, 0.75fr);
+  align-items: center;
+  gap: clamp(3rem, 5vw, 6rem);
+  overflow: hidden;
+}
+
+.daily-practice-copy-custom {
+  max-width: 62rem;
+}
+
+.daily-practice-eyebrow-custom {
+  margin: 0 0 1.6rem;
+  color: $sonic-secondary;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: $sonic-on-surface;
+  font-family: $sonic-font-heading;
+  font-size: clamp(3.6rem, 4.1vw, 5.3rem);
+  font-weight: 800;
+  letter-spacing: -0.2rem;
+  line-height: 1.08;
+
+  em {
+    color: $sonic-primary-dim;
+    font-style: italic;
+  }
+}
+
+.daily-practice-description-custom {
+  max-width: 56rem;
+  margin: 2.6rem 0 0;
+  color: $sonic-on-surface-variant;
+  font-size: 1.65rem;
+  line-height: 1.75;
+}
+
+.daily-practice-actions-custom {
+  display: flex;
+  margin-top: 3.6rem;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+
+  button {
+    min-height: 5.6rem;
+    padding: 1.3rem 3.2rem;
+    border: 0;
+    border-radius: 1.6rem;
+    font-size: 1.45rem;
+    font-weight: 800;
+    transition: transform 180ms ease, filter 180ms ease, background-color 180ms ease;
+
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.daily-primary-action-custom {
+  background: linear-gradient(45deg, $sonic-primary, $sonic-primary-dim);
+  box-shadow: 0 1.2rem 3rem rgba(149, 71, 247, 0.18);
+  color: #100d14;
+}
+
+.daily-secondary-action-custom {
+  background: $sonic-surface-highest;
+  color: $sonic-on-surface;
+
+  &:hover {
+    background: $sonic-surface-high;
+  }
+}
+
+.daily-progress-custom {
+  position: relative;
+  width: min(100%, 29rem);
+  aspect-ratio: 1;
+  justify-self: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform: rotate(-90deg);
+  }
+
+  circle {
+    fill: transparent;
+    stroke-width: 14;
+  }
+}
+
+.progress-track-custom {
+  stroke: $sonic-surface-highest;
+}
+
+.progress-value-custom {
+  stroke: $sonic-secondary;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 1.2rem rgba(29, 251, 165, 0.5));
+  transition: stroke-dashoffset 600ms ease;
+}
+
+.progress-label-custom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  strong {
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 4.8rem;
+    font-weight: 800;
+    line-height: 1;
+
+    span {
+      color: $sonic-on-surface-variant;
+      font-size: 2.3rem;
+    }
+  }
+
+  small {
+    margin-top: 1.1rem;
+    color: $sonic-secondary;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.22rem;
+    text-transform: uppercase;
+  }
+}
+
+@container (max-width: 80rem) {
+  .daily-practice-custom {
+    grid-template-columns: minmax(0, 1.3fr) minmax(22rem, 0.7fr);
+  }
+}
+
+@container (max-width: 64rem) {
+  .daily-practice-custom {
+    min-height: 0;
+    padding: 3rem 2.4rem;
+    grid-template-columns: 1fr;
+    gap: 3.8rem;
+  }
+
+  .daily-practice-eyebrow-custom {
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 10vw, 4.2rem);
+  }
+
+  .daily-practice-description-custom {
+    margin-top: 2rem;
+    font-size: 1.45rem;
+  }
+
+  .daily-practice-actions-custom {
+    margin-top: 2.8rem;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .daily-progress-custom {
+    width: min(100%, 24rem);
+  }
+}

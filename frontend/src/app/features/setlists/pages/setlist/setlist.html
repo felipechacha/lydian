@@ -1,0 +1,117 @@
+<app-dashboard-shell pageTitle="Setlists">
+  <div id="setlist-page">
+    @if (isLoading) {
+      <section id="setlist-loading-section" aria-label="Carregando setlists">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando seus setlists" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (loadErrorMessage) {
+      <section id="setlist-error-section" aria-label="Erro ao carregar setlists">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="setlist-error-custom" role="alert">
+                <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                <p>{{ loadErrorMessage }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else {
+      <section id="setlist-hero-section" aria-labelledby="setlist-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-setlist-hero
+                [setlistCount]="totalSetlists"
+                [totalSongs]="totalSongs"
+                (createRequested)="openCreatePanel()"
+              ></app-setlist-hero>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (isCreatePanelOpen) {
+        <section id="setlist-create-section" aria-label="Criar novo setlist">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-xl-10">
+                <app-create-setlist-panel
+                  [isSubmitting]="isCreating"
+                  [errorMessage]="createErrorMessage"
+                  (cancelled)="closeCreatePanel()"
+                  (setlistCreated)="createSetlist($event)"
+                ></app-create-setlist-panel>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      <section id="setlist-collection-section" aria-label="Seus setlists">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="setlist-collection-heading-custom">
+                <div>
+                  <p>Repertórios organizados</p>
+                  <h2>Seus setlists</h2>
+                </div>
+                <app-view-mode-toggle
+                  [viewMode]="viewMode"
+                  (viewModeSelected)="selectViewMode($event)"
+                ></app-view-mode-toggle>
+              </div>
+            </div>
+          </div>
+
+          @if (setlists.length > 0) {
+            <div class="row g-4 setlist-collection-grid-custom">
+              @for (setlist of setlists; track setlist.id) {
+                <div [class]="applySetlistColumnClass()">
+                  <app-setlist-card
+                    class="w-100"
+                    [setlist]="setlist"
+                    [viewMode]="viewMode"
+                  ></app-setlist-card>
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <div class="setlist-empty-custom" role="status">
+                  <span class="material-symbols-outlined" aria-hidden="true">queue_music</span>
+                  <h2>Seu primeiro set começa aqui</h2>
+                  <p>Crie um setlist para organizar a ordem das músicas antes de subir ao palco.</p>
+                  <button type="button" (click)="openCreatePanel()">Criar setlist</button>
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (totalSetlists > pageSize) {
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <app-pagination
+                  ariaLabel="Paginação dos setlists"
+                  [currentPage]="currentPage"
+                  [pageSize]="pageSize"
+                  [totalItems]="totalSetlists"
+                  (pageSelected)="selectPage($event)"
+                ></app-pagination>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>

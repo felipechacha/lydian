@@ -1,0 +1,17 @@
+<article [class]="toneClass">
+  <header class="profile-stat-header-custom">
+    <span class="profile-stat-icon-custom material-symbols-outlined" aria-hidden="true">
+      {{ stat.icon }}
+    </span>
+
+    <div class="profile-stat-highlight-custom">
+      <strong>{{ stat.highlight }}</strong>
+      <span>{{ stat.highlightLabel }}</span>
+    </div>
+  </header>
+
+  <p class="profile-stat-value-custom">
+    <strong>{{ stat.value }}</strong><span>{{ stat.unit }}</span>
+  </p>
+  <h2>{{ stat.label }}</h2>
+</article>

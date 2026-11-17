@@ -1,0 +1,22 @@
+<article class="current-subscription-card-custom">
+  <div class="current-plan-icon-custom" aria-hidden="true">
+    <span class="material-symbols-outlined">album</span>
+  </div>
+
+  <div class="current-plan-copy-custom">
+    <div class="current-plan-heading-custom">
+      <p>Seu plano atual</p>
+      <span>
+        <span aria-hidden="true"></span>
+        {{ subscription().statusLabel }}
+      </span>
+    </div>
+    <h2>{{ subscription().planName }}</h2>
+    <p>{{ subscription().description }}</p>
+  </div>
+
+  <div class="current-plan-meta-custom">
+    <strong>{{ subscription().priceLabel }}</strong>
+    <span>{{ subscription().usageLabel }}</span>
+  </div>
+</article>

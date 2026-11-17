@@ -1,0 +1,67 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#music-details-page {
+  @include dashboard-page-content;
+  padding-bottom: 14rem;
+}
+
+#music-details-insights-section,
+#music-details-editor-section {
+  margin-top: 4.8rem;
+}
+
+.music-details-error-custom {
+  display: flex;
+  min-height: 22rem;
+  padding: 4rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.6rem;
+  border-radius: 2rem;
+  background: $sonic-surface-low;
+  color: $sonic-on-surface-variant;
+  text-align: center;
+
+  .material-symbols-outlined {
+    color: $sonic-tertiary;
+    font-size: 4rem;
+  }
+
+  p {
+    max-width: 48rem;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+.mini-metronome-column-custom {
+  height: 0;
+  padding: 0;
+}
+
+app-progress-monitor,
+app-music-techniques,
+app-music-rating,
+app-practice-diary {
+  display: block;
+  height: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .mini-metronome-column-custom {
+    height: auto;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+  }
+
+  #music-details-insights-section,
+  #music-details-editor-section {
+    margin-top: 3.2rem;
+  }
+}

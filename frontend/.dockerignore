@@ -1,0 +1,14 @@
+.angular
+.agents
+.codex
+.git
+.gitignore
+.idea
+.vscode
+dist
+node_modules
+qa-artifacts
+qa-auth
+secrets
+*.log
+*.pem

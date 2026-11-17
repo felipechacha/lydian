@@ -1,0 +1,92 @@
+// Lydian Design System Variables
+
+:root {
+  // Brand Colors
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #a855f7;
+  --secondary-dark: #9333ea;
+
+  // Status Colors
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+
+  // Grayscale / UI Colors
+  --dark: #0f172a;
+  --dark-light: #1e293b;
+  --light: #f8fafc;
+  --white: #ffffff;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+
+  // Sonic Architect / Authenticated Experience
+  --sonic-primary: #c59aff;
+  --sonic-primary-dim: #9547f7;
+  --sonic-secondary: #1dfba5;
+  --sonic-secondary-dim: #0fcf87;
+  --sonic-tertiary: #ff8ba0;
+  --sonic-surface: #0e0e0e;
+  --sonic-surface-lowest: #000000;
+  --sonic-surface-low: #131313;
+  --sonic-surface-high: #201f1f;
+  --sonic-surface-highest: #262626;
+  --sonic-on-surface: #f7f5f2;
+  --sonic-on-surface-variant: #adaaaa;
+  --sonic-outline-variant: #484847;
+
+  // Fonts
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+// SASS Variables for component usage
+$primary: var(--primary);
+$primary-dark: var(--primary-dark);
+$secondary: var(--secondary);
+$secondary-dark: var(--secondary-dark);
+
+$success: var(--success);
+$danger: var(--danger);
+$warning: var(--warning);
+$info: var(--info);
+
+$dark: var(--dark);
+$dark-light: var(--dark-light);
+$light: var(--light);
+$white: var(--white);
+
+$font-main: var(--font-main);
+$font-heading: var(--font-heading);
+
+$sonic-primary: var(--sonic-primary);
+$sonic-primary-dim: var(--sonic-primary-dim);
+$sonic-secondary: var(--sonic-secondary);
+$sonic-secondary-dim: var(--sonic-secondary-dim);
+$sonic-tertiary: var(--sonic-tertiary);
+$sonic-surface: var(--sonic-surface);
+$sonic-surface-lowest: var(--sonic-surface-lowest);
+$sonic-surface-low: var(--sonic-surface-low);
+$sonic-surface-high: var(--sonic-surface-high);
+$sonic-surface-highest: var(--sonic-surface-highest);
+$sonic-on-surface: var(--sonic-on-surface);
+$sonic-on-surface-variant: var(--sonic-on-surface-variant);
+$sonic-outline-variant: var(--sonic-outline-variant);
+$sonic-font-heading: 'Manrope', sans-serif;
+$sonic-font-body: 'Inter', sans-serif;
+
+// Transitions
+@mixin transition($prop: all, $time: 0.3s, $ease: ease) {
+  transition: $prop $time $ease;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

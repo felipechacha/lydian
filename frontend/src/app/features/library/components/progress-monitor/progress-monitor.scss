@@ -1,0 +1,120 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.progress-monitor-custom {
+  @include sonic-card(clamp(2.4rem, 4vw, 4rem));
+  height: 100%;
+  min-height: 42rem;
+}
+
+.progress-heading-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+
+  p,
+  h2,
+  span {
+    margin: 0;
+  }
+
+  p {
+    color: $sonic-primary;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-top: 0.8rem;
+    font-family: $sonic-font-heading;
+    font-size: clamp(2.4rem, 3vw, 3.6rem);
+    letter-spacing: -0.05em;
+  }
+
+  > div > span {
+    display: block;
+    margin-top: 1rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.1rem;
+  }
+
+  > strong {
+    color: $sonic-secondary;
+    font-family: $sonic-font-heading;
+    font-size: 3rem;
+    white-space: nowrap;
+
+    > span {
+      font-size: 1.8rem;
+    }
+
+    small {
+      display: block;
+      color: $sonic-on-surface-variant;
+      font-family: $sonic-font-body;
+      font-size: 0.8rem;
+      letter-spacing: 0.12rem;
+      text-align: right;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.progress-chart-custom {
+  display: grid;
+  height: 20rem;
+  margin-top: 4rem;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: end;
+  gap: clamp(0.5rem, 1.2vw, 1.2rem);
+  border-bottom: 1px solid rgba(72, 72, 71, 0.55);
+
+  > span {
+    min-height: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background: linear-gradient(180deg, rgba(197, 154, 255, 0.86), rgba(149, 71, 247, 0.25));
+    transition:
+      filter 180ms ease,
+      transform 180ms ease;
+
+    &:hover,
+    &.is-current {
+      background: linear-gradient(180deg, $sonic-secondary, rgba(29, 251, 165, 0.25));
+      filter: drop-shadow(0 0 0.8rem rgba(29, 251, 165, 0.2));
+      transform: scaleX(1.07);
+    }
+  }
+}
+
+.progress-axis-custom {
+  display: flex;
+  margin-top: 1.2rem;
+  justify-content: space-between;
+  color: $sonic-on-surface-variant;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 575.98px) {
+  .progress-heading-custom {
+    display: block;
+
+    > strong {
+      display: inline-block;
+      margin-top: 2rem;
+
+      small {
+        text-align: left;
+      }
+    }
+  }
+}

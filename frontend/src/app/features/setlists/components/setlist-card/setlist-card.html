@@ -1,0 +1,49 @@
+<a
+  [routerLink]="['/setlist-details', setlist().id]"
+  class="setlist-card-link-custom"
+  [attr.aria-label]="'Abrir setlist ' + setlist().title"
+>
+  <article [class]="applyCardClass()">
+    <div class="setlist-collage-custom" aria-hidden="true">
+      @for (artworkUrl of setlist().artworkUrls.slice(0, 4); track $index) {
+        <span class="setlist-artwork-custom">
+          <img
+            [ngSrc]="artworkUrl"
+            fill
+            alt=""
+            referrerpolicy="no-referrer"
+            (error)="handleArtworkError($event)"
+          />
+        </span>
+      }
+      <span class="setlist-context-custom">{{ setlist().context }}</span>
+    </div>
+
+    <div class="setlist-card-body-custom">
+      <div class="setlist-card-heading-custom">
+        <div>
+          <p>{{ setlist().updatedAt }}</p>
+          <h2>{{ setlist().title }}</h2>
+        </div>
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span>
+      </div>
+
+      <p class="setlist-description-custom">{{ setlist().description }}</p>
+
+      <div class="setlist-card-meta-custom">
+        <span>
+          <span class="material-symbols-outlined" aria-hidden="true">music_note</span>
+          @if (setlist().songCount !== null) {
+            {{ setlist().songCount }} {{ setlist().songCount === 1 ? 'música' : 'músicas' }}
+          } @else {
+            Músicas no detalhe
+          }
+        </span>
+        <span>
+          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+          {{ setlist().duration }}
+        </span>
+      </div>
+    </div>
+  </article>
+</a>

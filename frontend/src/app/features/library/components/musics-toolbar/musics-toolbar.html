@@ -1,0 +1,19 @@
+<div class="musics-toolbar-custom">
+  <div class="musics-filters-custom" role="group" aria-label="Filtrar músicas">
+    @for (filter of filters; track filter.value) {
+      <button
+        type="button"
+        [class]="applyFilterClass(filter.value)"
+        [attr.aria-pressed]="activeFilter() === filter.value"
+        (click)="filterSelected.emit(filter.value)"
+      >
+        {{ filter.label }}
+      </button>
+    }
+  </div>
+
+  <app-view-mode-toggle
+    [viewMode]="viewMode()"
+    (viewModeSelected)="viewModeSelected.emit($event)"
+  ></app-view-mode-toggle>
+</div>

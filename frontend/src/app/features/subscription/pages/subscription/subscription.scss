@@ -1,0 +1,122 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#subscription-page {
+  @include dashboard-page-content;
+  overflow: hidden;
+}
+
+#subscription-intro-section {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: -16rem;
+    left: 18%;
+    width: 34rem;
+    height: 34rem;
+    border-radius: 50%;
+    background: rgba(149, 71, 247, 0.1);
+    content: '';
+    filter: blur(9rem);
+    pointer-events: none;
+  }
+
+  h1 {
+    max-width: 66rem;
+    margin: 1.5rem 0 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(3.2rem, 4.8vw, 5.6rem);
+    font-weight: 800;
+    letter-spacing: -0.065em;
+    line-height: 0.98;
+  }
+}
+
+.subscription-eyebrow-custom {
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+  gap: 0.7rem;
+  color: $sonic-primary;
+  font-size: 1.05rem;
+  font-weight: 850;
+  letter-spacing: 0.09rem;
+  text-transform: uppercase;
+
+  .material-symbols-outlined {
+    font-size: 1.65rem;
+  }
+}
+
+.subscription-intro-copy-custom {
+  margin: 0 0 0.5rem;
+  color: $sonic-on-surface-variant;
+  font-size: 1.45rem;
+  line-height: 1.65;
+}
+
+#current-subscription-section {
+  margin-top: clamp(3rem, 5vw, 4.8rem);
+}
+
+#subscription-plans-section {
+  margin-top: 3.2rem;
+}
+
+#subscription-trust-section {
+  margin-top: 3.2rem;
+}
+
+.trust-item-custom {
+  display: flex;
+  min-height: 8.6rem;
+  padding: 1.8rem 2rem;
+  align-items: center;
+  gap: 1.3rem;
+  border: 1px solid rgba(72, 72, 71, 0.18);
+  border-radius: 1.4rem;
+  background: rgba(19, 19, 19, 0.72);
+
+  > .material-symbols-outlined {
+    color: $sonic-secondary;
+    font-size: 2.3rem;
+  }
+
+  div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  strong {
+    color: $sonic-on-surface;
+    font-size: 1.35rem;
+  }
+
+  span:last-child {
+    color: $sonic-on-surface-variant;
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #subscription-intro-section h1 {
+    font-size: clamp(3rem, 10vw, 4.6rem);
+  }
+
+  #current-subscription-section {
+    margin-top: 2.8rem;
+  }
+
+  #subscription-plans-section {
+    margin-top: 2.4rem;
+  }
+}

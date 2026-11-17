@@ -1,0 +1,65 @@
+<app-dashboard-shell pageTitle="Adicionar Música">
+  <div id="add-music-page">
+    <section id="add-music-intro-section" aria-labelledby="add-music-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12 col-xl-8">
+            <h1 id="add-music-title">Adicionar Nova Música</h1>
+            <p>
+              Expanda seu repertório. Busque por clássicos ou composições modernas para iniciar sua
+              prática guiada.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="add-music-workspace-section" aria-label="Busca e detalhes da música">
+      <div class="container">
+        <div class="row g-4 g-xl-5 align-items-stretch">
+          <div class="col-12 col-md-12 col-xl-5 d-flex">
+            <app-music-search-results
+              class="w-100"
+              [musics]="searchResults"
+              [searchQuery]="searchQuery"
+              [isLoading]="isSearching"
+              [hasSearched]="hasSearched"
+              [searchErrorMessage]="searchErrorMessage"
+              [previewErrorMessage]="previewErrorMessage"
+              [selectedMusicId]="selectedMusicId"
+              [activePreviewMusicId]="activePreviewMusicId"
+              [previewProgressPercentage]="previewProgressPercentage"
+              [previewRemainingSeconds]="previewRemainingSeconds"
+              (searchQueryChanged)="updateSearchQuery($event)"
+              (musicSelected)="selectMusic($event)"
+              (previewToggled)="togglePreview($event)"
+            ></app-music-search-results>
+          </div>
+
+          <div class="col-12 col-md-12 col-xl-7 d-flex">
+            @if (selectedMusic; as music) {
+              <app-selected-music-detail
+                class="w-100"
+                [music]="music"
+                [isAdded]="isAdded"
+                [isAdding]="isAdding"
+                [addErrorMessage]="addMusicErrorMessage"
+                [availableTechniques]="availableTechniques"
+                [isLoadingTechniques]="isLoadingTechniques"
+                [techniqueErrorMessage]="techniqueErrorMessage"
+                (musicAdded)="addSelectedMusic($event)"
+                (techniquesRetryRequested)="reloadTechniques()"
+              ></app-selected-music-detail>
+            } @else {
+              <div class="add-music-detail-empty-custom" role="status">
+                <span class="material-symbols-outlined" aria-hidden="true">library_music</span>
+                <h2>Nenhuma música selecionada</h2>
+                <p>Altere sua busca para encontrar uma música ou artista no catálogo.</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</app-dashboard-shell>

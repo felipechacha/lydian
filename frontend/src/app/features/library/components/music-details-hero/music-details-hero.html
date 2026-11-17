@@ -1,0 +1,76 @@
+<div class="music-details-hero-custom">
+  <div class="music-artwork-custom">
+    <img
+      [src]="music.artworkUrl"
+      referrerpolicy="no-referrer"
+      alt="Capa de {{ music.title }}, por {{ music.composer }}"
+      (error)="handleArtworkError($event)"
+    />
+    <span class="artwork-index-custom">{{ artworkIndex }}</span>
+  </div>
+
+  <div class="music-hero-copy-custom">
+    <a class="music-details-back-custom" routerLink="/musics">
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      Voltar à biblioteca
+    </a>
+
+    <div class="music-badges-custom">
+      <span>{{ music.difficulty }}</span>
+      <span>{{ music.bpm }} BPM</span>
+      @if (music.targetBpm) {
+        <span>Meta {{ music.targetBpm }} BPM</span>
+      }
+      @if (durationLabel; as duration) {
+        <span>{{ duration }}</span>
+      }
+      @if (music.priority) {
+        <span>Prioridade {{ music.priority }}</span>
+      }
+      @if (lastPracticedLabel; as lastPractice) {
+        <span>Praticada em {{ lastPractice }}</span>
+      }
+      <span class="is-complete">
+        <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+        {{ statusLabel }}
+      </span>
+    </div>
+
+    <h1 id="music-details-title">{{ music.title }}</h1>
+    <p>{{ music.composer }}</p>
+
+    <div class="music-hero-actions-custom">
+      <button
+        type="button"
+        class="start-practice-custom"
+        [disabled]="isDeleting || isCreatingPractice"
+        (click)="practiceRequested.emit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+        Começar prática
+      </button>
+      <button
+        type="button"
+        [class.is-saved]="isSaved"
+        [disabled]="isDeleting"
+        [attr.aria-pressed]="isSaved"
+        (click)="saveToggled.emit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">
+          {{ isSaved ? 'bookmark_added' : 'bookmark_add' }}
+        </span>
+        {{ isSaved ? 'Salvo na biblioteca' : 'Salvar na biblioteca' }}
+      </button>
+      <button
+        type="button"
+        class="delete-music-custom"
+        [disabled]="isDeleting"
+        [attr.aria-label]="'Excluir ' + music.title + ' da biblioteca'"
+        (click)="deleteRequested.emit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+        Excluir música
+      </button>
+    </div>
+  </div>
+</div>

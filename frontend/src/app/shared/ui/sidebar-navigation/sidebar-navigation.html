@@ -1,0 +1,46 @@
+<aside
+  id="dashboard-sidebar"
+  class="sidebar-navigation-custom"
+  [class.sidebar-navigation-custom--open]="isOpen"
+  aria-label="Navegação principal"
+>
+  <div class="sidebar-brand-custom">
+    <a routerLink="/home" (click)="selectNavigation()" aria-label="Lydian - página inicial">
+      <span class="material-symbols-outlined brand-icon-custom" aria-hidden="true">
+        graphic_eq
+      </span>
+      <span class="brand-copy-custom">
+        <span class="brand-name-custom">Lydian</span>
+        <span class="brand-caption-custom">Conservatório Digital</span>
+      </span>
+    </a>
+  </div>
+
+  <nav class="sidebar-menu-custom">
+    @for (item of navigationItems; track item.label) {
+      <a
+        class="sidebar-link-custom"
+        [routerLink]="item.route"
+        routerLinkActive="sidebar-link-custom--active"
+        ariaCurrentWhenActive="page"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [attr.aria-label]="item.label"
+        (click)="selectNavigation()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <a
+    class="sidebar-practice-button-custom"
+    routerLink="/home"
+    fragment="daily-practice-section"
+    aria-label="Praticar agora"
+    (click)="selectNavigation()"
+  >
+    <span class="material-symbols-outlined is-filled" aria-hidden="true">play_arrow</span>
+    <span>Praticar Agora</span>
+  </a>
+</aside>

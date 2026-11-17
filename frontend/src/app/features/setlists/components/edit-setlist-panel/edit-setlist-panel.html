@@ -1,0 +1,58 @@
+<article class="edit-setlist-panel-custom" aria-labelledby="edit-setlist-title">
+  <header>
+    <div>
+      <p>Configuração do repertório</p>
+      <h2 id="edit-setlist-title">Editar setlist</h2>
+    </div>
+    <button
+      type="button"
+      aria-label="Fechar edição"
+      [disabled]="isSubmitting"
+      (click)="cancelled.emit()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <form [formGroup]="setlistForm" (ngSubmit)="submit()" novalidate>
+    <div class="edit-fields-custom">
+      <label>
+        <span>Nome</span>
+        <input type="text" formControlName="name" maxlength="100" [readonly]="isSubmitting" />
+        @if (setlistForm.controls.name.touched && setlistForm.controls.name.invalid) {
+          <small>Use entre 3 e 100 caracteres.</small>
+        }
+      </label>
+      <label>
+        <span>Visibilidade</span>
+        <select formControlName="visibility" [attr.aria-disabled]="isSubmitting">
+          @for (option of visibilityOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <label class="edit-description-custom">
+      <span>Descrição</span>
+      <textarea
+        rows="4"
+        formControlName="description"
+        maxlength="500"
+        [readonly]="isSubmitting"
+      ></textarea>
+      <small>{{ setlistForm.controls.description.value.length }}/500</small>
+    </label>
+
+    @if (errorMessage) {
+      <p class="edit-error-custom" role="alert">{{ errorMessage }}</p>
+    }
+
+    <footer>
+      <button type="button" [disabled]="isSubmitting" (click)="cancelled.emit()">Cancelar</button>
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Salvando...' : 'Salvar alterações' }}
+      </button>
+    </footer>
+  </form>
+</article>

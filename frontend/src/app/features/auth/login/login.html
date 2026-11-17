@@ -1,0 +1,100 @@
+<div class="login-card">
+  <div class="brand-logo">
+    <h1>LYDIAN</h1>
+    <p>Your journey to musical mastery starts here.</p>
+  </div>
+
+  @if (accountCreated) {
+    <div class="form-status form-status--success" role="status">
+      Conta criada com sucesso. Entre com seus dados para continuar.
+    </div>
+  }
+
+  @if (submissionError) {
+    <div class="form-status form-status--error" role="alert">
+      {{ submissionError }}
+    </div>
+  }
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="form-group form-group-custom">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="you@example.com"
+        class="form-control form-control-custom"
+        [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+      />
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <div class="error-message">
+          @if (loginForm.get('email')?.errors?.['required']) {
+            Email is required.
+          } @else if (loginForm.get('email')?.errors?.['email']) {
+            Please enter a valid email address.
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group form-group-custom">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="your password"
+        class="form-control form-control-custom"
+        [class.is-invalid]="
+          loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+        "
+      />
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <div class="error-message">
+          @if (loginForm.get('password')?.errors?.['required']) {
+            Password is required.
+          } @else if (loginForm.get('password')?.errors?.['minlength']) {
+            Password must be at least 6 characters long.
+          }
+        </div>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-custom btn-cta-primary btn-login-custom"
+      [disabled]="loginForm.invalid || isLoading"
+    >
+      @if (isLoading) {
+        Logging in...
+      } @else {
+        Sign In
+      }
+    </button>
+
+    <div class="social-divider">
+      <span>or continue with</span>
+    </div>
+
+    <button
+      type="button"
+      class="btn-social-google"
+      disabled
+      aria-disabled="true"
+      title="Login com Google estará disponível em breve"
+    >
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google Logo"
+      />
+      Google — em breve
+    </button>
+  </form>
+
+  <div class="footer-links">
+    <a routerLink="/reset-password">Forgot password?</a>
+    <span class="divider">|</span>
+    <a routerLink="/register">Create account</a>
+  </div>
+</div>

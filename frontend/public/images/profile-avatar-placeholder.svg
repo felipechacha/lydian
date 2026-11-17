@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="title description">
+  <title id="title">Avatar padrão</title>
+  <desc id="description">Silhueta abstrata de uma pessoa sobre fundo escuro</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#252238"/>
+      <stop offset="1" stop-color="#12101c"/>
+    </linearGradient>
+    <linearGradient id="silhouette" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b8ff57"/>
+      <stop offset="1" stop-color="#7abf2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="32" fill="url(#background)"/>
+  <circle cx="96" cy="70" r="31" fill="url(#silhouette)"/>
+  <path d="M38 166c4-35 26-55 58-55s54 20 58 55" fill="url(#silhouette)"/>
+  <circle cx="154" cy="38" r="18" fill="#b8ff57" opacity=".1"/>
+</svg>

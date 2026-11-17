@@ -1,0 +1,37 @@
+<div class="track-controls-custom">
+  <div class="track-order-actions-custom" aria-label="Alterar ordem da música">
+    <button
+      type="button"
+      [disabled]="isSaving || position === 0"
+      aria-label="Mover música para cima"
+      (click)="moved.emit(-1)"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+    </button>
+    <span>{{ position + 1 }} de {{ trackCount }}</span>
+    <button
+      type="button"
+      [disabled]="isSaving || position >= trackCount - 1"
+      aria-label="Mover música para baixo"
+      (click)="moved.emit(1)"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_downward</span>
+    </button>
+  </div>
+
+  <form (ngSubmit)="saveNotes()">
+    <label>
+      <span>Nota para o palco</span>
+      <input
+        type="text"
+        maxlength="1000"
+        [formControl]="notesControl"
+        [readonly]="isSaving"
+        placeholder="Ex.: contar 4, final seco..."
+      />
+    </label>
+    <button type="submit" [disabled]="isSaving || notesControl.invalid || !notesControl.dirty">
+      {{ isSaving ? 'Salvando' : 'Salvar nota' }}
+    </button>
+  </form>
+</div>

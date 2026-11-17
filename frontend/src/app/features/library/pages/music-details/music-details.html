@@ -1,0 +1,142 @@
+<app-dashboard-shell pageTitle="Detalhes da música">
+  <div id="music-details-page">
+    @if (isLoading) {
+      <section id="music-details-loading-section" aria-label="Carregando detalhes da música">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando detalhes da música" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (errorMessage) {
+      <section id="music-details-error-section" aria-label="Erro ao carregar detalhes da música">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="music-details-error-custom" role="alert">
+                <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                <p>{{ errorMessage }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (music; as selectedMusic) {
+      <section id="music-details-hero-section" aria-labelledby="music-details-title">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-12 col-md-12">
+              <app-music-details-hero
+                [music]="selectedMusic"
+                [isSaved]="isSaved"
+                [isDeleting]="isDeletingMusic"
+                [isCreatingPractice]="isCreatingPractice"
+                (saveToggled)="toggleSaved()"
+                (deleteRequested)="requestMusicDeletion()"
+                (practiceRequested)="openPracticeSetup()"
+              ></app-music-details-hero>
+            </div>
+            <div class="col-12 col-md-12 mini-metronome-column-custom">
+              <app-mini-metronome
+                [tempo]="tempo"
+                [isRunning]="isMetronomeRunning"
+                (tempoChanged)="changeTempo($event)"
+                (playToggled)="toggleMetronome()"
+              ></app-mini-metronome>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="music-details-insights-section" aria-label="Progresso e técnicas da música">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-xl-8 d-flex">
+              <app-progress-monitor class="w-100" [bars]="progressBars"></app-progress-monitor>
+            </div>
+            <div class="col-12 col-xl-4 d-flex">
+              <app-music-techniques
+                class="w-100"
+                [techniques]="selectedMusic.techniques ?? []"
+                [technicalFocus]="selectedMusic.technicalFocus ?? ''"
+              ></app-music-techniques>
+            </div>
+            <div class="col-12 col-md-5 col-xl-4 d-flex">
+              <app-music-rating
+                class="w-100"
+                [rating]="rating"
+                [notes]="practiceNotes"
+                (ratingChanged)="updateRating($event)"
+                (notesChanged)="updatePracticeNotes($event)"
+              ></app-music-rating>
+            </div>
+            <div class="col-12 col-md-7 col-xl-8 d-flex">
+              <app-practice-diary
+                class="w-100"
+                [entries]="diaryEntries"
+                (entrySelected)="openDiaryEntry($event)"
+              ></app-practice-diary>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (song; as selectedSong) {
+        <section id="music-details-editor-section" aria-label="Editar dados de estudo da música">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <app-music-details-editor
+                  [song]="selectedSong"
+                  [techniques]="techniqueCatalog"
+                  [isLoadingTechniques]="isLoadingTechniques"
+                  [techniquesErrorMessage]="techniquesErrorMessage"
+                  [isSaving]="isSavingMusic"
+                  (retryTechniquesRequested)="loadTechniques()"
+                  (saved)="saveMusicDetails($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+    }
+  </div>
+</app-dashboard-shell>
+
+@if (isDeleteMusicConfirmationOpen) {
+  @if (music; as selectedMusic) {
+    <app-confirmation-modal
+      title="Excluir esta música?"
+      [subject]="selectedMusic.title"
+      description="será removida da sua biblioteca. Esta ação também pode afetar repertórios e sessões que usam a música."
+      cancelLabel="Manter música"
+      confirmLabel="Excluir música"
+      loadingLabel="Excluindo música"
+      [isProcessing]="isDeletingMusic"
+      [errorMessage]="deleteMusicErrorMessage"
+      (cancelled)="cancelMusicDeletion()"
+      (confirmed)="deleteMusic()"
+    />
+  }
+}
+
+@if (isPracticeSetupOpen) {
+  @if (music; as selectedMusic) {
+    <app-practice-session-setup-modal
+      [musicTitle]="selectedMusic.title"
+      [musicArtist]="selectedMusic.composer"
+      [suggestedFocus]="selectedMusic.techniques?.join(', ') ?? ''"
+      [isSubmitting]="isCreatingPractice"
+      [errorMessage]="practiceCreationErrorMessage"
+      (cancelled)="closePracticeSetup()"
+      (submitted)="createPracticeSession($event)"
+    />
+  }
+}
+
+@if (selectedDiaryEntry; as diaryEntry) {
+  <app-practice-diary-detail-modal [entry]="diaryEntry" (closed)="closeDiaryEntry()" />
+}

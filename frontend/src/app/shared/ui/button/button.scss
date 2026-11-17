@@ -1,0 +1,185 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+:host.lydian-button-host-custom--full-width {
+  display: block;
+  width: 100%;
+}
+
+.lydian-button-custom {
+  position: relative;
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: $sonic-font-body;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  @include transition(all, 180ms, ease-out);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-0.2rem);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+  }
+}
+
+.lydian-button-custom--primary {
+  background: $sonic-primary;
+  color: $sonic-surface-lowest;
+  box-shadow: 0 1rem 2.8rem rgba(197, 154, 255, 0.16);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, $sonic-primary 88%, white);
+    box-shadow: 0 1.4rem 3.4rem rgba(197, 154, 255, 0.24);
+  }
+}
+
+.lydian-button-custom--secondary {
+  background: $sonic-secondary;
+  color: $sonic-surface-lowest;
+  box-shadow: 0 1rem 2.8rem rgba(29, 251, 165, 0.12);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, $sonic-secondary 88%, white);
+    box-shadow: 0 1.4rem 3.4rem rgba(29, 251, 165, 0.2);
+  }
+}
+
+.lydian-button-custom--ghost {
+  border-color: rgba(247, 245, 242, 0.22);
+  background: rgba(247, 245, 242, 0.04);
+  color: $sonic-on-surface;
+
+  &:hover:not(:disabled) {
+    border-color: rgba(197, 154, 255, 0.48);
+    background: rgba(197, 154, 255, 0.1);
+  }
+}
+
+.lydian-button-custom--danger {
+  background: $sonic-tertiary;
+  color: $sonic-surface-lowest;
+  box-shadow: 0 1rem 2.8rem rgba(255, 139, 160, 0.12);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, $sonic-tertiary 88%, white);
+    box-shadow: 0 1.4rem 3.4rem rgba(255, 139, 160, 0.2);
+  }
+}
+
+.lydian-button-custom--small {
+  min-height: 3.8rem;
+  padding: 0.9rem 1.6rem;
+  font-size: 1.25rem;
+}
+
+.lydian-button-custom--medium {
+  min-height: 4.6rem;
+  padding: 1.2rem 2.2rem;
+  font-size: 1.4rem;
+}
+
+.lydian-button-custom--large {
+  min-height: 5.4rem;
+  padding: 1.5rem 2.8rem;
+  font-size: 1.55rem;
+}
+
+.lydian-button-custom--full-width {
+  width: 100%;
+}
+
+.lydian-button-content-custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.lydian-button-content-custom--hidden {
+  visibility: hidden;
+}
+
+.lydian-button-loading-custom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lydian-button-wave-custom {
+  display: flex;
+  height: 2.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+
+  > span {
+    width: 0.24rem;
+    height: 72%;
+    border-radius: 999px;
+    background: currentColor;
+    transform-origin: center;
+    animation: lydian-button-wave-pulse-custom 0.78s ease-in-out infinite alternate;
+
+    &:nth-child(2) { height: 44%; animation-delay: -0.62s; }
+    &:nth-child(3) { height: 92%; animation-delay: -0.46s; }
+    &:nth-child(4) { height: 56%; animation-delay: -0.3s; }
+    &:nth-child(5) { height: 84%; animation-delay: -0.14s; }
+    &:nth-child(6) { height: 48%; animation-delay: -0.54s; }
+    &:nth-child(7) { height: 68%; animation-delay: -0.38s; }
+  }
+}
+
+@keyframes lydian-button-wave-pulse-custom {
+  from {
+    opacity: 0.58;
+    transform: scaleY(0.36);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lydian-button-custom {
+    transition: none;
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+
+  .lydian-button-wave-custom > span {
+    animation: none;
+    opacity: 0.86;
+    transform: none;
+  }
+}

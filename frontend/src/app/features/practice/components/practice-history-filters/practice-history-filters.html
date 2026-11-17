@@ -1,0 +1,53 @@
+<form class="history-filters-custom" [formGroup]="filtersForm" (ngSubmit)="applyFilters()">
+  <label class="history-search-custom">
+    <span>Buscar sessão</span>
+    <span class="history-input-shell-custom">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      <input type="search" formControlName="search" placeholder="Título ou anotação" />
+    </span>
+  </label>
+
+  <label>
+    <span>Música</span>
+    <select formControlName="songId">
+      <option value="">Todas as músicas</option>
+      @for (music of musics; track music.id) {
+        <option [value]="music.id">{{ music.title }} — {{ music.artist }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    <span>De</span>
+    <input type="date" formControlName="from" />
+  </label>
+
+  <label>
+    <span>Até</span>
+    <input type="date" formControlName="to" />
+  </label>
+
+  <label>
+    <span>Ordenar por</span>
+    <select formControlName="sortBy">
+      <option value="started_at">Data da prática</option>
+      <option value="duration_seconds">Duração</option>
+      <option value="title">Título</option>
+    </select>
+  </label>
+
+  <label>
+    <span>Ordem</span>
+    <select formControlName="sortOrder">
+      <option value="desc">Mais recentes primeiro</option>
+      <option value="asc">Mais antigas primeiro</option>
+    </select>
+  </label>
+
+  <div class="history-filter-actions-custom">
+    <button type="button" [disabled]="isLoading" (click)="clearFilters()">Limpar</button>
+    <button type="submit" [disabled]="isLoading">
+      {{ isLoading ? 'Filtrando...' : 'Aplicar filtros' }}
+    </button>
+  </div>
+</form>

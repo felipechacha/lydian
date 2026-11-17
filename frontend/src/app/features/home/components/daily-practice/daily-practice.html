@@ -1,0 +1,39 @@
+<div class="daily-practice-custom">
+  <div class="daily-practice-copy-custom">
+    <p class="daily-practice-eyebrow-custom">Seu ritual de hoje</p>
+    <h1 id="daily-practice-title">
+      Pronto para sua<br />prática diária, <em>{{ practice.userName }}?</em>
+    </h1>
+    <p class="daily-practice-description-custom">
+      Faltam apenas {{ practice.remainingMinutes }} minutos para bater sua meta diária. O refinamento
+      técnico consistente é o caminho para o virtuosismo.
+    </p>
+
+    <div class="daily-practice-actions-custom">
+      <button type="button" class="daily-primary-action-custom">Continuar Sessão</button>
+      <button type="button" class="daily-secondary-action-custom">Ver Roadmap</button>
+    </div>
+  </div>
+
+  <div
+    class="daily-progress-custom"
+    role="img"
+    [attr.aria-label]="progressPercentage + '% da meta diária concluída'"
+  >
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+      <circle class="progress-track-custom" cx="125" cy="125" r="105"></circle>
+      <circle
+        class="progress-value-custom"
+        cx="125"
+        cy="125"
+        r="105"
+        [attr.stroke-dasharray]="659.73"
+        [attr.stroke-dashoffset]="progressOffset"
+      ></circle>
+    </svg>
+    <div class="progress-label-custom">
+      <strong>{{ practice.completedMinutes }}<span>/{{ practice.targetMinutes }}</span></strong>
+      <small>Minutos</small>
+    </div>
+  </div>
+</div>

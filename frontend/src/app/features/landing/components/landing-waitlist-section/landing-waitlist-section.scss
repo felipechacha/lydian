@@ -1,0 +1,238 @@
+:host {
+  display: contents;
+}
+
+#waitlist-section {
+  position: relative;
+  padding: 5rem 0 15rem;
+  background: #050505;
+
+  > .container {
+    max-width: 124rem;
+  }
+}
+
+.waitlist-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(36rem, 1.05fr);
+  align-items: center;
+  gap: 8rem;
+  overflow: hidden;
+  padding: 7rem;
+  border: 1px solid rgba(157, 80, 255, 0.24);
+  border-radius: 3.2rem;
+  background:
+    radial-gradient(circle at 2% 100%, rgba(29, 251, 165, 0.1), transparent 28%),
+    radial-gradient(circle at 98% 5%, rgba(157, 80, 255, 0.2), transparent 34%),
+    #111;
+  box-shadow: 0 4rem 12rem rgba(0, 0, 0, 0.36);
+
+  &__signal {
+    position: absolute;
+    right: 4rem;
+    bottom: -2.2rem;
+    display: flex;
+    height: 9rem;
+    align-items: flex-end;
+    gap: 0.7rem;
+    opacity: 0.12;
+    pointer-events: none;
+
+    span {
+      width: 0.7rem;
+      border-radius: 999px 999px 0 0;
+      background: var(--landing-primary);
+
+      @for $index from 1 through 9 {
+        &:nth-child(#{$index}) {
+          height: #{2.5 + (($index * 17) % 6)}rem;
+        }
+      }
+    }
+  }
+
+  &__copy {
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      margin: 2.4rem 0 2rem;
+      color: #fff;
+      font-size: clamp(4rem, 4.7vw, 6.4rem);
+      letter-spacing: -0.35rem;
+      line-height: 1.02;
+    }
+
+    p {
+      max-width: 52rem;
+      margin: 0;
+      color: rgba(173, 170, 170, 0.72);
+      font-size: 1.55rem;
+      line-height: 1.72;
+    }
+  }
+}
+
+.waitlist-form {
+  position: relative;
+  z-index: 1;
+
+  &__field {
+    display: grid;
+
+    > label {
+      margin-bottom: 1.2rem;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06rem;
+    }
+
+    > small {
+      margin-top: 1.2rem;
+      color: rgba(173, 170, 170, 0.46);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__control {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.5rem;
+    background: rgba(5, 5, 5, 0.72);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+
+    &:focus-within {
+      border-color: rgba(157, 80, 255, 0.75);
+      box-shadow: 0 0 0 0.4rem rgba(157, 80, 255, 0.1);
+    }
+
+    &--invalid {
+      border-color: #ff6079;
+    }
+
+    input {
+      min-width: 0;
+      padding: 0 1.6rem;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-size: 1.4rem;
+
+      &::placeholder {
+        color: rgba(173, 170, 170, 0.38);
+      }
+    }
+
+    button {
+      display: inline-flex;
+      min-height: 5.2rem;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4rem;
+      padding: 0 2.2rem;
+      border: 0;
+      border-radius: 1rem;
+      background: var(--landing-primary);
+      box-shadow: 0 1.4rem 3rem rgba(126, 41, 223, 0.22);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 1.2rem;
+      font-weight: 700;
+
+      span:last-child {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__feedback {
+    min-height: 2.4rem;
+    padding-top: 0.7rem;
+    color: #ff8ba0;
+    font-size: 1.05rem;
+  }
+}
+
+.waitlist-success {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 2.4rem;
+  border: 1px solid rgba(29, 251, 165, 0.2);
+  border-radius: 1.6rem;
+  background: rgba(29, 251, 165, 0.07);
+
+  > span {
+    display: grid;
+    width: 4.6rem;
+    height: 4.6rem;
+    flex: 0 0 4.6rem;
+    border-radius: 50%;
+    background: #1dfba5;
+    color: #07150f;
+    font-size: 1.8rem;
+    font-weight: 900;
+    place-items: center;
+  }
+
+  strong {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .waitlist-card {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #waitlist-section {
+    padding: 2rem 0 10rem;
+  }
+
+  .waitlist-card {
+    gap: 4rem;
+    padding: 4rem 2.4rem;
+    border-radius: 2.4rem;
+
+    &__copy h2 {
+      font-size: clamp(3.8rem, 10.5vw, 5.6rem);
+      letter-spacing: -0.25rem;
+    }
+  }
+
+  .waitlist-form__control {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+
+    input {
+      min-height: 5.2rem;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.achievement-card-custom {
+  @include sonic-card(2.8rem);
+  height: 100%;
+  min-height: 23rem;
+  background: $sonic-surface-low;
+  transition: background-color 180ms ease, transform 180ms ease;
+
+  &:hover {
+    background: $sonic-surface-high;
+    transform: translateY(-0.3rem);
+  }
+
+  h3 {
+    margin: 2.2rem 0 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 1rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.15rem;
+    line-height: 1.65;
+  }
+}
+
+.achievement-icon-custom {
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  font-size: 2.6rem;
+}
+
+.achievement-card-custom--secondary .achievement-icon-custom {
+  background: rgba(29, 251, 165, 0.09);
+  color: $sonic-secondary;
+}
+
+.achievement-card-custom--primary .achievement-icon-custom {
+  background: rgba(149, 71, 247, 0.12);
+  color: $sonic-primary;
+}
+
+.achievement-card-custom--tertiary .achievement-icon-custom {
+  background: rgba(255, 139, 160, 0.1);
+  color: $sonic-tertiary;
+}
+
+.achievement-card-custom--neutral .achievement-icon-custom {
+  background: $sonic-surface-highest;
+  color: $sonic-on-surface;
+}

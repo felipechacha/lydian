@@ -1,0 +1,190 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.session-metronome-custom {
+  @include sonic-card(clamp(2.4rem, 5vw, 5.2rem));
+  min-height: 48rem;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(197, 154, 255, 0.09), transparent 24rem),
+    $sonic-surface-low;
+}
+
+.metronome-heading-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .material-symbols-outlined {
+    color: $sonic-primary;
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    font-family: $sonic-font-heading;
+    font-size: 1.7rem;
+  }
+
+  p {
+    max-width: 30rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+}
+
+.metronome-display-custom {
+  display: flex;
+  margin: 5.4rem auto 3.6rem;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 6.4rem);
+
+  > div {
+    display: grid;
+    min-width: 18rem;
+    justify-items: center;
+  }
+
+  strong {
+    font-family: $sonic-font-heading;
+    font-size: clamp(8rem, 11vw, 14rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    line-height: 0.82;
+  }
+
+  > div span {
+    margin-top: 2rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.26rem;
+  }
+
+  button {
+    @include flex-center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 1px solid $sonic-outline-variant;
+    border-radius: 50%;
+    background: transparent;
+    color: $sonic-on-surface;
+    transition:
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+
+    &:hover {
+      border-color: $sonic-primary;
+      color: $sonic-primary;
+      transform: scale(1.06);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.metronome-control-custom {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+
+  input {
+    width: 100%;
+    accent-color: $sonic-primary;
+  }
+}
+
+.metronome-play-custom {
+  @include flex-center;
+  flex: 0 0 6.4rem;
+  width: 6.4rem;
+  height: 6.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: $sonic-secondary;
+  box-shadow: 0 1.2rem 3.4rem rgba(29, 251, 165, 0.15);
+  color: $sonic-surface-lowest;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+
+  &:hover {
+    transform: scale(1.06);
+  }
+
+  &.is-running {
+    background: $sonic-primary;
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+}
+
+.metronome-tags-custom {
+  display: flex;
+  margin-top: 3.6rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  span {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(72, 72, 71, 0.45);
+    border-radius: 999px;
+    color: $sonic-on-surface-variant;
+    font-size: 1rem;
+  }
+
+  strong {
+    margin-right: 0.6rem;
+    color: $sonic-on-surface;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .session-metronome-custom {
+    min-height: auto;
+  }
+
+  .metronome-heading-custom {
+    display: block;
+
+    p {
+      margin-top: 1rem;
+      text-align: left;
+    }
+  }
+
+  .metronome-display-custom {
+    margin-top: 4rem;
+    gap: 1.4rem;
+
+    > div {
+      min-width: 13rem;
+    }
+
+    button {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+  }
+}

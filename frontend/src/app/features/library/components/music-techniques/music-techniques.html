@@ -1,0 +1,16 @@
+<article class="music-techniques-custom">
+  <span class="material-symbols-outlined techniques-icon-custom" aria-hidden="true">handyman</span>
+  <p class="techniques-eyebrow-custom">Vocabulário técnico</p>
+  <h2>Técnicas da música</h2>
+
+  <div class="technique-tags-custom">
+    @for (technique of techniques; track technique) {
+      <span>{{ technique }}</span>
+    }
+  </div>
+
+  <div class="technique-note-custom">
+    <span class="material-symbols-outlined" aria-hidden="true">target</span>
+    <p><strong>Foco principal nesta música:</strong> {{ technicalFocus }}</p>
+  </div>
+</article>

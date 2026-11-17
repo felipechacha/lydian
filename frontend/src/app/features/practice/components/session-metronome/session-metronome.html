@@ -1,0 +1,50 @@
+<article class="session-metronome-custom">
+  <div class="metronome-heading-custom">
+    <div>
+      <span class="material-symbols-outlined" aria-hidden="true">speed</span>
+      <h2>Metrônomo</h2>
+    </div>
+    <p>Encontre o pulso antes de buscar velocidade.</p>
+  </div>
+
+  <div class="metronome-display-custom">
+    <button type="button" aria-label="Diminuir andamento" (click)="changeTempoBy(-1)">
+      <span class="material-symbols-outlined" aria-hidden="true">remove</span>
+    </button>
+    <div>
+      <strong>{{ tempo }}</strong>
+      <span>BPM</span>
+    </div>
+    <button type="button" aria-label="Aumentar andamento" (click)="changeTempoBy(1)">
+      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+    </button>
+  </div>
+
+  <div class="metronome-control-custom">
+    <input
+      type="range"
+      min="40"
+      max="220"
+      [value]="tempo"
+      aria-label="Andamento em batidas por minuto"
+      (input)="updateTempo($event)"
+    />
+    <button
+      type="button"
+      class="metronome-play-custom"
+      [attr.aria-label]="isRunning ? 'Pausar metrônomo' : 'Iniciar metrônomo'"
+      [attr.aria-pressed]="isRunning"
+      [class.is-running]="isRunning"
+      (click)="playToggled.emit()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        {{ isRunning ? 'pause' : 'play_arrow' }}
+      </span>
+    </button>
+  </div>
+
+  <div class="metronome-tags-custom" role="group" aria-label="Informações musicais">
+    <span><strong>Allegro con brio</strong> Expressivo</span>
+    <span><strong>4/4</strong> Compasso</span>
+  </div>
+</article>

@@ -1,0 +1,36 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.view-mode-toggle-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.view-mode-button-custom {
+  display: grid;
+  width: 4.2rem;
+  height: 4.2rem;
+  place-items: center;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  color: $sonic-on-surface-variant;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+
+  &:hover,
+  &--active {
+    background: $sonic-surface-highest;
+    color: $sonic-on-surface;
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+}

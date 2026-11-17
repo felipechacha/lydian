@@ -1,0 +1,58 @@
+<div class="setlist-music-picker-custom">
+  <div class="music-picker-heading-custom">
+    <div>
+      <p>Biblioteca</p>
+      <h2 id="music-picker-title">Adicionar ao set</h2>
+      <span>Escolha uma música disponível. Ela será inserida no final da ordem atual.</span>
+    </div>
+    <button
+      type="button"
+      aria-label="Fechar seleção de músicas"
+      [disabled]="isSubmitting"
+      (click)="cancelled.emit()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </div>
+
+  @if (errorMessage) {
+    <div class="music-picker-error-custom" role="alert">{{ errorMessage }}</div>
+  }
+
+  @if (musics.length > 0) {
+    <div class="music-picker-list-custom">
+      @for (music of musics; track music.id) {
+        <article class="music-picker-item-custom">
+          <img
+            [ngSrc]="music.artworkUrl"
+            width="120"
+            height="120"
+            loading="lazy"
+            alt="Capa de {{ music.title }}"
+          />
+          <div>
+            <h3>{{ music.title }}</h3>
+            <p>{{ music.composer }}</p>
+          </div>
+          <span>{{ music.bpm }} BPM</span>
+          <button
+            type="button"
+            [disabled]="isSubmitting"
+            (click)="musicSelected.emit(music.id)"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">add</span>
+            {{ isSubmitting ? 'Adicionando' : 'Adicionar' }}
+          </button>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="music-picker-empty-custom" role="status">
+      <span class="material-symbols-outlined" aria-hidden="true">task_alt</span>
+      <div>
+        <strong>Toda a biblioteca já está neste set.</strong>
+        <span>Você pode fechar esta área e revisar a ordem das músicas.</span>
+      </div>
+    </div>
+  }
+</div>

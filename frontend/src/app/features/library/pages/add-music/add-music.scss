@@ -1,0 +1,89 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#add-music-page {
+  @include dashboard-page-content;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+#add-music-intro-section {
+  h1 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(3.4rem, 4vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.18rem;
+    line-height: 1.08;
+  }
+
+  p {
+    max-width: 76rem;
+    margin: 1.2rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 1.6rem;
+    line-height: 1.55;
+  }
+}
+
+#add-music-workspace-section {
+  margin-top: 5.5rem;
+
+  .row > [class*='col-'] {
+    min-width: 0;
+  }
+}
+
+.add-music-detail-empty-custom {
+  @include sonic-card(6rem 3rem);
+  display: grid;
+  width: 100%;
+  min-height: 42rem;
+  place-content: center;
+  justify-items: center;
+  color: $sonic-on-surface-variant;
+  text-align: center;
+
+  .material-symbols-outlined {
+    margin-bottom: 1.8rem;
+    color: $sonic-primary;
+    font-size: 4.6rem;
+  }
+
+  h2 {
+    margin: 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: 2.2rem;
+  }
+
+  p {
+    max-width: 38rem;
+    margin: 1rem 0 0;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #add-music-intro-section {
+    h1 {
+      font-size: clamp(3.2rem, 10vw, 4rem);
+      letter-spacing: -0.12rem;
+    }
+
+    p {
+      font-size: 1.45rem;
+    }
+  }
+
+  #add-music-workspace-section {
+    margin-top: 3.6rem;
+  }
+}

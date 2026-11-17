@@ -1,0 +1,30 @@
+<article class="overview-card-custom next-practice-card-custom">
+  <header class="overview-card-header-custom">
+    <h2>A Seguir</h2>
+    <span class="material-symbols-outlined" aria-hidden="true">queue_music</span>
+  </header>
+
+  <div class="next-piece-custom">
+    <div class="sheet-cover-custom" aria-hidden="true">
+      <span class="sheet-clef-custom">𝄞</span>
+      <span class="sheet-lines-custom"></span>
+    </div>
+    <div>
+      <h3>{{ practice.title }}</h3>
+      <p>{{ practice.composer }}</p>
+    </div>
+  </div>
+
+  <div class="technical-focus-custom">
+    <span class="focus-label-custom">Foco Técnico</span>
+    <div class="focus-tags-custom">
+      @for (focus of practice.technicalFocus; track focus) {
+        <span>{{ focus }}</span>
+      }
+    </div>
+  </div>
+
+  <button type="button" class="overview-card-action-custom" routerLink="/musics">
+    Abrir Biblioteca
+  </button>
+</article>

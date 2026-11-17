@@ -1,0 +1,196 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.setlist-card-link-custom {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+    border-radius: 1.6rem;
+  }
+}
+
+.setlist-card-custom {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(72, 72, 71, 0.22);
+  border-radius: 1.6rem;
+  background: $sonic-surface-low;
+  transition:
+    border-color 220ms ease,
+    background 220ms ease;
+
+  &:hover {
+    border-color: rgba(197, 154, 255, 0.4);
+    background: $sonic-surface-high;
+
+    img {
+      transform: scale(1.04);
+    }
+  }
+}
+
+.setlist-collage-custom {
+  position: relative;
+  display: grid;
+  height: 24rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.2rem;
+  overflow: hidden;
+  background: $sonic-surface-highest;
+
+  .setlist-artwork-custom {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.86);
+    transition: transform 420ms ease;
+  }
+
+  .setlist-context-custom {
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(247, 245, 242, 0.12);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.8);
+    color: $sonic-secondary;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.09rem;
+    text-transform: uppercase;
+  }
+}
+
+.setlist-card-body-custom {
+  padding: 2.4rem;
+}
+
+.setlist-card-heading-custom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.2rem;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: $sonic-primary;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-top: 0.7rem;
+    font-family: $sonic-font-heading;
+    font-size: 2.2rem;
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+  }
+
+  > .material-symbols-outlined {
+    color: $sonic-on-surface-variant;
+  }
+}
+
+.setlist-description-custom {
+  min-height: 4.6rem;
+  margin: 1.6rem 0 0;
+  color: $sonic-on-surface-variant;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.setlist-card-meta-custom {
+  display: flex;
+  margin-top: 2.2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: $sonic-on-surface-variant;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .material-symbols-outlined {
+    color: $sonic-secondary;
+    font-size: 1.7rem;
+  }
+}
+
+.setlist-card-custom--list {
+  display: grid;
+  grid-template-columns: minmax(24rem, 32rem) minmax(0, 1fr);
+
+  .setlist-collage-custom {
+    height: auto;
+    min-height: 23rem;
+  }
+
+  .setlist-card-body-custom {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .setlist-description-custom {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .setlist-card-custom--list {
+    grid-template-columns: 11rem minmax(0, 1fr);
+
+    .setlist-collage-custom {
+      min-height: 18rem;
+    }
+
+    .setlist-card-body-custom {
+      padding: 1.6rem;
+    }
+
+    .setlist-card-heading-custom {
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      > .material-symbols-outlined {
+        display: none;
+      }
+    }
+
+    .setlist-description-custom {
+      display: none;
+    }
+
+    .setlist-card-meta-custom {
+      margin-top: 1.4rem;
+      gap: 0.8rem;
+    }
+  }
+}

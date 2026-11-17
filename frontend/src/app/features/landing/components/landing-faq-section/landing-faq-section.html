@@ -1,0 +1,116 @@
+  <section id="faq-section" aria-labelledby="faq-title">
+    <div class="section-shell faq-layout">
+      <div class="faq-heading gsap-reveal">
+        <span class="section-kicker">Perguntas frequentes</span>
+        <h2 id="faq-title" class="section-heading">Antes de começar sua próxima sessão.</h2>
+        <p class="section-copy">O essencial sobre o Lydian, sem entrelinhas.</p>
+      </div>
+
+      <div class="faq-list gsap-reveal">
+        <article class="faq-item" [class.faq-item--open]="isFaqOpen(0)">
+          <h3>
+            <button
+              type="button"
+              (click)="toggleFaq(0)"
+              [attr.aria-expanded]="isFaqOpen(0)"
+              aria-controls="faq-answer-0"
+            >
+              <span>O que é o Lydian?</span><i aria-hidden="true"></i>
+            </button>
+          </h3>
+          @if (isFaqOpen(0)) {
+            <div id="faq-answer-0" class="faq-answer">
+              <p>
+                É um ambiente para organizar músicas, praticar com timer e metrônomo, registrar o
+                histórico de cada sessão e preparar setlists em uma experiência única.
+              </p>
+            </div>
+          }
+        </article>
+
+        <article class="faq-item" [class.faq-item--open]="isFaqOpen(1)">
+          <h3>
+            <button
+              type="button"
+              (click)="toggleFaq(1)"
+              [attr.aria-expanded]="isFaqOpen(1)"
+              aria-controls="faq-answer-1"
+            >
+              <span>O app serve para qualquer instrumento?</span><i aria-hidden="true"></i>
+            </button>
+          </h3>
+          @if (isFaqOpen(1)) {
+            <div id="faq-answer-1" class="faq-answer">
+              <p>
+                Sim. Você pode organizar repertório, usar o timer e o metrônomo e registrar o
+                contexto das sessões de diferentes instrumentos, voz e estudos teóricos.
+              </p>
+            </div>
+          }
+        </article>
+
+        <article class="faq-item" [class.faq-item--open]="isFaqOpen(2)">
+          <h3>
+            <button
+              type="button"
+              (click)="toggleFaq(2)"
+              [attr.aria-expanded]="isFaqOpen(2)"
+              aria-controls="faq-answer-2"
+            >
+              <span>Preciso seguir um método específico?</span><i aria-hidden="true"></i>
+            </button>
+          </h3>
+          @if (isFaqOpen(2)) {
+            <div id="faq-answer-2" class="faq-answer">
+              <p>
+                Não. O Lydian estrutura a rotina sem substituir seu professor, sua metodologia ou
+                sua identidade. Você decide o conteúdo; o app torna o processo claro.
+              </p>
+            </div>
+          }
+        </article>
+
+        <article class="faq-item" [class.faq-item--open]="isFaqOpen(3)">
+          <h3>
+            <button
+              type="button"
+              (click)="toggleFaq(3)"
+              [attr.aria-expanded]="isFaqOpen(3)"
+              aria-controls="faq-answer-3"
+            >
+              <span>Como o Stage Mode ajuda no palco?</span><i aria-hidden="true"></i>
+            </button>
+          </h3>
+          @if (isFaqOpen(3)) {
+            <div id="faq-answer-3" class="faq-answer">
+              <p>
+                Ele transforma a ordem do seu setlist em uma folha digital objetiva, com as músicas
+                numeradas para uma consulta rápida durante shows, ensaios e gigs.
+              </p>
+            </div>
+          }
+        </article>
+
+        <article class="faq-item" [class.faq-item--open]="isFaqOpen(4)">
+          <h3>
+            <button
+              type="button"
+              (click)="toggleFaq(4)"
+              [attr.aria-expanded]="isFaqOpen(4)"
+              aria-controls="faq-answer-4"
+            >
+              <span>Meus dados de prática ficam seguros?</span><i aria-hidden="true"></i>
+            </button>
+          </h3>
+          @if (isFaqOpen(4)) {
+            <div id="faq-answer-4" class="faq-answer">
+              <p>
+                O acesso usa sessão protegida por cookies HttpOnly e comunicação HTTPS. As
+                informações da conta não ficam expostas ao JavaScript do navegador.
+              </p>
+            </div>
+          }
+        </article>
+      </div>
+    </div>
+  </section>

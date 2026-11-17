@@ -1,0 +1,131 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.setlist-hero-custom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(28rem, 0.65fr);
+  align-items: end;
+  gap: clamp(3rem, 6vw, 8rem);
+}
+
+.setlist-hero-copy-custom {
+  > p {
+    margin: 0;
+    color: $sonic-secondary;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 80rem;
+    margin: 1.4rem 0 0;
+    font-family: $sonic-font-heading;
+    font-size: clamp(4.8rem, 7vw, 9.2rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 0.95;
+
+    em {
+      color: $sonic-primary;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+    }
+  }
+
+  > span {
+    display: block;
+    max-width: 67rem;
+    margin-top: 2.2rem;
+    color: $sonic-on-surface-variant;
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+}
+
+.setlist-hero-aside-custom {
+  display: grid;
+  gap: 2rem;
+
+  > button {
+    display: flex;
+    min-height: 5.4rem;
+    padding: 0 2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border: 0;
+    border-radius: 1rem;
+    background: $sonic-secondary;
+    color: $sonic-surface-lowest;
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    transition:
+      transform 180ms ease,
+      filter 180ms ease;
+
+    &:hover {
+      filter: brightness(1.05);
+      transform: translateY(-0.2rem);
+    }
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.setlist-metrics-custom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  > div {
+    padding: 1.8rem;
+    border: 1px solid rgba(72, 72, 71, 0.28);
+    border-radius: 1.2rem;
+    background: $sonic-surface-low;
+  }
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    font-family: $sonic-font-heading;
+    font-size: 2.8rem;
+    letter-spacing: -0.05em;
+  }
+
+  span {
+    margin-top: 0.5rem;
+    color: $sonic-on-surface-variant;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .setlist-hero-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .setlist-hero-aside-custom {
+    max-width: 54rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .setlist-metrics-custom {
+    grid-template-columns: 1fr 1fr;
+  }
+}

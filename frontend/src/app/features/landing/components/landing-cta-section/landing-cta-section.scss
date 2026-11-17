@@ -1,0 +1,113 @@
+:host {
+  display: contents;
+}
+
+#cta-section {
+  position: relative;
+  display: grid;
+  min-height: 82rem;
+  place-items: center;
+  overflow: hidden;
+  padding: 12rem 6rem;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(157, 80, 255, 0.3), transparent 32%),
+    linear-gradient(180deg, #0b0b0b, #050505);
+}
+
+.cta-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.36;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+  mask-image: radial-gradient(circle, #000, transparent 72%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 105rem;
+  text-align: center;
+
+  .section-kicker::before {
+    display: none;
+  }
+
+  h2 {
+    margin: 4rem 0 3rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(5rem, 7vw, 10rem);
+    letter-spacing: -0.6rem;
+    line-height: 0.98;
+
+    em {
+      color: var(--landing-primary);
+      font-style: normal;
+      text-shadow: 0 0 4rem rgba(157, 80, 255, 0.3);
+    }
+  }
+
+  > p {
+    max-width: 63rem;
+    margin: 0 auto;
+    color: rgba(173, 170, 170, 0.7);
+    font-size: 1.8rem;
+    line-height: 1.7;
+  }
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  span {
+    color: var(--landing-primary);
+    font-size: 2rem;
+    transition: transform 180ms ease;
+  }
+
+  &:hover span {
+    transform: translateX(0.5rem);
+  }
+}
+
+@media (max-width: 767.98px) {
+  #cta-section {
+    min-height: 72rem;
+    padding: 10rem 2.4rem;
+  }
+
+  .cta-content h2 {
+    margin: 3rem 0 2.5rem;
+    font-size: clamp(4.5rem, 12vw, 6.8rem);
+    letter-spacing: -0.35rem;
+  }
+
+  .cta-content > p {
+    font-size: 1.6rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    gap: 2.8rem;
+
+    .button {
+      max-width: 38rem;
+    }
+  }
+}

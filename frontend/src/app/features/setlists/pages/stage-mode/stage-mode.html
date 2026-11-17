@@ -1,0 +1,131 @@
+<div id="stage-mode-page">
+  @if (isLoading) {
+    <section id="stage-mode-loading-section" aria-label="Carregando Stage Mode">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <app-content-skeleton-loading label="Preparando o setlist para o palco" />
+          </div>
+        </div>
+      </div>
+    </section>
+  } @else if (errorMessage) {
+    <section id="stage-mode-error-section" aria-labelledby="stage-mode-error-title">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-xl-8">
+            <div class="stage-error-custom" role="alert">
+              <span class="material-symbols-outlined" aria-hidden="true">error</span>
+              <h1 id="stage-mode-error-title">O palco ainda não está pronto</h1>
+              <p>{{ errorMessage }}</p>
+              <div>
+                <button type="button" (click)="retryLoad()">Tentar novamente</button>
+                <button type="button" (click)="exitStageMode()">Voltar ao setlist</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  } @else if (stageSetlist; as currentSetlist) {
+    <section id="stage-mode-controls-section" aria-label="Controles do Stage Mode">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <header class="stage-mode-toolbar-custom">
+              <button
+                type="button"
+                class="stage-exit-custom"
+                aria-label="Sair do modo palco"
+                (click)="exitStageMode()"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                <span>Sair do modo palco</span>
+              </button>
+
+              <div class="stage-current-custom" aria-live="polite">
+                <span>Agora no palco</span>
+                <strong>{{ currentTrackTitle }}</strong>
+              </div>
+
+              <div class="stage-transport-custom">
+                <span class="stage-progress-custom">{{ progressLabel }}</span>
+
+                <button
+                  type="button"
+                  aria-label="Música anterior"
+                  [disabled]="!hasPreviousTrack"
+                  (click)="selectPreviousTrack()"
+                >
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="stage-check-custom"
+                  [class.stage-check-custom--active]="isCurrentTrackPlayed"
+                  [disabled]="currentSetlist.tracks.length === 0"
+                  [attr.aria-label]="
+                    isCurrentTrackPlayed ? 'Desmarcar música tocada' : 'Marcar música como tocada'
+                  "
+                  [attr.aria-pressed]="isCurrentTrackPlayed"
+                  (click)="toggleCurrentTrackPlayed()"
+                >
+                  <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                  <span>{{ isCurrentTrackPlayed ? 'Tocada' : 'Marcar tocada' }}</span>
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Próxima música"
+                  [disabled]="!hasNextTrack"
+                  (click)="selectNextTrack()"
+                >
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_downward</span>
+                </button>
+              </div>
+            </header>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stage-mode-paper-section" aria-label="Setlist de palco">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-12 col-xl-10 col-xxl-9">
+            <div class="stage-floor-custom">
+              <div class="stage-light-custom" aria-hidden="true"></div>
+              <div class="stage-cable-custom" aria-hidden="true"></div>
+
+              <div class="stage-paper-shell-custom">
+                <app-stage-setlist-paper
+                  [setlist]="currentSetlist"
+                  [currentTrackIndex]="currentTrackIndex"
+                  [playedMusicIds]="playedMusicIds"
+                  (trackSelected)="selectTrack($event)"
+                  (playedToggled)="togglePlayed($event)"
+                ></app-stage-setlist-paper>
+              </div>
+            </div>
+
+            <div class="stage-hints-custom">
+              <span>
+                <span class="material-symbols-outlined" aria-hidden="true">keyboard</span>
+                Use as setas para navegar
+              </span>
+              <span>
+                <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                Alto contraste para leitura no palco
+              </span>
+              <span>
+                <span class="material-symbols-outlined" aria-hidden="true">fullscreen</span>
+                Esc para sair
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+</div>

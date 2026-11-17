@@ -1,0 +1,124 @@
+<div id="practice-session-page">
+  @if (isLoading) {
+    <main class="practice-session-main-custom">
+      <section id="practice-session-loading-section" aria-label="Carregando sessão de prática">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando sessão de prática" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  } @else if (errorMessage) {
+    <main class="practice-session-main-custom">
+      <section id="practice-session-error-section" aria-label="Erro ao carregar sessão de prática">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="practice-session-error-custom" role="alert">
+                <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                <div>
+                  <p>{{ errorMessage }}</p>
+                  <a routerLink="/musics">Voltar para a biblioteca</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  } @else if (canDisplaySession) {
+    <app-practice-session-header
+      [elapsedTime]="elapsedTime"
+      [isTimerRunning]="isTimerRunning"
+      [sessionStatusLabel]="sessionStatusLabel"
+      (timerToggled)="toggleSessionTimer()"
+    ></app-practice-session-header>
+
+    <main class="practice-session-main-custom">
+      <section id="practice-session-hero-section" aria-labelledby="practice-session-title">
+        <div class="container">
+          <div class="row align-items-end g-4">
+            <div class="col-12 col-md-8">
+              <p class="practice-eyebrow-custom">{{ sessionEyebrow }}</p>
+              <h1 id="practice-session-title">
+                {{ sessionArtist }}: <em>{{ sessionMusicTitle }}</em>
+              </h1>
+              <p class="practice-description-custom">{{ sessionDescription }}</p>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="practice-goal-custom">
+                <div class="practice-goal-label-custom">
+                  <span>Meta diária</span>
+                  <strong>70%</strong>
+                </div>
+                <div
+                  class="practice-goal-track-custom"
+                  role="progressbar"
+                  aria-label="Meta diária"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="70"
+                >
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="practice-session-workspace-section" aria-label="Ferramentas da sessão">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-xl-8">
+              <div class="row g-4">
+                <div class="col-12">
+                  <app-session-metronome
+                    [tempo]="tempo"
+                    [isRunning]="isMetronomeRunning"
+                    (tempoChanged)="changeTempo($event)"
+                    (playToggled)="toggleMetronome()"
+                  ></app-session-metronome>
+                </div>
+
+                <div class="col-12">
+                  <app-session-summary
+                    [techniques]="techniques"
+                    (techniqueSelected)="selectTechnique($event)"
+                  ></app-session-summary>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <app-sheet-music-panel
+                (completionRequested)="requestSessionCompletion()"
+              ></app-sheet-music-panel>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <app-session-tool-dock
+      [activeTool]="activeTool"
+      (toolSelected)="selectTool($event)"
+    ></app-session-tool-dock>
+
+    @if (isCompletionModalOpen) {
+      <app-practice-session-completion-modal
+        [musicTitle]="sessionMusicTitle"
+        [elapsedTime]="elapsedTime"
+        [durationMinutes]="wholePracticeMinutes"
+        [isSubmitting]="isCompletingSession"
+        [errorMessage]="completionErrorMessage"
+        (cancelled)="cancelSessionCompletion()"
+        (submitted)="completeSession($event)"
+      />
+    }
+  }
+</div>

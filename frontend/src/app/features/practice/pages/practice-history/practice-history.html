@@ -1,0 +1,94 @@
+<app-dashboard-shell pageTitle="Histórico de prática">
+  <div id="practice-history-page">
+    <section id="practice-history-hero-section" aria-labelledby="practice-history-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <div class="history-hero-custom">
+              <p>Sua evolução, sessão por sessão</p>
+              <h1 id="practice-history-title">Histórico de prática</h1>
+              <span
+                >{{ meta.total }}
+                {{ meta.total === 1 ? 'sessão concluída' : 'sessões concluídas' }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice-history-filters-section" aria-label="Filtros do histórico">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <app-practice-history-filters
+              [musics]="musicOptions"
+              [isLoading]="isLoading"
+              (filtersApplied)="applyFilters($event)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice-history-results-section" aria-label="Sessões encontradas">
+      <div class="container">
+        @if (isLoading) {
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando histórico de prática" />
+            </div>
+          </div>
+        } @else if (errorMessage) {
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="history-error-custom" role="alert">
+                <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                <p>{{ errorMessage }}</p>
+                <button type="button" (click)="retryLoad()">Tentar novamente</button>
+              </div>
+            </div>
+          </div>
+        } @else if (items.length > 0) {
+          <div class="row g-3">
+            @for (item of items; track item.session.id) {
+              <div class="col-12 col-md-12">
+                <app-practice-history-card [item]="item" (opened)="openSession($event)" />
+              </div>
+            }
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <nav class="history-pagination-custom" aria-label="Paginação do histórico">
+                <button
+                  type="button"
+                  [disabled]="!hasPreviousPage"
+                  (click)="changePage(meta.page - 1)"
+                >
+                  Anterior</button
+                ><span>Página {{ meta.page }} de {{ totalPages }}</span
+                ><button
+                  type="button"
+                  [disabled]="!hasNextPage"
+                  (click)="changePage(meta.page + 1)"
+                >
+                  Próxima
+                </button>
+              </nav>
+            </div>
+          </div>
+        } @else {
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="history-empty-custom">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <h2>Nenhuma sessão encontrada</h2>
+                <p>Ajuste os filtros ou finalize uma nova prática para começar seu histórico.</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</app-dashboard-shell>

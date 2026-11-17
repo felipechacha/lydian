@@ -1,0 +1,25 @@
+<button
+  [class]="applyButtonClass()"
+  [type]="type()"
+  [disabled]="isInteractionDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-busy]="loading() ? 'true' : null"
+  (click)="handleClick($event)"
+>
+  <span
+    class="lydian-button-content-custom"
+    [class.lydian-button-content-custom--hidden]="showSubmitLoading()"
+  >
+    <ng-content />
+  </span>
+
+  @if (showSubmitLoading()) {
+    <span class="lydian-button-loading-custom" aria-live="polite">
+      <span class="lydian-button-wave-custom" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+      <span class="visually-hidden">{{ loadingLabel() }}</span>
+    </span>
+  }
+</button>

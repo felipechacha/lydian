@@ -1,0 +1,30 @@
+<aside class="mini-metronome-custom" aria-label="Metrônomo rápido">
+  <div class="mini-tempo-custom">
+    <span class="material-symbols-outlined" aria-hidden="true">graphic_eq</span>
+    <div>
+      <strong>{{ tempo }}</strong>
+      <small>BPM</small>
+    </div>
+  </div>
+
+  <input
+    type="range"
+    min="40"
+    max="220"
+    [value]="tempo"
+    aria-label="Andamento do metrônomo"
+    (input)="updateTempo($event)"
+  />
+
+  <button
+    type="button"
+    [class.is-running]="isRunning"
+    [attr.aria-pressed]="isRunning"
+    [attr.aria-label]="isRunning ? 'Pausar metrônomo' : 'Iniciar metrônomo'"
+    (click)="playToggled.emit()"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">
+      {{ isRunning ? 'pause' : 'play_arrow' }}
+    </span>
+  </button>
+</aside>

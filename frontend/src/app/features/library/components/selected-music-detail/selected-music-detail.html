@@ -1,0 +1,192 @@
+<article class="selected-music-detail-custom">
+  <form class="selected-music-form-custom" [formGroup]="musicForm" (ngSubmit)="submitMusic()">
+    <div class="selected-music-summary-custom">
+      <div class="selected-music-artwork-custom">
+        <img
+          [ngSrc]="music().artworkUrl"
+          width="480"
+          height="480"
+          priority
+          alt="Capa de {{ music().title }}"
+        />
+      </div>
+
+      <div class="selected-music-copy-custom">
+        <span class="selected-music-label-custom">Obra selecionada</span>
+        <h2>{{ music().title }}</h2>
+        <p>{{ music().composer }}</p>
+        @if (music().album; as album) {
+          <span class="selected-music-album-custom">{{ album }}</span>
+        }
+
+        <div class="selected-music-metadata-custom">
+          <label class="selected-music-metadata-field-custom">
+            <span class="material-symbols-outlined" aria-hidden="true">speed</span>
+            <span class="visually-hidden">BPM</span>
+            <input
+              type="number"
+              formControlName="bpm"
+              min="1"
+              max="400"
+              inputmode="numeric"
+              aria-label="BPM da música"
+              [class.is-invalid]="musicForm.controls.bpm.invalid && musicForm.controls.bpm.touched"
+            />
+            <span>BPM</span>
+          </label>
+          <label class="selected-music-metadata-field-custom selected-key-field-custom">
+            <span class="material-symbols-outlined selected-key-icon-custom" aria-hidden="true"
+              >music_note</span
+            >
+            <span class="visually-hidden">Tonalidade</span>
+            <input
+              type="text"
+              formControlName="key"
+              maxlength="20"
+              aria-label="Tonalidade da música"
+              [class.is-invalid]="musicForm.controls.key.invalid && musicForm.controls.key.touched"
+            />
+          </label>
+          <label class="selected-music-metadata-field-custom selected-tuning-field-custom">
+            <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+            <span class="visually-hidden">Afinação</span>
+            <input
+              type="text"
+              formControlName="tuning"
+              maxlength="50"
+              placeholder="Afinação"
+              aria-label="Afinação da música"
+              [class.is-invalid]="
+                musicForm.controls.tuning.invalid && musicForm.controls.tuning.touched
+              "
+            />
+          </label>
+          <label class="selected-music-metadata-field-custom selected-genre-field-custom">
+            <span class="material-symbols-outlined" aria-hidden="true">album</span>
+            <span class="visually-hidden">Gênero</span>
+            <input
+              type="text"
+              formControlName="genre"
+              maxlength="100"
+              placeholder="Gênero"
+              aria-label="Gênero musical"
+              [class.is-invalid]="
+                musicForm.controls.genre.invalid && musicForm.controls.genre.touched
+              "
+            />
+          </label>
+          <label class="selected-music-metadata-field-custom selected-capo-field-custom">
+            <span class="material-symbols-outlined" aria-hidden="true">straighten</span>
+            <span class="visually-hidden">Capotraste</span>
+            <span>Capo</span>
+            <input
+              type="number"
+              formControlName="capo"
+              min="0"
+              max="24"
+              inputmode="numeric"
+              aria-label="Casa do capotraste"
+              [class.is-invalid]="
+                musicForm.controls.capo.invalid && musicForm.controls.capo.touched
+              "
+            />
+          </label>
+        </div>
+        @if (
+          (musicForm.controls.bpm.invalid && musicForm.controls.bpm.touched) ||
+          (musicForm.controls.key.invalid && musicForm.controls.key.touched) ||
+          (musicForm.controls.genre.invalid && musicForm.controls.genre.touched) ||
+          (musicForm.controls.capo.invalid && musicForm.controls.capo.touched) ||
+          (musicForm.controls.tuning.invalid && musicForm.controls.tuning.touched)
+        ) {
+          <p class="selected-field-error-custom">
+            Revise os metadados: BPM entre 1 e 400, capo entre 0 e 24 e os campos de texto.
+          </p>
+        }
+      </div>
+    </div>
+
+    <div class="selected-music-settings-custom">
+      <div class="selected-setting-heading-custom">
+        <h3>Dificuldade</h3>
+        <span class="selected-setting-hint-custom">Personalize seu estudo</span>
+      </div>
+
+      <div class="difficulty-setting-custom">
+        <div class="difficulty-level-custom" aria-hidden="true">
+          @for (level of difficultyLevels; track level) {
+            <span [class]="applyDifficultyClass(level)"></span>
+          }
+        </div>
+        <div class="difficulty-options-custom" role="radiogroup" aria-label="Dificuldade da música">
+          @for (difficultyOption of difficultyOptions; track difficultyOption.label) {
+            <button
+              type="button"
+              [class]="applyDifficultyOptionClass(difficultyOption)"
+              role="radio"
+              [attr.aria-checked]="musicForm.controls.difficulty.value === difficultyOption.label"
+              (click)="selectDifficulty(difficultyOption)"
+            >
+              {{ difficultyOption.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="techniques-setting-custom">
+        <h3>Técnicas em foco</h3>
+        <app-technique-selector
+          [techniques]="availableTechniques()"
+          [selectedTechniqueIds]="selectedTechniqueIds"
+          [isLoading]="isLoadingTechniques()"
+          [errorMessage]="techniqueErrorMessage()"
+          [invalid]="
+            musicForm.controls.techniqueIds.invalid && musicForm.controls.techniqueIds.touched
+          "
+          (selectedTechniqueIdsChange)="updateSelectedTechniqueIds($event)"
+          (retryRequested)="techniquesRetryRequested.emit()"
+        ></app-technique-selector>
+      </div>
+    </div>
+
+    <div class="selected-music-actions-custom">
+      <a routerLink="/musics">Cancelar</a>
+
+      <!--
+      Botão nativo anterior preservado temporariamente para comparação.
+    <button type="button" [disabled]="isAdded()" (click)="musicAdded.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">
+        {{ isAdded() ? 'check' : 'library_add' }}
+      </span>
+      {{ isAdded() ? 'Adicionada à Biblioteca' : 'Adicionar à Biblioteca' }}
+    </button>
+    -->
+
+      <app-button
+        type="submit"
+        variant="primary"
+        size="large"
+        [loading]="isAdding()"
+        [disabled]="isAdded() || musicForm.invalid"
+        loadingLabel="Adicionando música à biblioteca"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">
+          {{ isAdded() ? 'check' : 'library_add' }}
+        </span>
+        {{ isAdded() ? 'Adicionada à Biblioteca' : 'Adicionar à Biblioteca' }}
+      </app-button>
+    </div>
+
+    <p
+      class="selected-music-feedback-custom"
+      [class.selected-music-feedback-custom--error]="!isAdded() && addErrorMessage()"
+      aria-live="polite"
+    >
+      @if (isAdded()) {
+        {{ music().title }} foi adicionada ao seu repertório.
+      } @else if (addErrorMessage()) {
+        {{ addErrorMessage() }}
+      }
+    </p>
+  </form>
+</article>

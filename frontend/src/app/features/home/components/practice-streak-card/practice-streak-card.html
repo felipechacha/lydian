@@ -1,0 +1,32 @@
+<article class="overview-card-custom practice-streak-card-custom">
+  <header class="overview-card-header-custom">
+    <h2>Sequência<br />Atual</h2>
+    <div class="streak-count-custom">
+      <span class="material-symbols-outlined is-filled" aria-hidden="true">
+        local_fire_department
+      </span>
+      <strong>{{ streak.days }}<small>Dias</small></strong>
+    </div>
+  </header>
+
+  <div
+    class="streak-chart-custom"
+    role="img"
+    aria-label="Atividade de prática nos últimos sete dias"
+  >
+    @for (day of streak.week; track $index) {
+      <div class="streak-day-custom">
+        <span
+          class="streak-bar-custom"
+          [class.streak-bar-custom--completed]="day.isCompleted"
+          [style.height.%]="day.completionPercentage"
+        ></span>
+        <small>{{ day.label }}</small>
+      </div>
+    }
+  </div>
+
+  <p class="streak-description-custom">
+    Seu ritmo está aumentando! Mantenha a prática diária para desbloquear o emblema de “Virtuoso”.
+  </p>
+</article>

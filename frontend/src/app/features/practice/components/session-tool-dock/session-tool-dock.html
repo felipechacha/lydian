@@ -1,0 +1,13 @@
+<nav class="session-tool-dock-custom" aria-label="Ferramentas rápidas da sessão">
+  @for (tool of tools; track tool.id) {
+    <button
+      type="button"
+      [class.is-active]="activeTool === tool.id"
+      [attr.aria-pressed]="activeTool === tool.id"
+      [attr.aria-label]="tool.label"
+      (click)="toolSelected.emit(tool.id)"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">{{ tool.icon }}</span>
+    </button>
+  }
+</nav>

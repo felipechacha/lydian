@@ -1,0 +1,91 @@
+<app-dashboard-shell pageTitle="Perfil">
+  <div id="profile-page">
+    @if (isLoading) {
+      <section id="profile-loading-section" aria-label="Carregando perfil">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando seu perfil musical" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (profile) {
+      <section id="profile-identity-section" aria-label="Identidade musical">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-profile-identity [profile]="profile" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (practiceGoal; as currentPracticeGoal) {
+        <section id="profile-practice-goal-section" aria-labelledby="practice-goal-title">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <app-practice-goal-editor
+                  [goal]="currentPracticeGoal"
+                  [isSaving]="isSavingGoal"
+                  (saved)="savePracticeGoal($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      <section id="profile-stats-section" aria-label="Indicadores de prática">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            @for (stat of stats; track stat.label) {
+              <div class="col-12 col-md-6 col-xl-4 d-flex">
+                <app-profile-stat-card class="w-100" [stat]="stat" />
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-insights-section" aria-label="Análise da evolução musical">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-md-12 col-xl-6 d-flex">
+              <app-skill-matrix class="w-100" [skills]="skills" />
+            </div>
+
+            <div class="col-12 col-md-12 col-xl-6">
+              <div class="row g-4">
+                <div class="col-12 col-md-12">
+                  <app-training-intensity [metrics]="trainingMetrics" />
+                </div>
+
+                <div class="col-12 col-md-12">
+                  <app-recent-achievements [achievements]="recentAchievements" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-medals-section" aria-labelledby="profile-medals-title">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-md-12">
+              <h2 id="profile-medals-title">Galeria de Medalhas</h2>
+            </div>
+
+            @for (achievement of achievements; track achievement.title) {
+              <div class="col-12 col-md-6 col-xl-3 d-flex">
+                <app-achievement-card class="w-100" [achievement]="achievement" />
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>

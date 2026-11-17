@@ -1,0 +1,87 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.music-details-editor-custom {
+  @include sonic-card(clamp(2.2rem, 4vw, 3.2rem));
+  height: 100%;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  header p {
+    margin: 0 0 0.5rem;
+    color: $sonic-secondary;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: 0;
+    font-family: $sonic-font-heading;
+    font-size: 2.5rem;
+  }
+  header > span {
+    color: $sonic-secondary;
+    font-size: 3rem;
+  }
+  form {
+    margin-top: 2.4rem;
+  }
+}
+
+.music-editor-grid-custom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+label,
+.music-editor-techniques-custom {
+  display: grid;
+  gap: 0.7rem;
+  color: $sonic-on-surface;
+  font-weight: 750;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 1rem;
+  outline: 0;
+  background: rgba(0, 0, 0, 0.2);
+  color: $sonic-on-surface;
+  font: inherit;
+  &:focus {
+    border-color: $sonic-secondary;
+    box-shadow: 0 0 0 0.3rem rgba(29, 251, 165, 0.1);
+  }
+}
+.music-editor-notes-custom,
+.music-editor-techniques-custom {
+  margin-top: 1.8rem;
+}
+.music-editor-notes-custom small {
+  color: $sonic-on-surface-variant;
+  text-align: right;
+}
+textarea {
+  resize: vertical;
+}
+footer {
+  display: flex;
+  margin-top: 2.4rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 767.98px) {
+  .music-editor-grid-custom {
+    grid-template-columns: 1fr;
+  }
+}

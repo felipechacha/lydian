@@ -1,0 +1,196 @@
+<app-dashboard-shell pageTitle="Detalhes do setlist">
+  <div id="setlist-details-page">
+    @if (isLoading) {
+      <section id="setlist-details-loading-section" aria-label="Carregando detalhes do setlist">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando detalhes do setlist" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (errorMessage) {
+      <section id="setlist-details-error-section" aria-labelledby="setlist-details-error-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="setlist-details-error-custom" role="alert">
+                <span class="material-symbols-outlined" aria-hidden="true">error</span>
+                <div>
+                  <h1 id="setlist-details-error-title">Não foi possível abrir este setlist</h1>
+                  <p>{{ errorMessage }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (setlist; as currentSetlist) {
+      <section id="setlist-details-hero-section" aria-labelledby="setlist-details-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-setlist-details-hero
+                [setlist]="currentSetlist"
+                [songCount]="selectedMusics.length"
+                [duration]="estimatedDuration"
+                (addMusicRequested)="openMusicPicker()"
+                (stageModeRequested)="openStageMode()"
+                (editSetlistRequested)="openEditPanel()"
+                (deleteSetlistRequested)="requestSetlistDeletion()"
+              ></app-setlist-details-hero>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (isEditPanelOpen) {
+        <section id="edit-setlist-section" aria-label="Editar setlist">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-xl-10">
+                <app-edit-setlist-panel
+                  [setlist]="currentSetlist"
+                  [isSubmitting]="isUpdatingSetlist"
+                  [errorMessage]="updateSetlistErrorMessage"
+                  (cancelled)="closeEditPanel()"
+                  (saved)="updateSetlist($event)"
+                ></app-edit-setlist-panel>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      @if (isMusicPickerOpen) {
+        <section id="setlist-music-picker-section" aria-labelledby="music-picker-title">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-12 col-xl-10">
+                <app-setlist-music-picker
+                  [musics]="availableMusics"
+                  [isSubmitting]="isAddingMusic"
+                  [errorMessage]="addMusicErrorMessage"
+                  (cancelled)="closeMusicPicker()"
+                  (musicSelected)="addMusic($event)"
+                ></app-setlist-music-picker>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      <section id="setlist-tracks-section" aria-labelledby="setlist-tracks-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="tracks-heading-custom">
+                <div>
+                  <p>Ordem do palco</p>
+                  <h2 id="setlist-tracks-title">Músicas do set</h2>
+                </div>
+                <div class="tracks-actions-custom">
+                  <app-view-mode-toggle
+                    [viewMode]="viewMode"
+                    (viewModeSelected)="selectViewMode($event)"
+                  ></app-view-mode-toggle>
+                  <button type="button" class="tracks-add-custom" (click)="openMusicPicker()">
+                    <span class="material-symbols-outlined" aria-hidden="true">library_add</span>
+                    Adicionar da biblioteca
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          @if (tracks.length > 0) {
+            <div class="row g-4 tracks-grid-custom">
+              @for (trackItem of tracks; track trackItem.song.id; let order = $index) {
+                <div [class]="applyMusicColumnClass()">
+                  <div [class]="applyTrackClass()">
+                    <span class="track-order-custom">{{ formatTrackOrder(order) }}</span>
+                    <app-music-library-card
+                      class="w-100"
+                      [music]="trackItem.song"
+                      [viewMode]="viewMode"
+                    ></app-music-library-card>
+                    <app-setlist-track-controls
+                      [position]="order"
+                      [trackCount]="tracks.length"
+                      [notes]="trackItem.notes"
+                      [isSaving]="isSavingTrack(trackItem.song.id)"
+                      (moved)="moveTrack(trackItem.song.id, $event)"
+                      (notesSaved)="saveTrackNotes(trackItem.song.id, $event)"
+                    ></app-setlist-track-controls>
+                    <div class="track-removal-custom">
+                      <button
+                        type="button"
+                        class="track-removal-trigger-custom"
+                        [disabled]="isRemovingMusic(trackItem.song.id)"
+                        [attr.aria-label]="'Remover ' + trackItem.song.title + ' do setlist'"
+                        (click)="requestMusicRemoval(trackItem.song.id)"
+                      >
+                        <span class="material-symbols-outlined" aria-hidden="true">
+                          playlist_remove
+                        </span>
+                        Remover do setlist
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="row tracks-grid-custom">
+              <div class="col-12 col-md-12">
+                <div class="setlist-tracks-empty-custom">
+                  <span class="material-symbols-outlined" aria-hidden="true">playlist_add</span>
+                  <h3>Este palco ainda está vazio</h3>
+                  <p>
+                    Adicione músicas da Biblioteca para começar a definir a ordem da apresentação.
+                  </p>
+                  <button type="button" (click)="openMusicPicker()">
+                    Adicionar primeira música
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>
+
+@if (isDeleteSetlistConfirmationOpen) {
+  @if (setlist; as currentSetlist) {
+    <app-confirmation-modal
+      title="Excluir este setlist?"
+      [subject]="currentSetlist.title"
+      description="será removido, mas as músicas continuarão disponíveis na sua biblioteca."
+      cancelLabel="Manter setlist"
+      confirmLabel="Excluir setlist"
+      loadingLabel="Excluindo setlist"
+      [isProcessing]="isDeletingSetlist"
+      [errorMessage]="deleteSetlistErrorMessage"
+      (cancelled)="cancelSetlistDeletion()"
+      (confirmed)="deleteSetlist()"
+    />
+  }
+}
+
+@if (musicPendingRemoval; as pendingMusic) {
+  <app-confirmation-modal
+    title="Remover do setlist?"
+    [subject]="pendingMusic.title"
+    description="será removida deste setlist, mas continuará disponível na sua biblioteca."
+    cancelLabel="Manter no setlist"
+    confirmLabel="Remover música"
+    loadingLabel="Removendo música"
+    [isProcessing]="isRemovingMusic(pendingMusic.id)"
+    [errorMessage]="removeMusicErrorMessage"
+    (cancelled)="cancelMusicRemoval()"
+    (confirmed)="removeMusic(pendingMusic.id)"
+  />
+}

@@ -1,0 +1,25 @@
+<app-dashboard-shell pageTitle="Descobrir">
+  <div id="discover-page">
+    @if (isLoading) {
+      <section id="discover-loading-section" aria-label="Carregando descobertas">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Preparando suas descobertas musicais" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else {
+      <section id="discover-overview-section" aria-label="Visão geral de descobertas">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-xl-9">
+              <app-dashboard-feature-placeholder [content]="content" />
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>

@@ -1,0 +1,36 @@
+<article class="practice-goal-editor-custom">
+  <header>
+    <div>
+      <p>Rotina personalizada</p>
+      <h2 id="practice-goal-title">Meta de prática</h2>
+    </div>
+    <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="practice-goal-grid-custom">
+      <label>
+        Minutos por dia
+        <input type="number" min="1" max="1440" formControlName="dailyTargetMinutes" />
+      </label>
+      <label>
+        Dias por semana
+        <input type="number" min="1" max="7" formControlName="weeklyTargetDays" />
+      </label>
+      <label>
+        Fuso horário
+        <input type="text" maxlength="100" formControlName="timezone" />
+      </label>
+    </div>
+    <footer>
+      <app-button
+        type="submit"
+        variant="secondary"
+        [loading]="isSaving()"
+        loadingLabel="Salvando meta"
+      >
+        Salvar meta
+      </app-button>
+    </footer>
+  </form>
+</article>

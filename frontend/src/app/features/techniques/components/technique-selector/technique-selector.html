@@ -1,0 +1,51 @@
+<div class="techniques-list-custom" role="group" aria-label="Técnicas selecionadas">
+  @for (technique of selectedTechniques; track technique.id) {
+    <span class="technique-tag-custom">
+      {{ technique.name }}
+      <button
+        type="button"
+        class="technique-remove-custom"
+        [attr.aria-label]="'Excluir técnica ' + technique.name"
+        (click)="removeTechnique(technique.id)"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </span>
+  }
+
+  <div class="technique-editor-custom">
+    <select
+      aria-label="Selecionar técnica em foco"
+      [formControl]="techniqueControl"
+      [disabled]="isLoading() || !!errorMessage() || availableTechniques.length === 0"
+    >
+      <option value="">
+        {{ isLoading() ? 'Carregando técnicas...' : 'Selecionar técnica' }}
+      </option>
+      @for (technique of availableTechniques; track technique.id) {
+        <option [value]="technique.id">{{ technique.name }}</option>
+      }
+    </select>
+    <button
+      type="button"
+      aria-label="Adicionar técnica selecionada"
+      [disabled]="!techniqueControl.value"
+      (click)="addTechnique()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+    </button>
+  </div>
+</div>
+
+@if (errorMessage()) {
+  <div class="technique-feedback-custom technique-feedback-custom--error" role="alert">
+    <span>{{ errorMessage() }}</span>
+    <button type="button" (click)="retryRequested.emit()">Tentar novamente</button>
+  </div>
+} @else if (invalid()) {
+  <p class="technique-feedback-custom technique-feedback-custom--error">
+    Adicione pelo menos uma técnica em foco.
+  </p>
+} @else if (!isLoading() && techniques().length === 0) {
+  <p class="technique-feedback-custom">Nenhuma técnica disponível no catálogo.</p>
+}

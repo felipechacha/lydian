@@ -1,0 +1,129 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+.edit-setlist-panel-custom {
+  @include sonic-card(clamp(2.4rem, 4vw, 4rem));
+  border-color: rgba(197, 154, 255, 0.28);
+
+  > header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    p,
+    h2 {
+      margin: 0;
+    }
+    p {
+      color: $sonic-primary;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.15rem;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin-top: 0.8rem;
+      font-family: $sonic-font-heading;
+      font-size: 3rem;
+    }
+    > button {
+      @include flex-center;
+      width: 4rem;
+      height: 4rem;
+      border: 1px solid $sonic-outline-variant;
+      border-radius: 50%;
+      background: transparent;
+      color: $sonic-on-surface;
+    }
+  }
+}
+
+form {
+  margin-top: 3rem;
+}
+.edit-fields-custom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.5fr);
+  gap: 2rem;
+}
+label {
+  display: grid;
+  gap: 0.8rem;
+  color: $sonic-on-surface;
+  font-weight: 800;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 1.3rem 1.4rem;
+  border: 1px solid rgba(72, 72, 71, 0.55);
+  border-radius: 1rem;
+  background: $sonic-surface-lowest;
+  color: $sonic-on-surface;
+  font: inherit;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+  @include sonic-focus-ring;
+  border-color: $sonic-primary;
+}
+textarea {
+  min-height: 12rem;
+  resize: vertical;
+}
+label small {
+  color: $sonic-tertiary;
+  font-size: 0.85rem;
+}
+.edit-description-custom {
+  margin-top: 2rem;
+}
+.edit-description-custom small {
+  color: $sonic-on-surface-variant;
+  text-align: right;
+}
+.edit-error-custom {
+  color: $sonic-tertiary;
+  font-weight: 700;
+}
+footer {
+  display: flex;
+  margin-top: 2.4rem;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+footer button {
+  min-height: 4.6rem;
+  padding: 0 1.7rem;
+  border: 1px solid $sonic-outline-variant;
+  border-radius: 1rem;
+  background: transparent;
+  color: $sonic-on-surface;
+  font-weight: 900;
+}
+footer button[type='submit'] {
+  border-color: $sonic-secondary;
+  background: $sonic-secondary;
+  color: $sonic-surface-lowest;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+@media (max-width: 767.98px) {
+  .edit-fields-custom {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    display: grid;
+  }
+}

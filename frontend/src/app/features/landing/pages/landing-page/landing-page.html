@@ -1,0 +1,26 @@
+@if (isPreloading) {
+  <app-landing-preloader
+    (revealReady)="onPreloaderRevealReady()"
+    (finished)="onPreloaderFinished()"
+  />
+}
+
+<main class="landing-page">
+  <app-landing-hero-section
+    [navigationMenuOpen]="isNavigationMenuOpen"
+    (navigationMenuToggle)="toggleNavigationMenu()"
+    (sectionNavigate)="navigateToSection($event)"
+    (shareRequested)="shareLandingPage()"
+  />
+  <app-landing-about-section />
+  <app-landing-methodology-section />
+  <app-landing-experience-section />
+  <app-landing-product-showcase-section />
+  <app-landing-features-section />
+  <app-landing-proof-section />
+  <!-- <app-landing-plans-section (sectionNavigate)="navigateToSection($event)" /> -->
+  <app-landing-faq-section />
+  <app-landing-waitlist-section />
+  <!-- <app-landing-cta-section /> -->
+  <app-landing-footer (sectionNavigate)="navigateToSection($event)" />
+</main>

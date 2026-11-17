@@ -1,0 +1,20 @@
+<div class="view-mode-toggle-custom" role="group" aria-label="Modo de visualização">
+  <button
+    type="button"
+    [class]="applyViewClass('grid')"
+    [attr.aria-pressed]="viewMode() === 'grid'"
+    aria-label="Visualizar em grade"
+    (click)="viewModeSelected.emit('grid')"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
+  </button>
+  <button
+    type="button"
+    [class]="applyViewClass('list')"
+    [attr.aria-pressed]="viewMode() === 'list'"
+    aria-label="Visualizar em lista"
+    (click)="viewModeSelected.emit('list')"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">view_list</span>
+  </button>
+</div>

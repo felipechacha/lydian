@@ -1,0 +1,53 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  min-height: 100vh;
+  color: $sonic-on-surface;
+  font-family: $sonic-font-body;
+  background: $sonic-surface;
+}
+
+.dashboard-shell-custom {
+  min-height: 100vh;
+  background: $sonic-surface;
+}
+
+.dashboard-workspace-custom {
+  min-width: 0;
+  min-height: 100vh;
+  margin-left: 8.8rem;
+  background: $sonic-surface;
+  transition: margin-left 240ms ease;
+}
+
+.dashboard-workspace-custom--sidebar-open {
+  margin-left: 28rem;
+}
+
+.dashboard-content-custom {
+  min-height: calc(100vh - 9rem);
+}
+
+.sidebar-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  width: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(0.4rem);
+}
+
+@media (max-width: 1199.98px) {
+  .dashboard-workspace-custom,
+  .dashboard-workspace-custom--sidebar-open {
+    margin-left: 0;
+  }
+
+  .sidebar-backdrop-custom {
+    display: block;
+  }
+}

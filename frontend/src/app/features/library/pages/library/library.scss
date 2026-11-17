@@ -1,0 +1,10 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+}
+
+#library-page {
+  @include dashboard-page-content;
+}

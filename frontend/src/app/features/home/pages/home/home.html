@@ -1,0 +1,83 @@
+<app-dashboard-shell pageTitle="Painel">
+  <div id="home-page">
+    @if (isLoading) {
+      <section id="home-loading-section" aria-label="Carregando painel">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <!--
+                Alternativa com waves preservada para avaliação.
+              <app-music-loading
+                message="Preparando seu painel"
+                detail="Sincronizando seu perfil e sua rotina de prática"
+                size="large"
+              ></app-music-loading>
+              -->
+
+              <app-content-skeleton-loading
+                label="Carregando seu painel de prática"
+              ></app-content-skeleton-loading>
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else {
+      <section id="daily-practice-section" aria-labelledby="daily-practice-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-daily-practice [practice]="dailyPractice"></app-daily-practice>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="practice-overview-section" aria-label="Visão geral da prática">
+        <div class="container">
+          <div class="row g-4 align-items-stretch">
+            <div class="col-12 col-md-6 col-xl-4 d-flex practice-overview-column-custom">
+              <app-next-practice-card
+                class="w-100"
+                [practice]="upcomingPractice"
+              ></app-next-practice-card>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4 d-flex practice-overview-column-custom">
+              <app-practice-streak-card
+                class="w-100"
+                [streak]="practiceStreak"
+              ></app-practice-streak-card>
+            </div>
+
+            <div class="col-12 col-md-12 col-xl-4 d-flex practice-overview-column-custom">
+              <app-recent-sessions-card
+                class="w-100"
+                [sessions]="recentSessions"
+                (musicSelected)="openMusicDetails($event)"
+                (historyRequested)="openPracticeHistory()"
+              ></app-recent-sessions-card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="weekly-performance-section" aria-labelledby="weekly-performance-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-weekly-performance [performance]="weeklyPerformance"></app-weekly-performance>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <button
+        type="button"
+        class="contextual-practice-button-custom"
+        aria-label="Abrir gravação de prática"
+      >
+        <span class="material-symbols-outlined is-filled" aria-hidden="true">mic</span>
+      </button>
+    }
+  </div>
+</app-dashboard-shell>

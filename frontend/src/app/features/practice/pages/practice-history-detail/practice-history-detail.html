@@ -1,0 +1,150 @@
+<app-dashboard-shell pageTitle="Detalhes da prática">
+  <div id="practice-history-detail-page">
+    @if (isLoading) {
+      <section id="practice-detail-loading-section" aria-label="Carregando sessão">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <app-content-skeleton-loading label="Carregando detalhes da sessão" />
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (errorMessage) {
+      <section id="practice-detail-error-section" aria-labelledby="practice-detail-error-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="practice-detail-error-custom" role="alert">
+                <h1 id="practice-detail-error-title">Não foi possível abrir a sessão</h1>
+                <p>{{ errorMessage }}</p>
+                <button type="button" (click)="retryLoad()">Tentar novamente</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    } @else if (session; as currentSession) {
+      <section id="practice-detail-hero-section" aria-labelledby="practice-detail-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <a routerLink="/practice-history" class="practice-detail-back-custom"
+                ><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span
+                >Histórico completo</a
+              >
+              <div class="practice-detail-hero-custom">
+                <div>
+                  <p>{{ practicedAt }}</p>
+                  <h1 id="practice-detail-title">{{ title }}</h1>
+                  <span>{{ currentSession.focus_area || 'Foco não informado' }}</span>
+                </div>
+                <div class="practice-detail-duration-custom">
+                  <span>Tempo de prática</span><strong>{{ duration }}</strong
+                  ><small>{{ pausedDuration }} em pausa</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (primarySong; as songEntry) {
+        <section id="practice-detail-song-section" aria-labelledby="practice-detail-song-title">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-12 col-md-5 col-xl-4">
+                <article class="practice-song-card-custom">
+                  <img [src]="artworkUrl" [alt]="'Capa de ' + songEntry.songs.title" />
+                  <div>
+                    <p>Música praticada</p>
+                    <h2 id="practice-detail-song-title">{{ songEntry.songs.title }}</h2>
+                    <span>{{ songEntry.songs.artist }}</span
+                    ><a [routerLink]="['/music-details', songEntry.song_id]"
+                      >Abrir música
+                      <span class="material-symbols-outlined" aria-hidden="true"
+                        >arrow_forward</span
+                      ></a
+                    >
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-md-7 col-xl-8">
+                <div class="practice-metrics-custom">
+                  <article>
+                    <span>BPM praticado</span><strong>{{ songEntry.practiced_bpm ?? '—' }}</strong>
+                  </article>
+                  <article>
+                    <span>Repetições</span><strong>{{ songEntry.repetitions ?? '—' }}</strong>
+                  </article>
+                  <article>
+                    <span>Progresso</span
+                    ><strong>{{
+                      songEntry.progress_rating ? songEntry.progress_rating + '/5' : '—'
+                    }}</strong>
+                  </article>
+                  <article>
+                    <span>Qualidade</span
+                    ><strong>{{
+                      songEntry.quality_rating ? songEntry.quality_rating + '/5' : '—'
+                    }}</strong>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
+      <section id="practice-detail-notes-section" aria-labelledby="practice-detail-notes-title">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-12 col-md-7">
+              <article class="practice-notes-custom">
+                <p>Registro da sessão</p>
+                <h2 id="practice-detail-notes-title">Anotações</h2>
+                <div>
+                  <strong>Resumo geral</strong
+                  ><span>{{
+                    currentSession.notes || 'Nenhuma anotação geral foi registrada.'
+                  }}</span>
+                </div>
+                <div>
+                  <strong>Anotação da música</strong
+                  ><span>{{
+                    primarySong?.notes || 'Nenhuma anotação específica foi registrada.'
+                  }}</span>
+                </div>
+              </article>
+            </div>
+            <div class="col-12 col-md-5">
+              <article class="practice-context-custom">
+                <p>Contexto</p>
+                <dl>
+                  <div>
+                    <dt>Humor</dt>
+                    <dd>{{ currentSession.mood || 'Não informado' }}</dd>
+                  </div>
+                  <div>
+                    <dt>Foco</dt>
+                    <dd>{{ currentSession.focus_area || 'Não informado' }}</dd>
+                  </div>
+                </dl>
+                @if (techniques.length > 0) {
+                  <div class="practice-techniques-custom">
+                    <span>Técnicas</span>
+                    <div>
+                      @for (technique of techniques; track technique) {
+                        <small>{{ technique }}</small>
+                      }
+                    </div>
+                  </div>
+                }
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</app-dashboard-shell>

@@ -1,0 +1,524 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.selected-music-detail-custom {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 72rem;
+  padding: clamp(2.4rem, 3vw, 4rem);
+  overflow: hidden;
+  flex-direction: column;
+  border-radius: 2rem;
+  background: rgba(38, 38, 38, 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(72, 72, 71, 0.12),
+    0 2.4rem 5rem rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(2rem);
+
+  &::before {
+    position: absolute;
+    top: -10rem;
+    right: -10rem;
+    width: 28rem;
+    height: 28rem;
+    border-radius: 50%;
+    background: rgba(197, 154, 255, 0.12);
+    content: '';
+    filter: blur(8rem);
+    pointer-events: none;
+  }
+}
+
+.selected-music-form-custom {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.selected-music-summary-custom {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: clamp(16rem, 42%, 24rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2.4rem, 3vw, 4rem);
+}
+
+.selected-music-artwork-custom {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 1.8rem;
+  background: $sonic-surface-highest;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.24);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.selected-music-label-custom {
+  display: inline-flex;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999rem;
+  background: rgba(197, 154, 255, 0.18);
+  color: $sonic-primary;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.selected-music-copy-custom {
+  min-width: 0;
+
+  h2 {
+    margin: 1.8rem 0 0;
+    color: $sonic-on-surface;
+    font-family: $sonic-font-heading;
+    font-size: clamp(3.2rem, 3vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.16rem;
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+
+  > p:not(.selected-field-error-custom) {
+    margin: 1.2rem 0 0;
+    color: $sonic-on-surface-variant;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+.selected-music-album-custom {
+  display: block;
+  margin-top: 0.6rem;
+  overflow: hidden;
+  color: rgba(173, 170, 170, 0.72);
+  font-size: 1.3rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-music-metadata-custom {
+  display: flex;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+
+  .selected-music-metadata-field-custom {
+    display: inline-flex;
+    padding: 1rem 1.5rem;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 1rem;
+    background: $sonic-surface-low;
+    color: $sonic-on-surface;
+    font-size: 1.3rem;
+    font-weight: 750;
+  }
+
+  input {
+    width: 5.2rem;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $sonic-on-surface;
+    font: inherit;
+
+    &.is-invalid {
+      color: $sonic-tertiary;
+    }
+  }
+
+  input[type='number'] {
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+
+  .selected-key-field-custom input {
+    width: clamp(10rem, 15vw, 15rem);
+  }
+
+  .selected-genre-field-custom input {
+    width: clamp(8rem, 12vw, 12rem);
+  }
+
+  .selected-capo-field-custom input {
+    width: 2.8rem;
+  }
+
+  .selected-tuning-field-custom input {
+    width: clamp(8rem, 12vw, 12rem);
+  }
+
+  .material-symbols-outlined {
+    color: $sonic-secondary;
+    font-size: 1.7rem;
+  }
+
+  .selected-key-icon-custom {
+    color: $sonic-tertiary;
+  }
+}
+
+.selected-music-settings-custom {
+  position: relative;
+  z-index: 1;
+  margin-top: 4rem;
+}
+
+.selected-setting-heading-custom,
+.techniques-setting-custom h3 {
+  color: $sonic-on-surface-variant;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+}
+
+.selected-setting-heading-custom {
+  display: flex;
+  margin-bottom: 1.6rem;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0;
+    font: inherit;
+  }
+}
+
+.selected-setting-hint-custom {
+  color: $sonic-primary;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+}
+
+.difficulty-setting-custom {
+  display: flex;
+  min-width: 0;
+  min-height: 7.6rem;
+  padding: 1.8rem 2rem;
+  align-items: center;
+  gap: 1.6rem;
+  border-radius: 1.4rem;
+  background: $sonic-surface-high;
+  box-shadow: inset 0 0 0 1px rgba(72, 72, 71, 0.1);
+}
+
+.difficulty-options-custom {
+  display: grid;
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+  padding: 0.4rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  border: 1px solid rgba(197, 154, 255, 0.12);
+  border-radius: 1.2rem;
+  background: $sonic-surface-low;
+}
+
+.difficulty-option-custom {
+  width: 100%;
+  min-width: 0;
+  min-height: 4rem;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: $sonic-on-surface-variant;
+  font-family: $sonic-font-heading;
+  font-size: 1.2rem;
+  font-weight: 750;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  &:hover {
+    background: rgba(197, 154, 255, 0.08);
+    color: $sonic-on-surface;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  &--active {
+    border-color: rgba(197, 154, 255, 0.34);
+    background: rgba(197, 154, 255, 0.16);
+    box-shadow:
+      inset 0 0 0 1px rgba(197, 154, 255, 0.06),
+      0 0 1.4rem rgba(149, 71, 247, 0.16);
+    color: $sonic-primary;
+  }
+}
+
+.difficulty-level-custom {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.difficulty-meter-custom {
+  width: 0.9rem;
+  height: 2.1rem;
+  border-radius: 999rem;
+  background: $sonic-surface-low;
+
+  &--active {
+    background: $sonic-secondary;
+    box-shadow: 0 0 1rem rgba(29, 251, 165, 0.35);
+  }
+}
+
+.techniques-setting-custom {
+  margin-top: 3.6rem;
+
+  h3 {
+    margin: 0 0 1.8rem;
+  }
+}
+
+.techniques-list-custom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .technique-tag-custom {
+    display: inline-flex;
+    min-height: 4rem;
+    padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 999rem;
+    background: $sonic-surface-low;
+    color: $sonic-on-surface;
+    font-size: 1.2rem;
+    font-weight: 650;
+  }
+}
+
+.technique-remove-custom {
+  display: inline-grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(247, 245, 242, 0.08);
+  color: $sonic-on-surface-variant;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+
+  &:hover {
+    background: rgba(255, 139, 160, 0.14);
+    color: $sonic-tertiary;
+  }
+
+  &:focus-visible {
+    @include sonic-focus-ring;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.4rem;
+  }
+}
+
+.technique-editor-custom {
+  display: inline-flex;
+  min-height: 4rem;
+  padding: 0.4rem 0.5rem 0.4rem 1.4rem;
+  align-items: center;
+  border: 1px solid rgba(197, 154, 255, 0.3);
+  border-radius: 999rem;
+  background: rgba(19, 19, 19, 0.6);
+
+  &:focus-within {
+    border-color: $sonic-primary;
+    box-shadow: 0 0 0 0.2rem rgba(197, 154, 255, 0.1);
+  }
+
+  input {
+    width: 12rem;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $sonic-on-surface;
+    font-size: 1.2rem;
+
+    &::placeholder {
+      color: $sonic-on-surface-variant;
+    }
+  }
+
+  button {
+    display: inline-grid;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(197, 154, 255, 0.14);
+    color: $sonic-primary;
+
+    &:focus-visible {
+      @include sonic-focus-ring;
+    }
+  }
+}
+
+.selected-field-error-custom {
+  margin: 1rem 0 0;
+  color: $sonic-tertiary;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.selected-music-actions-custom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin-top: auto;
+  padding-top: 4rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+
+  a,
+  button {
+    display: inline-flex;
+    min-height: 5.2rem;
+    padding: 1.3rem 2.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border: 0;
+    border-radius: 1.3rem;
+    font-family: $sonic-font-heading;
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  a {
+    color: $sonic-on-surface-variant;
+  }
+
+  button {
+    background: linear-gradient(45deg, $sonic-primary, $sonic-primary-dim);
+    box-shadow: 0 1.2rem 3rem rgba(149, 71, 247, 0.22);
+    color: #100d14;
+
+    &:disabled {
+      background: rgba(29, 251, 165, 0.14);
+      box-shadow: inset 0 0 0 1px rgba(29, 251, 165, 0.24);
+      color: $sonic-secondary;
+    }
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @include sonic-focus-ring;
+  }
+}
+
+.selected-music-feedback-custom {
+  min-height: 1.8rem;
+  margin: 1.2rem 0 0;
+  color: $sonic-secondary;
+  font-size: 1.2rem;
+  text-align: right;
+
+  &--error {
+    color: $sonic-tertiary;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .selected-music-detail-custom {
+    min-height: 0;
+  }
+
+  .selected-music-summary-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .difficulty-setting-custom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .difficulty-options-custom {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .technique-editor-custom {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .selected-music-artwork-custom {
+    width: min(100%, 28rem);
+  }
+
+  .selected-music-copy-custom h2 {
+    font-size: 3.6rem;
+  }
+
+  .selected-music-actions-custom {
+    margin-top: 4rem;
+    align-items: stretch;
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    a,
+    button {
+      width: 100%;
+    }
+  }
+
+  .selected-music-feedback-custom {
+    text-align: center;
+  }
+}
+
+@media (max-width: 419.98px) {
+  .difficulty-options-custom {
+    grid-template-columns: 1fr;
+  }
+}

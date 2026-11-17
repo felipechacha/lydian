@@ -1,0 +1,111 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  @include flex-center;
+  min-height: 100vh;
+}
+
+// O .login-card já tem estilos globais ou compartilhados,
+// mas aqui estilizamos as especificidades da página de Registro.
+.login-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3.2rem;
+  border-radius: 2rem;
+  width: 100%;
+  max-width: 42rem;
+  box-shadow: 0 2.5rem 5rem -1.2rem rgba(0, 0, 0, 0.5);
+
+  .brand-logo {
+    text-align: center;
+    margin-bottom: 2.4rem;
+
+    h1 {
+      font-size: 4.2rem;
+      background: linear-gradient(to right, $primary, $secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: rgba($light, 0.6);
+    }
+  }
+
+  .btn-login-custom {
+    width: 100%;
+    margin-top: 1.6rem;
+    font-size: 1.8rem;
+    height: 5.2rem;
+    background: linear-gradient(to right, $primary, $secondary);
+  }
+
+  .social-divider {
+    display: flex;
+    align-items: center;
+    margin: 2.4rem 0;
+    color: rgba($light, 0.4);
+    font-size: 1.3rem;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    span {
+      padding: 0 1.2rem;
+    }
+  }
+
+  .btn-social-google {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $light;
+    font-size: 1.5rem;
+    height: 4.8rem;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transform: none;
+    }
+  }
+
+  .footer-links {
+    margin-top: 2.4rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: rgba($light, 0.6);
+
+    a {
+      margin-left: 0.8rem;
+      color: $primary;
+      text-decoration: none;
+      font-weight: 600;
+      @include transition;
+
+      &:hover {
+        color: $secondary;
+        text-decoration: underline;
+      }
+    }
+  }
+}
